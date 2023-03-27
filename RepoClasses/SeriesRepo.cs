@@ -4,10 +4,10 @@ using Movie_Hunter_FinalProject.RepoInterface;
 
 namespace Movie_Hunter_FinalProject.RepoClasses
 {
-    public class ISeriesRepo : IGenericRepo<Series>
+    public class SeriesRepo : IGenericRepo<Series>
     {
         private readonly ApplicationContext _context;
-        public ISeriesRepo(ApplicationContext Context)
+        public SeriesRepo(ApplicationContext Context)
         {
             _context = Context;
         }
