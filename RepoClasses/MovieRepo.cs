@@ -4,11 +4,11 @@ using Movie_Hunter_FinalProject.RepoInterface;
 
 namespace Movie_Hunter_FinalProject.RepoClasses
 {
-    public class IMovieRepo : IGenericRepo<Movies>
+    public class MovieRepo : IGenericRepo<Movies>
     {
         private readonly ApplicationContext _context;
 
-        public IMovieRepo(ApplicationContext Context)
+        public MovieRepo(ApplicationContext Context)
         {
             _context = Context;
         }
