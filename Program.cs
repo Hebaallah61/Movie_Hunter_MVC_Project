@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Movie_Hunter_FinalProject.Areas.Identity.Data;
+using Movie_Hunter_FinalProject.Models;
+using Movie_Hunter_FinalProject.RepoClasses;
+using Movie_Hunter_FinalProject.RepoInterface;
 using System;
 
 namespace Movie_Hunter_FinalProject
@@ -17,11 +20,15 @@ namespace Movie_Hunter_FinalProject
 
             builder.Services.AddDefaultIdentity<SystemUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationContext>();
 
+            builder.Services.AddScoped<IGenericRepo<Movies>, MovieRepo>();
+            builder.Services.AddScoped<IGenericRepo<Series>, SeriesRepo>();
+            builder.Services.AddScoped<IGenericRepo<Episodes>, EpisodeRepo>();
+            builder.Services.AddScoped<IGenericRepo<LookUpTable>, LookUpTableRepo>();
+            builder.Services.AddScoped<IGenericRepo<LookUpValues>, LookUpValuesRepo>();
+            builder.Services.AddScoped<IUserSeriesRepo , UserSeriesRepo>();
+            builder.Services.AddScoped<IUserMovieRepo, UserMoviesRepo>();
+            builder.Services.AddScoped<IUserEpisodeRepo,UserEpisodeRepo>();
 
-            //builder.Services.AddControllersWithViews(op =>
-
-            //op.Conventions.Add(
-            //);
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             
