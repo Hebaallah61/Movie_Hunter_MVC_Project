@@ -1,0 +1,54 @@
+﻿@model Movie_Hunter_FinalProject.Models.UserMovies
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>UserMovies</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AddToFavorite)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AddToFavorite)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Review)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Review)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Watched)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Watched)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MovieId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MovieId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.user_id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.user_id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
