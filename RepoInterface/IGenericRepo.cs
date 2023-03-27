@@ -14,7 +14,7 @@
 
         public bool update(int id, T entity);
 
-        public bool Creata(T entity);
+        public bool Create(T entity);
 
 
     }
