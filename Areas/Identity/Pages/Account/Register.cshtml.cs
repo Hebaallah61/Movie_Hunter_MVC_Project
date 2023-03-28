@@ -71,6 +71,15 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+
+            [Required(ErrorMessage = "Plesae enter First name")]
+            [RegularExpression(@"^[A-Za-z]{1,15}$", ErrorMessage = "First Name should contain only alphabetical characters with maximum length of 15")]
+            [Display(Name ="First Name")]
+            public string First_Name { get; set; }
+            [Required(ErrorMessage = "Plesae enter last name")]
+            [RegularExpression(@"^[A-Za-z]{1,15}$", ErrorMessage = "First Name should contain only alphabetical characters with maximum length of 15")]
+            [Display(Name ="Last Name")]
+            public string Last_Name { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -114,7 +123,8 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-
+                user.First_Name = Input.First_Name;
+                user.Last_Name= Input.Last_Name;
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
