@@ -22,7 +22,7 @@ namespace Movie_Hunter_FinalProject.Models
         [ForeignKey("Series")]
         public int series_id { get; set; }
 
-        public virtual Series series { get; set; }
+        public virtual Series? series { get; set; }
 
 
         public HashSet<UserEpisodes> userEpisodes { get; set; } = new HashSet<UserEpisodes>();

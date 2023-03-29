@@ -14,6 +14,6 @@ namespace Movie_Hunter_FinalProject.Models
         [ForeignKey("LookUpTable")]
         public int lookupId { get; set; }
 
-        public virtual LookUpTable lookUpTable { get; set; }
+        public virtual LookUpTable? lookUpTable { get; set; }
     }
 }

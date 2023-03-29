@@ -4,6 +4,8 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
@@ -59,6 +61,20 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [Required(ErrorMessage = "Plesae enter First name")]
+            [RegularExpression(@"^[A-Za-z]{1,15}$", ErrorMessage = "First Name should contain only alphabetical characters with maximum length of 15")]
+            public string First_Name { get; set; }
+            [Required(ErrorMessage = "Plesae enter last name")]
+            [RegularExpression(@"^[A-Za-z]{1,15}$", ErrorMessage = "First Name should contain only alphabetical characters with maximum length of 15")]
+            public string Last_Name { get; set; }            
+            public int PaymentMethod_Id { get; set; }
+            
+            public int Category_Id { get; set; }
+
+            public int Plan_Id { get; set; }
+            [Range(12, 80, ErrorMessage = "Age should be between 12-80 years")]
+            public int Age { get; set; }
         }
 
         private async Task LoadAsync(SystemUser user)
@@ -66,11 +82,20 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account.Manage
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
+            
+            
+
             Username = userName;
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                Age = user.Age,
+                First_Name=user.First_Name,
+                Last_Name=user.Last_Name,
+                Plan_Id=user.Plan_Id,
+                Category_Id=user.Category_Id,
+                PaymentMethod_Id=user.PaymentMethod_Id,
             };
         }
 
