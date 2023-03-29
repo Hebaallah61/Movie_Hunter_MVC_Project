@@ -20,12 +20,13 @@ namespace Movie_Hunter_FinalProject.Models
         [Required(ErrorMessage ="Plesae enter desscription for your show")]
         public string Description { get; set; }
 
-        [ForeignKey("LookUpValues")]
+        
         public int Category_Id { get; set; }
 
         public string Trailer_Path { get; set; }
 
-        public virtual LookUpValues? lookUpValues { get; set; }
+        [ForeignKey("Category_Id")]
+        public virtual LookUpValues lookUpValues { get; set; }
 
 
 

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Movie_Hunter_FinalProject.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstDatabasMigration : Migration
+    public partial class v1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -66,15 +66,14 @@ namespace Movie_Hunter_FinalProject.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    lookupId = table.Column<int>(type: "int", nullable: false),
-                    lookUpTableId = table.Column<int>(type: "int", nullable: false)
+                    lookupId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_lookUpValues", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_lookUpValues_lookUpTables_lookUpTableId",
-                        column: x => x.lookUpTableId,
+                        name: "FK_lookUpValues_lookUpTables_lookupId",
+                        column: x => x.lookupId,
                         principalTable: "lookUpTables",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -91,7 +90,6 @@ namespace Movie_Hunter_FinalProject.Migrations
                     Category_Id = table.Column<int>(type: "int", nullable: false),
                     Plan_Id = table.Column<int>(type: "int", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
-                    lookUpValuesId = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -111,11 +109,11 @@ namespace Movie_Hunter_FinalProject.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_lookUpValues_lookUpValuesId",
-                        column: x => x.lookUpValuesId,
+                        name: "FK_AspNetUsers_lookUpValues_Category_Id",
+                        column: x => x.Category_Id,
                         principalTable: "lookUpValues",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -131,15 +129,14 @@ namespace Movie_Hunter_FinalProject.Migrations
                     Rating = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Category_Id = table.Column<int>(type: "int", nullable: false),
-                    Trailer_Path = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    lookUpValuesId = table.Column<int>(type: "int", nullable: false)
+                    Trailer_Path = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_movies", x => x.id);
                     table.ForeignKey(
-                        name: "FK_movies_lookUpValues_lookUpValuesId",
-                        column: x => x.lookUpValuesId,
+                        name: "FK_movies_lookUpValues_Category_Id",
+                        column: x => x.Category_Id,
                         principalTable: "lookUpValues",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -157,15 +154,14 @@ namespace Movie_Hunter_FinalProject.Migrations
                     Rating = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Category_Id = table.Column<int>(type: "int", nullable: false),
-                    Trailer_Path = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    lookUpValuesId = table.Column<int>(type: "int", nullable: false)
+                    Trailer_Path = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_series", x => x.id);
                     table.ForeignKey(
-                        name: "FK_series_lookUpValues_lookUpValuesId",
-                        column: x => x.lookUpValuesId,
+                        name: "FK_series_lookUpValues_Category_Id",
+                        column: x => x.Category_Id,
                         principalTable: "lookUpValues",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -267,21 +263,20 @@ namespace Movie_Hunter_FinalProject.Migrations
                     Review = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Watched = table.Column<bool>(type: "bit", nullable: false),
                     MovieId = table.Column<int>(type: "int", nullable: false),
-                    moviesid = table.Column<int>(type: "int", nullable: false),
-                    user_id = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    systemUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    user_id = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_userMovies", x => x.id);
                     table.ForeignKey(
-                        name: "FK_userMovies_AspNetUsers_systemUserId",
-                        column: x => x.systemUserId,
+                        name: "FK_userMovies_AspNetUsers_user_id",
+                        column: x => x.user_id,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_userMovies_movies_moviesid",
-                        column: x => x.moviesid,
+                        name: "FK_userMovies_movies_MovieId",
+                        column: x => x.MovieId,
                         principalTable: "movies",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -297,15 +292,14 @@ namespace Movie_Hunter_FinalProject.Migrations
                     duration = table.Column<double>(type: "float", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     season = table.Column<int>(type: "int", nullable: false),
-                    series_id = table.Column<int>(type: "int", nullable: false),
-                    seriesid = table.Column<int>(type: "int", nullable: false)
+                    series_id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_episodes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_episodes_series_seriesid",
-                        column: x => x.seriesid,
+                        name: "FK_episodes_series_series_id",
+                        column: x => x.series_id,
                         principalTable: "series",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -351,21 +345,20 @@ namespace Movie_Hunter_FinalProject.Migrations
                     Review = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Watched = table.Column<bool>(type: "bit", nullable: false),
                     EpisodeId = table.Column<int>(type: "int", nullable: false),
-                    episodesId = table.Column<int>(type: "int", nullable: false),
-                    user_id = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    systemUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    user_id = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_userEpisodes", x => x.id);
                     table.ForeignKey(
-                        name: "FK_userEpisodes_AspNetUsers_systemUserId",
-                        column: x => x.systemUserId,
+                        name: "FK_userEpisodes_AspNetUsers_user_id",
+                        column: x => x.user_id,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_userEpisodes_episodes_episodesId",
-                        column: x => x.episodesId,
+                        name: "FK_userEpisodes_episodes_EpisodeId",
+                        column: x => x.EpisodeId,
                         principalTable: "episodes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -404,9 +397,9 @@ namespace Movie_Hunter_FinalProject.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_lookUpValuesId",
+                name: "IX_AspNetUsers_Category_Id",
                 table: "AspNetUsers",
-                column: "lookUpValuesId");
+                column: "Category_Id");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
@@ -416,44 +409,44 @@ namespace Movie_Hunter_FinalProject.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_episodes_seriesid",
+                name: "IX_episodes_series_id",
                 table: "episodes",
-                column: "seriesid");
+                column: "series_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_lookUpValues_lookUpTableId",
+                name: "IX_lookUpValues_lookupId",
                 table: "lookUpValues",
-                column: "lookUpTableId");
+                column: "lookupId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_movies_lookUpValuesId",
+                name: "IX_movies_Category_Id",
                 table: "movies",
-                column: "lookUpValuesId");
+                column: "Category_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_series_lookUpValuesId",
+                name: "IX_series_Category_Id",
                 table: "series",
-                column: "lookUpValuesId");
+                column: "Category_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_userEpisodes_episodesId",
+                name: "IX_userEpisodes_EpisodeId",
                 table: "userEpisodes",
-                column: "episodesId");
+                column: "EpisodeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_userEpisodes_systemUserId",
+                name: "IX_userEpisodes_user_id",
                 table: "userEpisodes",
-                column: "systemUserId");
+                column: "user_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_userMovies_moviesid",
+                name: "IX_userMovies_MovieId",
                 table: "userMovies",
-                column: "moviesid");
+                column: "MovieId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_userMovies_systemUserId",
+                name: "IX_userMovies_user_id",
                 table: "userMovies",
-                column: "systemUserId");
+                column: "user_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_userSeries_SeriesId",

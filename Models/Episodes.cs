@@ -19,12 +19,13 @@ namespace Movie_Hunter_FinalProject.Models
 
         public int season { get; set; }
 
-        [ForeignKey("Series")]
+        
         public int series_id { get; set; }
 
+        [ForeignKey("series_id")]
         public virtual Series? series { get; set; }
 
 
-        public HashSet<UserEpisodes> userEpisodes { get; set; } = new HashSet<UserEpisodes>();
+        public virtual HashSet<UserEpisodes> userEpisodes { get; set; } = new HashSet<UserEpisodes>();
     }
 }

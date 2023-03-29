@@ -19,11 +19,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Movie_Hunter_FinalProject.Areas.Identity.Data;
+using Movie_Hunter_FinalProject.Models;
+using Movie_Hunter_FinalProject.RepoInterface;
 
 namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
+        private readonly  ILookValueRepo _LookValues;
         private readonly SignInManager<SystemUser> _signInManager;
         private readonly UserManager<SystemUser> _userManager;
         private readonly IUserStore<SystemUser> _userStore;
@@ -36,7 +39,7 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
             IUserStore<SystemUser> userStore,
             SignInManager<SystemUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender, ILookValueRepo looks)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -44,6 +47,7 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _LookValues= looks;
         }
 
         /// <summary>
@@ -64,6 +68,7 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
+
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -107,11 +112,23 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Display(Name ="Favorite Category")]
+            public int Category_Id { get; set; }
+
+            [Display(Name ="Your Plan")]
+            public int Plan_Id { get; set; }
+
+            [Display( Name ="Payment Method")]
+            public int PaymentMethod_Id { get; set; }
         }
 
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            var test = _LookValues.GetByName("Category");
+            ViewData["Categories"] = _LookValues.GetByName("Category");
+
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
@@ -125,6 +142,9 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
                 var user = CreateUser();
                 user.First_Name = Input.First_Name;
                 user.Last_Name= Input.Last_Name;
+                user.Category_Id=Input.Category_Id;
+                user.Plan_Id = 6;
+                user.PaymentMethod_Id=9;
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);

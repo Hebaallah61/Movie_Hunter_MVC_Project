@@ -24,7 +24,7 @@ namespace Movie_Hunter_FinalProject
             builder.Services.AddScoped<IGenericRepo<Series>, SeriesRepo>();
             builder.Services.AddScoped<IGenericRepo<Episodes>, EpisodeRepo>();
             builder.Services.AddScoped<IGenericRepo<LookUpTable>, LookUpTableRepo>();
-            builder.Services.AddScoped<IGenericRepo<LookUpValues>, LookUpValuesRepo>();
+            builder.Services.AddScoped<ILookValueRepo, LookUpValuesRepo>();
             builder.Services.AddScoped<IUserSeriesRepo , UserSeriesRepo>();
             builder.Services.AddScoped<IUserMovieRepo, UserMoviesRepo>();
             builder.Services.AddScoped<IUserEpisodeRepo,UserEpisodeRepo>();

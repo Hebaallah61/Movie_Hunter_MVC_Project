@@ -44,6 +44,7 @@ namespace Movie_Hunter_FinalProject.RepoClasses
 
         public List<UserMovies> GetAll()
         {
+            //_context.userMovies.
             return _context.userMovies.Include(u=>u.systemUser).Include(m=>m.movies).ToList();
         }
 

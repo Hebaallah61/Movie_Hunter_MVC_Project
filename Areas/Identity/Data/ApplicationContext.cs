@@ -51,6 +51,28 @@ public class ApplicationContext : IdentityDbContext<SystemUser>
             .OnDelete(DeleteBehavior.Restrict); // Set OnDelete to restrict cascading deletes
 
 
+        builder.Entity<SystemUser>()
+            .HasOne(s => s.lookUpValues)
+            .WithMany(s => s.Users)
+            .HasForeignKey(s=>s.Plan_Id)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Entity<SystemUser>()
+            .HasOne(s => s.lookUpValues)
+            .WithMany(s => s.Users)
+            .HasForeignKey(s => s.PaymentMethod_Id)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Entity<SystemUser>()
+            .HasOne(s => s.lookUpValues)
+            .WithMany(s => s.Users)
+            .HasForeignKey(s => s.Category_Id)
+            .OnDelete(DeleteBehavior.Restrict);
+
+
+
+
+
         base.OnModelCreating(builder);
         // Customize the ASP.NET Identity model and override the defaults if needed.
         // For example, you can rename the ASP.NET Identity table names and more.

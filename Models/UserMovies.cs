@@ -20,14 +20,17 @@ namespace Movie_Hunter_FinalProject.Models
 
         public bool Watched { get; set; }
 
-        [ForeignKey("Movies")]
+       
         public int MovieId { get; set; }
 
-        public virtual Movies? movies { get; set; }
+        [ForeignKey("MovieId")]
+        public virtual Movies movies { get; set; }
 
-        [ForeignKey("SystemUser")]
+        
         public string user_id { get; set; }
 
-        public virtual SystemUser? systemUser { get; set; }
+        [ForeignKey("user_id")]
+
+        public virtual SystemUser systemUser { get; set; }
     }
 }
