@@ -22,16 +22,16 @@ public class SystemUser : IdentityUser
 
     
   
-    public int PaymentMethod_Id { get; set; }
+    public int? PaymentMethod_Id { get; set; }
 
     
-    public int Category_Id { get; set; }
+    public int? Category_Id { get; set; }
 
     
-    public int Plan_Id { get; set; }
+    public int? Plan_Id { get; set; }
     [Range(12,80,ErrorMessage ="Age should be between 12-80 years")]
     public int Age { get; set; }
-    public virtual LookUpValues lookUpValues { get; set; }
+    public virtual LookUpValues? lookUpValues { get; set; }
 
 
     public virtual HashSet<UserMovies> userMovies { get; set; } = new HashSet<UserMovies>();

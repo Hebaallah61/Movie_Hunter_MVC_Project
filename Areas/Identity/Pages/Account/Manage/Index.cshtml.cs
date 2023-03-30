@@ -68,11 +68,11 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account.Manage
             [Required(ErrorMessage = "Plesae enter last name")]
             [RegularExpression(@"^[A-Za-z]{1,15}$", ErrorMessage = "First Name should contain only alphabetical characters with maximum length of 15")]
             public string Last_Name { get; set; }            
-            public int PaymentMethod_Id { get; set; }
+            public int? PaymentMethod_Id { get; set; }
             
-            public int Category_Id { get; set; }
+            public int? Category_Id { get; set; }
 
-            public int Plan_Id { get; set; }
+            public int? Plan_Id { get; set; }
             [Range(12, 80, ErrorMessage = "Age should be between 12-80 years")]
             public int Age { get; set; }
         }

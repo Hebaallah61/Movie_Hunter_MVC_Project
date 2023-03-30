@@ -3,8 +3,8 @@
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
-    List<LookUpValues> Values = (List<LookUpValues>)ViewData["Categories"];
-    var list = new SelectList(Values, "Id", "Value");
+   // List<LookUpValues> Values = (List<LookUpValues>)ViewData["Categories"];
+    var list = new SelectList((List<LookUpValues>)ViewData["Categories"], "Id", "Value");
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -32,11 +32,11 @@
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
 
-            <div class="form-floating mb-3">
+      @*      <div class="form-floating mb-3">
                 <select asp-for="Input.Category_Id" class="form-control" asp-items="list" aria-required="true" placeholder="Category"></select>
                 <label asp-for="Input.Category_Id">Choose Category</label>
                 <span asp-validation-for="Input.Category_Id" class="text-danger"></span>
-            </div>
+            </div>*@
 
             
 
