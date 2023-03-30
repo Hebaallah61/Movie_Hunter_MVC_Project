@@ -6,6 +6,8 @@ using Movie_Hunter_FinalProject.Areas.Identity.Data;
 using Movie_Hunter_FinalProject.Models;
 using Movie_Hunter_FinalProject.RepoClasses;
 using Movie_Hunter_FinalProject.RepoInterface;
+using Stripe;
+using Stripe_Payment.Areas.Payment.Models;
 using System;
 
 namespace Movie_Hunter_FinalProject
@@ -21,6 +23,9 @@ namespace Movie_Hunter_FinalProject
             builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
 
             builder.Services.AddDefaultIdentity<SystemUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationContext>();
+            builder.Services.Configure<StripSetting>(builder.Configuration.GetSection("Stripe"));
+
+            StripeConfiguration.SetApiKey(builder.Configuration.GetSection("Stripe")["SecretKey"]);
 
             builder.Services.AddAuthentication().AddGoogle(googleOptions =>
             {

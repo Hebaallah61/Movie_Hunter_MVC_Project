@@ -1,0 +1,184 @@
+﻿@using Microsoft.Extensions.Options
+@using Stripe_Payment.Areas.Payment.Models;
+@inject IOptions<StripSetting> Stripee
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+  box-sizing: border-box;
+  
+}
+body{
+            background-color: black;
+}
+
+.columns {
+  float: left;
+  width: 33.3%;
+  padding: 8px;
+}
+
+.price {
+  list-style-type: none;
+  border: 1px solid #eee;
+  margin: 0;
+  padding: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.price:hover {
+  box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+}
+
+.price .header {
+  background-color: #111;
+  color: white;
+  font-size: 25px;
+}
+
+.price li {
+  border-bottom: 1px solid #eee;
+  padding: 20px;
+  text-align: center;
+  background-color: palevioletred;
+}
+
+.price .grey {
+  background-color: #eee;
+  font-size: 20px;
+}
+
+.button {
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+}
+h1{
+    text-align:center;
+    color:white
+}
+
+</style>
+</head>
+<body>
+
+    <h1>Select your Suitable Plan</h1>
+
+
+<div class="columns">
+  <ul class="price">
+    <li class="header">Basic</li>
+    <li class="grey">$ 34.99 / year</li>
+    <li>Good Quality</li>
+    <li>720P</li>
+    <li>TV support</li>
+    <li>100GB Surfing</li>
+            <li class="grey">
+                <form action="Payments/Charge" method="POST">
+                    <input type="text" name="test" value="3500" style="display:none" />
+                    <script src="//checkout.stripe.com/v2/checkout.js"
+                            class="stripe-button"
+                            data-key="@Stripee.Value.PublishableKey"
+                            data-locale="auto"
+                            data-description="test Charge">
+                    </script>
+                </form>
+            </li>
+  </ul>
+</div>
+
+<div class="columns">
+  <ul class="price">
+    <li class="header" style="background-color:#04AA6D">Pro</li>
+    <li class="grey">$ 99.99 / year</li>
+            
+            <li>Excellent Quality</li>
+            <li>4K+HDR</li>
+            <li>All Devices support</li>
+            <li>Unlimited Surfing</li>
+        <li class="grey">
+        <form action="Payments/Charge" method="POST">
+                    <input type="text" name="test" value="10000" style="display:none" />
+            <script src="//checkout.stripe.com/v2/checkout.js"
+                class="stripe-button"
+                data-key="@Stripee.Value.PublishableKey"
+                data-locale="auto"
+                data-description="test Charge">
+             </script>
+        </form>
+    </li>
+  </ul>
+</div>
+
+<div class="columns">
+  <ul class="price">
+    <li class="header">Premium</li>
+    <li class="grey">$ 69.99 / year</li>
+            <li>very Good Quality</li>
+            <li>1080P</li>
+            <li>TV & mobile support</li>
+            <li>200GB Surfing</li>
+    <li class="grey">
+        <form action="Payments/Charge" method="POST">
+             <input  type="text" name="test" value="7000" style="display:none"/>
+            <script src="//checkout.stripe.com/v2/checkout.js"
+                class="stripe-button"
+                data-key="@Stripee.Value.PublishableKey"
+                data-locale="auto"
+                data-description="test Charge">
+             </script>
+        </form>
+    </li>
+  </ul>
+</div>
+
+</body>
+
+
+
+<a href="https://www.youtube.com/watch?v=j02OZRjf2d8" style="color:wheat">click here</a>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<form action="Payments/Charge" method="POST">
+    <input type="text" name="test" value="99.99" style="visibility:hidden" />
+    <script src="//checkout.stripe.com/v2/checkout.js"
+            class="stripe-button"
+            data-key="@Stripee.Value.PublishableKey"
+            data-locale="auto"
+            data-description="test Charge"
+            @*data-amount="100"
+    </script>
+</form>*@

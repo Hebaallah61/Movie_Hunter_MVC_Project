@@ -18,6 +18,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.5" />
+    <PackageReference Include="Stripe.net" Version="41.12.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +27,7 @@
     <Folder Include="Areas\MovieSeries\Controllers\" />
     <Folder Include="Areas\MovieSeries\Data\" />
     <Folder Include="Areas\MovieSeries\Models\" />
+    <Folder Include="Areas\Payment\Data\" />
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Areas\User\Models\" />
     <Folder Include="Controllers\" />
