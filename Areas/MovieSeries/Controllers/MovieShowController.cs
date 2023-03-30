@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Movie_Hunter_FinalProject.Areas.MovieSeries.Controllers
 {
+    [Area("MovieSeries")]
     public class MovieShowController : Controller
     {
         // GET: MovieShowController

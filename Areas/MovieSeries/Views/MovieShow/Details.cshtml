@@ -1,5 +1,373 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Guy 2021</title>
+
+    <!--
+      - favicon
+    -->
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+    <!--
+      - custom css link
+    -->
+    <!--
+      - google font link
+    -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="~/css/movie.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body style="background-image:url('../css/images/body-bg.gif')" id="#top">
+
+    <!--
+      - #HEADER
+    -->
+
+    <header class="header" data-header>
+        <div class="container">
+    </header>
+
+    <main>
+        <article>
+
+            <!--
+              - #MOVIE DETAIL
+            -->
+
+            <section class="movie-detail">
+                <div class="container">
+
+                    <figure class="movie-detail-banner">
+
+                        <img src='~/css/images/MoviePoster3.jpg' class="MoviePoster" alt="Free guy movie poster">
+
+                        <button class="play-btn">
+                            <ion-icon name="play-circle-outline"></ion-icon>
+                            <span class="playTrailer">Play trailer</span>
+                        </button>
+
+                    </figure>
+
+                    <div class="movie-detail-content">
+
+                        <!-- <p class="detail-subtitle">New Episodes</p> -->
+
+                        <h1 class="h1 detail-title">
+                            Free <strong>Guy</strong>
+                        </h1>
+
+                        <div class="meta-wrapper">
+
+                            <div class="badge-wrapper">
+                                <span id="MovieRate">8.6/10</span>
+
+                                <div class="badge badge-outline">HD</div>
+                            </div>
+
+                            <div class="ganre-wrapper">
+                                <a href="#">Comedy</a>
+                                <span class="star-icon" id="RatingStar">☆</span>
+                                <a data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    style="color: rgb(255, 255, 255); cursor: pointer;">Rate</a>
+                                <span class="star-icon" id="FavStar">☆</span>
+                                <a href="#" id="FavMovie">Favourite</a>
+
+                            </div>
+
+                            <div class="date-time">
+
+                                <div>
+                                    <ion-icon name="calendar-outline"></ion-icon>
+
+                                    <time datetime="2021">2021</time>
+                                </div>
+
+                                <div>
+                                    <ion-icon name="time-outline"></ion-icon>
+
+                                    <time datetime="PT115M">115 min</time>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <p class="storyline">
+                            A bank teller called Guy realizes he is a background character in an open world video game
+                            called Free
+                            City that will
+                            soon go offline.
+                        </p>
+
+                        <div class="details-actions">
+
+
+                            <button class="btn btn-primary">
+                                <ion-icon name="play"></ion-icon>
+
+                                <span>Watch Now</span>
+                            </button>
+
+                        </div>
+
+                        <a href="./assets/images/movie-4.png" download class="download-btn">
+                            <span>Download</span>
+
+                            <ion-icon name="download-outline"></ion-icon>
+                        </a>
+
+                    </div>
+
+                </div>
+            </section>
+
+
+
+
+
+            <!--
+              - #TV SERIES
+            -->
+
+            <section class="tv-series">
+                <div class="container">
+
+                    <!-- <p class="section-subtitle">Best TV Series</p> -->
+
+                    <h2 class="h2 section-title">Based on your preferences</h2>
+
+                    <ul class="movies-list">
+
+                        <li>
+                            <div class="movie-card">
+
+                                <a href="./movie-details.html">
+                                    <figure class="card-banner">
+                                        <img src="./assets/images/series-1.png" alt="Moon Knight movie poster">
+                                    </figure>
+                                </a>
+
+                                <div class="title-wrapper">
+                                    <a href="./movie-details.html">
+                                        <h3 class="card-title">Moon Knight</h3>
+                                    </a>
+
+                                    <time datetime="2022">2022</time>
+                                </div>
+
+                                <div class="card-meta">
+                                    <div class="badge badge-outline">2K</div>
+
+                                    <div class="duration">
+                                        <ion-icon name="time-outline"></ion-icon>
+
+                                        <time datetime="PT47M">47 min</time>
+                                    </div>
+
+                                    <div class="rating">
+                                        <ion-icon name="star"></ion-icon>
+
+                                        <data>8.6</data>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="movie-card">
+
+                                <a href="./movie-details.html">
+                                    <figure class="card-banner">
+                                        <img src="./assets/images/series-2.png" alt="Halo movie poster">
+                                    </figure>
+                                </a>
+
+                                <div class="title-wrapper">
+                                    <a href="./movie-details.html">
+                                        <h3 class="card-title">Halo</h3>
+                                    </a>
+
+                                    <time datetime="2022">2022</time>
+                                </div>
+
+                                <div class="card-meta">
+                                    <div class="badge badge-outline">2K</div>
+
+                                    <div class="duration">
+                                        <ion-icon name="time-outline"></ion-icon>
+
+                                        <time datetime="PT59M">59 min</time>
+                                    </div>
+
+                                    <div class="rating">
+                                        <ion-icon name="star"></ion-icon>
+
+                                        <data>8.8</data>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="movie-card">
+
+                                <a href="./movie-details.html">
+                                    <figure class="card-banner">
+                                        <img src="./assets/images/series-3.png" alt="Vikings: Valhalla movie poster">
+                                    </figure>
+                                </a>
+
+                                <div class="title-wrapper">
+                                    <a href="./movie-details.html">
+                                        <h3 class="card-title">Vikings: Valhalla</h3>
+                                    </a>
+
+                                    <time datetime="2022">2022</time>
+                                </div>
+
+                                <div class="card-meta">
+                                    <div class="badge badge-outline">2K</div>
+
+                                    <div class="duration">
+                                        <ion-icon name="time-outline"></ion-icon>
+
+                                        <time datetime="PT51M">51 min</time>
+                                    </div>
+
+                                    <div class="rating">
+                                        <ion-icon name="star"></ion-icon>
+
+                                        <data>8.3</data>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="movie-card">
+
+                                <a href="./movie-details.html">
+                                    <figure class="card-banner">
+                                        <img src="./assets/images/series-4.png" alt="Money Heist movie poster">
+                                    </figure>
+                                </a>
+
+                                <div class="title-wrapper">
+                                    <a href="./movie-details.html">
+                                        <h3 class="card-title">Money Heist</h3>
+                                    </a>
+
+                                    <time datetime="2017">2017</time>
+                                </div>
+
+                                <div class="card-meta">
+                                    <div class="badge badge-outline">4K</div>
+
+                                    <div class="duration">
+                                        <ion-icon name="time-outline"></ion-icon>
+
+                                        <time datetime="PT70M">70 min</time>
+                                    </div>
+
+                                    <div class="rating">
+                                        <ion-icon name="star"></ion-icon>
+
+                                        <data>8.3</data>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </section>
+
+        </article>
+    </main>
+
+    <!-- Button trigger modal
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+    </button> -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Your Rating</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="rating-box">
+                    <div class="rating-container">
+                        <input type="radio" name="rating" value="1" id="star-1"> <label for="star-1">&#9733;</label>
+
+                        <input type="radio" name="rating" value="2" id="star-2"> <label for="star-2">&#9733;</label>
+
+                        <input type="radio" name="rating" value="3" id="star-3"> <label for="star-3">&#9733;</label>
+
+                        <input type="radio" name="rating" value="4" id="star-4"> <label for="star-4">&#9733;</label>
+
+                        <input type="radio" name="rating" value="5" id="star-5"> <label for="star-5">&#9733;</label>
+                        <input type="radio" name="rating" value="6" id="star-6"> <label for="star-6">&#9733;</label>
+
+                        <input type="radio" name="rating" value="7" id="star-7"> <label for="star-7">&#9733;</label>
+
+                        <input type="radio" name="rating" value="8" id="star-8"> <label for="star-8">&#9733;</label>
+
+                        <input type="radio" name="rating" value="9" id="star-9"> <label for="star-9">&#9733;</label>
+
+                        <input type="radio" name="rating" value="10" id="star-10"> <label for="star-10">&#9733;</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="SaveRating" data-bs-dismiss="modal">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--
+      - #GO TO TOP
+    -->
+
+    <a href="#top" class="go-top" data-go-top>
+        <ion-icon name="chevron-up"></ion-icon>
+    </a>
+
+
+
+    <!--
+      - custom js link
+    -->
+    <script src="./assets/js/script.js"></script>
+
+    <!--
+      - ionicon link
+    -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    @*<script src="../BootStrap/bootstrap.bundle.js"></script>
+    <script src="../JS/Movie.js"></script>*@
+    <script src="~\js\movie.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
