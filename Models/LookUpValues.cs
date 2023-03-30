@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Movie_Hunter_FinalProject.Areas.Identity.Data;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Movie_Hunter_FinalProject.Models
@@ -11,9 +12,12 @@ namespace Movie_Hunter_FinalProject.Models
         [Required(ErrorMessage ="Please enter the look up value")]
         public string Value { get; set; }
 
-        [ForeignKey("LookUpTable")]
+        
         public int lookupId { get; set; }
 
+        [ForeignKey("lookupId")]
         public virtual LookUpTable lookUpTable { get; set; }
+
+        public virtual HashSet<SystemUser> Users { get; set; } = new HashSet<SystemUser>();
     }
 }

@@ -170,7 +170,7 @@ namespace Movie_Hunter_FinalProject.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<int>("Category_Id")
+                    b.Property<int?>("Category_Id")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -209,7 +209,7 @@ namespace Movie_Hunter_FinalProject.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PaymentMethod_Id")
+                    b.Property<int?>("PaymentMethod_Id")
                         .HasColumnType("int");
 
                     b.Property<string>("PhoneNumber")
@@ -218,7 +218,7 @@ namespace Movie_Hunter_FinalProject.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Plan_Id")
+                    b.Property<int?>("Plan_Id")
                         .HasColumnType("int");
 
                     b.Property<string>("SecurityStamp")
@@ -231,10 +231,9 @@ namespace Movie_Hunter_FinalProject.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<int?>("lookUpValuesId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("Category_Id");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -243,8 +242,6 @@ namespace Movie_Hunter_FinalProject.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.HasIndex("lookUpValuesId");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -274,12 +271,9 @@ namespace Movie_Hunter_FinalProject.Migrations
                     b.Property<int>("series_id")
                         .HasColumnType("int");
 
-                    b.Property<int>("seriesid")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("seriesid");
+                    b.HasIndex("series_id");
 
                     b.ToTable("episodes");
                 });
@@ -313,15 +307,12 @@ namespace Movie_Hunter_FinalProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("lookUpTableId")
-                        .HasColumnType("int");
-
                     b.Property<int>("lookupId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("lookUpTableId");
+                    b.HasIndex("lookupId");
 
                     b.ToTable("lookUpValues");
                 });
@@ -363,12 +354,9 @@ namespace Movie_Hunter_FinalProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("lookUpValuesId")
-                        .HasColumnType("int");
-
                     b.HasKey("id");
 
-                    b.HasIndex("lookUpValuesId");
+                    b.HasIndex("Category_Id");
 
                     b.ToTable("movies");
                 });
@@ -406,12 +394,9 @@ namespace Movie_Hunter_FinalProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("lookUpValuesId")
-                        .HasColumnType("int");
-
                     b.HasKey("id");
 
-                    b.HasIndex("lookUpValuesId");
+                    b.HasIndex("Category_Id");
 
                     b.ToTable("series");
                 });
@@ -440,21 +425,15 @@ namespace Movie_Hunter_FinalProject.Migrations
                     b.Property<bool>("Watched")
                         .HasColumnType("bit");
 
-                    b.Property<int>("episodesId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("systemUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("user_id")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("id");
 
-                    b.HasIndex("episodesId");
+                    b.HasIndex("EpisodeId");
 
-                    b.HasIndex("systemUserId");
+                    b.HasIndex("user_id");
 
                     b.ToTable("userEpisodes");
                 });
@@ -483,21 +462,15 @@ namespace Movie_Hunter_FinalProject.Migrations
                     b.Property<bool>("Watched")
                         .HasColumnType("bit");
 
-                    b.Property<int>("moviesid")
-                        .HasColumnType("int");
-
-                    b.Property<string>("systemUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("user_id")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("id");
 
-                    b.HasIndex("moviesid");
+                    b.HasIndex("MovieId");
 
-                    b.HasIndex("systemUserId");
+                    b.HasIndex("user_id");
 
                     b.ToTable("userMovies");
                 });
@@ -590,8 +563,9 @@ namespace Movie_Hunter_FinalProject.Migrations
             modelBuilder.Entity("Movie_Hunter_FinalProject.Areas.Identity.Data.SystemUser", b =>
                 {
                     b.HasOne("Movie_Hunter_FinalProject.Models.LookUpValues", "lookUpValues")
-                        .WithMany()
-                        .HasForeignKey("lookUpValuesId");
+                        .WithMany("Users")
+                        .HasForeignKey("Category_Id")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("lookUpValues");
                 });
@@ -600,7 +574,7 @@ namespace Movie_Hunter_FinalProject.Migrations
                 {
                     b.HasOne("Movie_Hunter_FinalProject.Models.Series", "series")
                         .WithMany()
-                        .HasForeignKey("seriesid")
+                        .HasForeignKey("series_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -611,7 +585,7 @@ namespace Movie_Hunter_FinalProject.Migrations
                 {
                     b.HasOne("Movie_Hunter_FinalProject.Models.LookUpTable", "lookUpTable")
                         .WithMany("lookUpValues")
-                        .HasForeignKey("lookUpTableId")
+                        .HasForeignKey("lookupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -622,7 +596,7 @@ namespace Movie_Hunter_FinalProject.Migrations
                 {
                     b.HasOne("Movie_Hunter_FinalProject.Models.LookUpValues", "lookUpValues")
                         .WithMany()
-                        .HasForeignKey("lookUpValuesId")
+                        .HasForeignKey("Category_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -633,7 +607,7 @@ namespace Movie_Hunter_FinalProject.Migrations
                 {
                     b.HasOne("Movie_Hunter_FinalProject.Models.LookUpValues", "lookUpValues")
                         .WithMany()
-                        .HasForeignKey("lookUpValuesId")
+                        .HasForeignKey("Category_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -644,13 +618,15 @@ namespace Movie_Hunter_FinalProject.Migrations
                 {
                     b.HasOne("Movie_Hunter_FinalProject.Models.Episodes", "episodes")
                         .WithMany("userEpisodes")
-                        .HasForeignKey("episodesId")
+                        .HasForeignKey("EpisodeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Movie_Hunter_FinalProject.Areas.Identity.Data.SystemUser", "systemUser")
                         .WithMany("userEpisodes")
-                        .HasForeignKey("systemUserId");
+                        .HasForeignKey("user_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("episodes");
 
@@ -661,13 +637,15 @@ namespace Movie_Hunter_FinalProject.Migrations
                 {
                     b.HasOne("Movie_Hunter_FinalProject.Models.Movies", "movies")
                         .WithMany("userMovies")
-                        .HasForeignKey("moviesid")
+                        .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Movie_Hunter_FinalProject.Areas.Identity.Data.SystemUser", "systemUser")
                         .WithMany("userMovies")
-                        .HasForeignKey("systemUserId");
+                        .HasForeignKey("user_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("movies");
 
@@ -710,6 +688,11 @@ namespace Movie_Hunter_FinalProject.Migrations
             modelBuilder.Entity("Movie_Hunter_FinalProject.Models.LookUpTable", b =>
                 {
                     b.Navigation("lookUpValues");
+                });
+
+            modelBuilder.Entity("Movie_Hunter_FinalProject.Models.LookUpValues", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Movie_Hunter_FinalProject.Models.Movies", b =>

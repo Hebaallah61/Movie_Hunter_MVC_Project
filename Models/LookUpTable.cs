@@ -11,6 +11,6 @@ namespace Movie_Hunter_FinalProject.Models
         [RegularExpression(@"^[A-Za-z]{1,15}$", ErrorMessage = "Look up Name should contain only alphabetical characters with maximum length of 15")]
         public string LookUpName { get; set; }
 
-        public HashSet<LookUpValues> lookUpValues { get; set; } = new HashSet<LookUpValues>();
+        public virtual HashSet<LookUpValues> lookUpValues { get; set; } = new HashSet<LookUpValues>();
     }
 }

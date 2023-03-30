@@ -11,6 +11,6 @@ namespace Movie_Hunter_FinalProject.Models
         [Required(ErrorMessage ="Please add your movie phyiscal path")]
         public string  Movie_Path { get; set; }
 
-        public HashSet<UserMovies> userMovies { get; set; } = new HashSet<UserMovies>();
+        public virtual HashSet<UserMovies> userMovies { get; set; } = new HashSet<UserMovies>();
     }
 }

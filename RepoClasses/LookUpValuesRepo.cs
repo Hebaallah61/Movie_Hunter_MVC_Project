@@ -5,7 +5,7 @@ using Movie_Hunter_FinalProject.RepoInterface;
 
 namespace Movie_Hunter_FinalProject.RepoClasses
 {
-    public class LookUpValuesRepo : IGenericRepo<LookUpValues>
+    public class LookUpValuesRepo : ILookValueRepo/* IGenericRepo<LookUpValues>*/
     {
         private readonly ApplicationContext _context;
 
@@ -58,9 +58,9 @@ namespace Movie_Hunter_FinalProject.RepoClasses
             }
         }
 
-        public LookUpValues GetByName(string name)
+        public List<LookUpValues> GetByName(string name)
         {
-            var result = _context.lookUpValues.Include(l => l.lookUpTable).FirstOrDefault(l => l.Value == name);
+            var result = _context.lookUpValues.Include(l => l.lookUpTable).Where(l=>l.lookUpTable.LookUpName==name).ToList();
             if (result != null)
             {
                 return result;

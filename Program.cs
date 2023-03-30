@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Build.Framework;
 using Microsoft.EntityFrameworkCore;
 using Movie_Hunter_FinalProject.Areas.Identity.Data;
 using Movie_Hunter_FinalProject.Models;
@@ -14,17 +15,23 @@ namespace Movie_Hunter_FinalProject
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
             var connectionString = builder.Configuration.GetConnectionString("ApplicationContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationContextConnection' not found.");
 
             builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
 
             builder.Services.AddDefaultIdentity<SystemUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationContext>();
 
+            builder.Services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+            });
             builder.Services.AddScoped<IGenericRepo<Movies>, MovieRepo>();
             builder.Services.AddScoped<IGenericRepo<Series>, SeriesRepo>();
             builder.Services.AddScoped<IGenericRepo<Episodes>, EpisodeRepo>();
             builder.Services.AddScoped<IGenericRepo<LookUpTable>, LookUpTableRepo>();
-            builder.Services.AddScoped<IGenericRepo<LookUpValues>, LookUpValuesRepo>();
+            builder.Services.AddScoped<ILookValueRepo, LookUpValuesRepo>();
             builder.Services.AddScoped<IUserSeriesRepo , UserSeriesRepo>();
             builder.Services.AddScoped<IUserMovieRepo, UserMoviesRepo>();
             builder.Services.AddScoped<IUserEpisodeRepo,UserEpisodeRepo>();

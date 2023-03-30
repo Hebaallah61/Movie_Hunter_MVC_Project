@@ -10,6 +10,6 @@ namespace Movie_Hunter_FinalProject.Models
         [Required(ErrorMessage ="Please specify how many season does this show have")]
         public int NumberOfSeasons { get; set; }
 
-        public HashSet<UserSeries> userSeries { get; set; } = new HashSet<UserSeries>();
+        public virtual HashSet<UserSeries> userSeries { get; set; } = new HashSet<UserSeries>();
     }
 }

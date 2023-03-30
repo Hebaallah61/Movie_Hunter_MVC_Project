@@ -1,7 +1,10 @@
 ﻿@page
+@using Movie_Hunter_FinalProject.Models;
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
+   // List<LookUpValues> Values = (List<LookUpValues>)ViewData["Categories"];
+    var list = new SelectList((List<LookUpValues>)ViewData["Categories"], "Id", "Value");
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -28,6 +31,15 @@
                 <label asp-for="Input.Email">Email</label>
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
+
+      @*      <div class="form-floating mb-3">
+                <select asp-for="Input.Category_Id" class="form-control" asp-items="list" aria-required="true" placeholder="Category"></select>
+                <label asp-for="Input.Category_Id">Choose Category</label>
+                <span asp-validation-for="Input.Category_Id" class="text-danger"></span>
+            </div>*@
+
+            
+
             <div class="form-floating mb-3">
                 <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
                 <label asp-for="Input.Password">Password</label>
@@ -39,6 +51,7 @@
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+
         </form>
     </div>
     <div class="col-md-6 col-md-offset-2">

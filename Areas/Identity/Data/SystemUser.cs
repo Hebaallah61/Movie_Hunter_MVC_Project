@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
@@ -19,21 +20,22 @@ public class SystemUser : IdentityUser
     [RegularExpression(@"^[A-Za-z]{1,15}$", ErrorMessage = "First Name should contain only alphabetical characters with maximum length of 15")]
     public string Last_Name { get; set; }
 
-    [ForeignKey("LookUpValues")]
-    public int PaymentMethod_Id { get; set; }
+    
+  
+    public int? PaymentMethod_Id { get; set; }
 
-    [ForeignKey("LookUpValues")]
-    public int Category_Id { get; set; }
+    
+    public int? Category_Id { get; set; }
 
-    [ForeignKey("LookUpValues")]
-    public int Plan_Id { get; set; }
+    
+    public int? Plan_Id { get; set; }
     [Range(12,80,ErrorMessage ="Age should be between 12-80 years")]
     public int Age { get; set; }
     public virtual LookUpValues? lookUpValues { get; set; }
 
 
-    public HashSet<UserMovies> userMovies { get; set; } = new HashSet<UserMovies>();
-    public HashSet<UserSeries> userSeries { get; set; } = new HashSet<UserSeries>();
-    public HashSet<UserEpisodes> userEpisodes  { get; set; } = new HashSet<UserEpisodes>();
+    public virtual HashSet<UserMovies> userMovies { get; set; } = new HashSet<UserMovies>();
+    public virtual HashSet<UserSeries> userSeries { get; set; } = new HashSet<UserSeries>();
+    public virtual HashSet<UserEpisodes> userEpisodes  { get; set; } = new HashSet<UserEpisodes>();
 }
 

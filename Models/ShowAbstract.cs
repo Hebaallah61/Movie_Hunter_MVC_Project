@@ -9,7 +9,6 @@ namespace Movie_Hunter_FinalProject.Models
         public int id { get; set; }
 
         [Required(ErrorMessage ="Name is required")]
-        [RegularExpression(@"^[A-Za-z]{1,30}$", ErrorMessage = " Name should contain only alphabetical characters with maximum length of 30")]
         public string Name { get; set; }
 
         [Required(ErrorMessage ="Please enter the path of your show Image")]
@@ -21,11 +20,12 @@ namespace Movie_Hunter_FinalProject.Models
         [Required(ErrorMessage ="Plesae enter desscription for your show")]
         public string Description { get; set; }
 
-        [ForeignKey("LookUpValues")]
+        
         public int Category_Id { get; set; }
 
         public string Trailer_Path { get; set; }
 
+        [ForeignKey("Category_Id")]
         public virtual LookUpValues lookUpValues { get; set; }
 
 
