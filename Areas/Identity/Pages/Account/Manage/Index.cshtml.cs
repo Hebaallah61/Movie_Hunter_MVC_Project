@@ -12,20 +12,26 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Movie_Hunter_FinalProject.Areas.Identity.Data;
+using Movie_Hunter_FinalProject.Models;
+using Movie_Hunter_FinalProject.RepoInterface;
 
 namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account.Manage
 {
     public class IndexModel : PageModel
     {
+        private readonly ILookValueRepo _lookValueRepo;
+        private readonly IGenericRepo<LookUpTable> _lookuptable;
         private readonly UserManager<SystemUser> _userManager;
         private readonly SignInManager<SystemUser> _signInManager;
 
         public IndexModel(
             UserManager<SystemUser> userManager,
-            SignInManager<SystemUser> signInManager)
+            SignInManager<SystemUser> signInManager, ILookValueRepo _lookValueRepo, IGenericRepo<LookUpTable> _lookuptable)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            this._lookValueRepo = _lookValueRepo;
+            this._lookuptable = _lookuptable;
         }
 
         /// <summary>
@@ -83,11 +89,13 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account.Manage
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
-            
-            
+
+
 
             Username = userName;
-
+            ViewData["Categories"] = _lookValueRepo.GetByName("Category");
+            ViewData["Plans"] = _lookValueRepo.GetByName("Plans");
+            ViewData["Payment"] = _lookValueRepo.GetByName("Payment");
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber,
@@ -115,6 +123,12 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account.Manage
         public async Task<IActionResult> OnPostAsync()
         {
             var user = await _userManager.GetUserAsync(User);
+            user.Age=Input.Age;
+            user.First_Name=Input.First_Name;
+            user.Last_Name=Input.Last_Name;
+            user.Category_Id=Input.Category_Id;
+            user.PaymentMethod_Id=Input.PaymentMethod_Id;
+            user.Plan_Id=Input.Plan_Id;
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
@@ -136,7 +150,7 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
-
+            await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();
