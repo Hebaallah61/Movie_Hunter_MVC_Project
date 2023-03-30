@@ -26,7 +26,7 @@ namespace Movie_Hunter_FinalProject.RepoClasses
 
                 return false;
             }
-
+           
         }
 
         public bool DeleteById(int id)

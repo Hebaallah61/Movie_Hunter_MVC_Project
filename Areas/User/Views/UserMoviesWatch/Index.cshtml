@@ -4,75 +4,13 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Rating)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AddToFavorite)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Review)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Watched)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MovieId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.user_id)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AddToFavorite)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Review)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Watched)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MovieId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user_id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
 *@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>MovieHunter</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    @*<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-    <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-    <script type="text/javascript" src="js/jquery-func.js"></script>*@
-    <!--[if IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
 </head>
 
 
@@ -82,101 +20,60 @@
     <div id="content">
         <div class="box">
            
-            <table class="table table-dark">
-                <tbody>
-                    <tr>
-                        <td>
-            <div class="movie">
-                <div class="movie-image"> <span class="play"><span class="name">X-MAN</span></span> <a href="#"><img src="~/css/images/movie1.jpg" alt="" /></a> </div>
-                <div class="rating">
-                    <p>RATING</p>
-                    <div class="stars">
-                        <div class="stars-in"> </div>
-                    </div>
-                    <span class="comments">12</span>
-                </div>
-            </div>
-                        </td>
-                       
-            
-                        <td>
-            <div class="movie">
-                <div class="movie-image"> <span class="play"><span class="name">SPIDER MAN 2</span></span> <a href="#"><img src="~/css/images/movie2.jpg" alt="" /></a> </div>
-                <div class="rating">
-                    <p>RATING</p>
-                    <div class="stars">
-                        <div class="stars-in"> </div>
-                    </div>
-                    <span class="comments">12</span>
-                </div>
-            </div>
-                        </td>
-                    
-                        <td>
-            <div class="movie">
-                <div class="movie-image"> <span class="play"><span class="name">SPIDER MAN 3</span></span> <a href="#"><img src="~/css/images/movie3.jpg" alt="" /></a> </div>
-                <div class="rating">
-                    <p>RATING</p>
-                    <div class="stars">
-                        <div class="stars-in"> </div>
-                    </div>
-                    <span class="comments">12</span>
-                </div>
-            </div>
-                        </td>
-                   
-                        <td>
-            <div class="movie">
-                <div class="movie-image"> <span class="play"><span class="name">VALKYRIE</span></span> <a href="#"><img src="~/css/images/movie4.jpg" alt="" /></a> </div>
-                <div class="rating">
-                    <p>RATING</p>
-                    <div class="stars">
-                        <div class="stars-in"> </div>
-                    </div>
-                    <span class="comments">12</span>
-                </div>
-            </div>
-                        </td>
-                   
-                        <td>
-            <div class="movie">
-                <div class="movie-image"> <span class="play"><span class="name">GLADIATOR</span></span> <a href="#"><img src="~/css/images/movie5.jpg" alt="" /></a> </div>
-                <div class="rating">
-                    <p>RATING</p>
-                    <div class="stars">
-                        <div class="stars-in"> </div>
-                    </div>
-                    <span class="comments">12</span>
-                </div>
-            </div>
-                        </td>
-                      
-                   
-                        <td>
-            <div class="movie last">
-                <div class="movie-image"> <span class="play"><span class="name">ICE AGE</span></span> <a href="#"><img src="~/css/images/movie6.jpg" alt="" /></a> </div>
-                <div class="rating">
-                    <p>RATING</p>
-                    <div class="stars">
-                        <div class="stars-in"> </div>
-                    </div>
-                    <span class="comments">12</span>
-                </div>
-            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="cl">&nbsp;</div>
-        </div>
-        
-    </div>
+ 
+ @{
+    var movies = Model.ToList();
+    var rowsCount = (int)Math.Ceiling((double)movies.Count / 6);
+ }
+
+
+  <div class="container-fluid row">
+      @foreach (var item in Model)
+                    {
+                     
+  <div class=" col-2 m-2">
+  
+  
+    @*<a asp-action="" asp-controller="" asp-area="" asp-route-MovieId="@item.MovieId"><img src="@item.movies.Thumbnail_Path" alt="@item.movies.Name"></a>
+    <h5 class="card-title">@item.movies.Name</h5>*@
+    <div class="movie-card">
+
+                                <a href="./movie-details.html">
+                                    <figure class="card-banner">
+                                        <img src="@item.movies.Thumbnail_Path" alt="@item.movies.Name poster">
+                                    </figure>
+                                </a>
+
+                                <div class="title-wrapper">
+                                    <a href="./movie-details.html">
+                                        <h3 class="card-title">@item.movies.Name</h3>
+                                    </a>
+
+                                    <time datetime="2022">2022</time>
+                                </div>
+
+                                <div class="card-meta">
+                                    <div class="badge badge-outline">2K</div>
+
+                                    <div class="duration">
+                                        <ion-icon name="time-outline"></ion-icon>
+
+                                        <time datetime="PT51M">@item.movies.Duration</time>
+                                    </div>
+
+                                    <div class="rating">
+                                        <ion-icon name="star"></ion-icon>
+
+                                        <data>@item.movies.Rating</data>
+                                    </div>
+                                </div>
+
+                            </div>
+
     
-    
-</div>
-<div id="footer">
-    <p class="lf">Copyright &copy; 2010 <a href="#">SiteName</a> - All Rights Reserved</p>
-    <p class="rf">Design by <a href="http://chocotemplates.com/">ChocoTemplates.com</a></p>
-    <div style="clear:both;"></div>
-</div>
-</div>
+  </div>
+
+                    }
+
+
+  </div>
