@@ -23,7 +23,6 @@ namespace Movie_Hunter_FinalProject.RepoClasses
             }
             catch
             {
-
                 return false;
             }
         }
