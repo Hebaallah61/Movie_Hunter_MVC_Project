@@ -79,6 +79,7 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account.Manage
 
         private async Task LoadAsync(SystemUser user)
         {
+
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
