@@ -33,12 +33,9 @@ namespace Movie_Hunter_FinalProject.Areas.User.Controllers
         // GET: User/UserMoviesFav
         public async Task<IActionResult> Index()
         {
-            //var movies = UserMoveRepo.GetByUserId(id);
+            
             var userId =  _userManager.GetUserId(User);
             var movies=UserMoveRepo.GetAll().Where(m=>m.user_id==userId&& m.AddToFavorite==true);
-            //var test = movies[0].movies.Duration;
-            
-            //var movies = UserMoveRepo.GetAll();
             return View(movies);
         }
 
