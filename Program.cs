@@ -27,6 +27,13 @@ namespace Movie_Hunter_FinalProject
                 googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
                 googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
             });
+
+
+            builder.Services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId =builder.Configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = builder.Configuration["Authentication:Facebook:AppSecret"];
+            });
             builder.Services.AddScoped<IGenericRepo<Movies>, MovieRepo>();
             builder.Services.AddScoped<IGenericRepo<Series>, SeriesRepo>();
             builder.Services.AddScoped<IGenericRepo<Episodes>, EpisodeRepo>();
