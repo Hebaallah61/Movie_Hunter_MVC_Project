@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Movie_Hunter_FinalProject.Areas.Identity.Data;
+using System.Diagnostics;
 
 namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
 {
@@ -144,6 +145,7 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             // Get the information about the user from the external login provider
             var info = await _signInManager.GetExternalLoginInfoAsync();
+             Debug.WriteLine(info);
             if (info == null)
             {
                 ErrorMessage = "Error loading external login information during confirmation.";
@@ -153,6 +155,8 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
+                user.First_Name = info.Principal.FindFirstValue(ClaimTypes.GivenName);
+                user.Last_Name=info.Principal.FindFirstValue(ClaimTypes.Surname);
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
