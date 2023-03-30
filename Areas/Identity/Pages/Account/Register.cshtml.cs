@@ -113,14 +113,6 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-            [Display(Name ="Favorite Category")]
-            public int Category_Id { get; set; }
-
-            [Display(Name ="Your Plan")]
-            public int Plan_Id { get; set; }
-
-            [Display( Name ="Payment Method")]
-            public int PaymentMethod_Id { get; set; }
         }
 
 
@@ -142,9 +134,6 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
                 var user = CreateUser();
                 user.First_Name = Input.First_Name;
                 user.Last_Name= Input.Last_Name;
-                user.Category_Id=Input.Category_Id;
-                user.Plan_Id = 6;
-                user.PaymentMethod_Id=9;
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
