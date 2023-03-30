@@ -30,16 +30,50 @@
  }
 
 
+  <div class="container row">
+      @foreach (var item in Model)
+                    {
+                     
+    @*  <div class="dbItems col-2">
 
-<table class="table table-dark">
+          <img src="@item.movies.Thumbnail_Path" class="img-fluid rounded" />
+           <div >
+            <h6>@item.movies.Name</h6>
+            
+           </div>
+      </div>  *@
+      
+      <div class="card col-2">
+  <img src="@item.movies.Thumbnail_Path" class="card-img-top" alt="Movie Image">
+  <div class="card-body">
+    <h5 class="card-title">@item.movies.Name</h5>
+    <p class="card-text">Movie Description</p>
+    <a @*asp-action="" asp-controller="" asp-area="" asp-route-MovieId="@item.MovieId"*@ class="btn btn-primary">Watch Now</a>
+  </div>
+</div>
+
+                    }
+
+
+  </div>
+
+
+@*<table class="table table-dark">
     <tbody>
+        
         @for (int row = 0; row < rowsCount; row++)
         {
             <tr>
                 @for (int col = 0; col < 6 && row * 6 + col < movies.Count; col++)
                 {
                     var movie = movies[row * 6 + col];
+                  
                     <td>
+                        <div></div>
+
+
+
+
                         <div class="movie">
                             <div class="movie-image">
                                 <span class="play"><span class="name">ّّ@movie.movies.Name</span></span>
@@ -54,9 +88,11 @@
                             </div>
                         </div>
                     </td>
-@*                    @Url.Content(@movie.movies.Movie_Path)
-*@                }
+                        
+                   @Url.Content(@movie.movies.Movie_Path)
+               }
             </tr>
         }
     </tbody>        
 </div>
+*@
