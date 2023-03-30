@@ -26,7 +26,6 @@
     <Folder Include="Areas\MovieSeries\Controllers\" />
     <Folder Include="Areas\MovieSeries\Data\" />
     <Folder Include="Areas\MovieSeries\Models\" />
-    <Folder Include="Areas\MovieSeries\Views\" />
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Areas\User\Models\" />
     <Folder Include="Controllers\" />
