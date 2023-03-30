@@ -26,7 +26,7 @@ namespace Movie_Hunter_FinalProject.Models
         public string Trailer_Path { get; set; }
 
         [ForeignKey("Category_Id")]
-        public virtual LookUpValues lookUpValues { get; set; }
+        public virtual LookUpValues? lookUpValues { get; set; }
 
 
 

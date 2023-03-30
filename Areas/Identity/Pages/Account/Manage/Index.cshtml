@@ -1,8 +1,12 @@
 ﻿@page
+@using Movie_Hunter_FinalProject.Models;
 @model IndexModel
 @{
     ViewData["Title"] = "Profile";
     ViewData["ActivePage"] = ManageNavPages.Index;
+    var cats = new SelectList((List<LookUpValues>)ViewData["Categories"], "Id", "Value");
+    var plans = new SelectList((List<LookUpValues>)ViewData["Plans"], "Id","Value");
+    var payments = new SelectList((List<LookUpValues>)ViewData["Payment"],"Id","Value");
 }
 
 <h3>@ViewData["Title"]</h3>
@@ -18,14 +22,31 @@
             <div class="form-floating mb-3">
                 <input asp-for="Input.First_Name" class="form-control" placeholder="Enter your first name"  />
                 <label asp-for="Input.First_Name" class="form-label"></label>
+                <span asp-validation-for="Input.First_Name" class="text-danger"></span>
+
             </div>
             <div class="form-floating mb-3">
                 <input asp-for="Input.Last_Name" class="form-control" placeholder="Enter your last name"  />
                 <label asp-for="Input.Last_Name" class="form-label"></label>
+                <span asp-validation-for="Input.Last_Name" class="text-danger"></span>
+
             </div>
             <div class="form-floating mb-3">
                 <input asp-for="Input.Age" class="form-control" placeholder="Enter Your Age"  />
                 <label asp-for="Input.Age" class="form-label"></label>
+                <span asp-validation-for="Input.Age" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <select asp-for="Input.Category_Id" class="form-control" asp-items="cats" placeholder="Choose Your Favorite Category"></select> 
+                <label asp-for="Input.Category_Id" class="form-label"></label>
+            </div>
+            <div class="form-floating mb-3">
+                <select asp-for="Input.Plan_Id" class="form-control" asp-items="plans" placeholder="Your Current Plan" disabled></select>
+                <label asp-for="Input.Plan_Id" class="form-label"></label>
+            </div>
+            <div class="form-floating mb-3">
+                <select asp-for="Input.PaymentMethod_Id" class="form-control" asp-items="payments" placeholder="Choose Your Payment Method"></select>
+                <label asp-for="Input.PaymentMethod_Id" class="form-label"></label>
             </div>
             <div class="form-floating mb-3">
                 <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number."/>
