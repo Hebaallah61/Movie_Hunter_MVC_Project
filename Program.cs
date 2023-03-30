@@ -64,8 +64,8 @@ namespace Movie_Hunter_FinalProject
             app.UseAuthorization();
             app.MapAreaControllerRoute(
                 name: "default2",
-                areaName: "User",
-                pattern: "{controller=UserMoviesWatch}/{action=Index}"
+                areaName: "MovieSeries",
+                pattern: "{controller=MovieShow}/{action=Index}"
                 );
           app.MapControllerRoute(
              name: "defaultWithArea",
