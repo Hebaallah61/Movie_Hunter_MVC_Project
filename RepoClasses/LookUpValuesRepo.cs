@@ -20,9 +20,6 @@ namespace Movie_Hunter_FinalProject.RepoClasses
                 _context.lookUpValues.Add(entity);
                 _context.SaveChanges();
                 return true;
-            }
-            catch
-            {
 
                 return false;
             }
