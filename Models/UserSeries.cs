@@ -23,12 +23,12 @@ namespace Movie_Hunter_FinalProject.Models
         public int SeriesId { get; set; }
 
         [ForeignKey("SeriesId")]
-        public virtual Series series { get; set; }
+        public virtual Series? series { get; set; }
 
         
         public string user_id { get; set; }
 
         [ForeignKey("user_id")]
-        public virtual SystemUser systemUser { get; set; }
+        public virtual SystemUser? systemUser { get; set; }
     }
 }
