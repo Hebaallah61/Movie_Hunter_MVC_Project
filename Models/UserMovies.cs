@@ -11,14 +11,14 @@ namespace Movie_Hunter_FinalProject.Models
         public int id { get; set; }
 
         
-        public int Rating { get; set; }
+        public int? Rating { get; set; }
 
-        public bool AddToFavorite { get; set; }
+        public bool? AddToFavorite { get; set; }
 
-        public string Review { get; set; }
+        public string? Review { get; set; }
 
 
-        public bool Watched { get; set; }
+        public bool? Watched { get; set; }
 
        
         public int MovieId { get; set; }
