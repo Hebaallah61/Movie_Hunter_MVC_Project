@@ -11,6 +11,7 @@ namespace Stripe_Payment.Areas.Payment.Controllers
             return View();
         }
 
+
         public ActionResult Charge(string stripeEmail, string stripeToken,string test)
         {
             var customers = new CustomerService();
