@@ -7,9 +7,9 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
 </p>
-<form method="post" action="/AdminDashBoard/Episodes/Index">
+@*<form method="post" action="/AdminDashBoard/Episodes/Index">
 
     <div class="form-horizontal">
         <div class="form-group">
@@ -29,8 +29,8 @@
             <input style="color:yellow" type="submit" value="Search" class="btn btn-default" />
         </div>
     </div>
-</form>
-<table style="color:floralwhite" class="table">
+</form>*@
+<table id="example" class="display datatable" style="width:100%">
     <thead>
         <tr>
             <th>
@@ -48,7 +48,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.series)
             </th>
-            <th></th>
+            <th>
+                Edit
+            </th>
+            <th>
+                Details
+            </th>
+            <th>
+                Delete
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -69,12 +77,31 @@
             <td>
                 @Html.DisplayFor(modelItem => item.series.Name)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+                <td>
+                    <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+
+                </td>
+                <td>
+                    <a class="btn btn-success" asp-action="Details" asp-route-id="@item.Id">Details</a>
+
+                </td>
+                <td>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
         </tr>
 }
     </tbody>
 </table>
+@section DataTable {
+    <script src="~/js/datatables2.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#example').DataTable({
+
+                "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
+            });
+        });
+    </script>
+}

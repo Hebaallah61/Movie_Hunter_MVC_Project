@@ -26,7 +26,9 @@
     <link rel="stylesheet" type="text/css" href="~/src/plugins/datatables/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="~/vendors/styles/style.css">
     <link href="~/css/datatables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
 
+    
 
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -282,39 +284,57 @@
                     </li>
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-building"></span><span class="mtext">Department</span>
+                            <span class="micon dw dw-video-camera"></span><span class="mtext">Movies</span>
                         </a>
                         <ul class="submenu">
-                            <li><a asp-controller="Department" asp-action="Index">Department Card</a></li>
+                            <li><a asp-area="AdminDashBoard" asp-controller="Movies" asp-action="Index">Manage Movies</a></li>
 
                         </ul>
                     </li>
 
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-user2"></span><span class="mtext">Employee</span>
+                            <span class="micon dw dw-television"></span><span class="mtext">Series</span>
                         </a>
                         <ul class="submenu">
-                            <li><a asp-controller="Employee" asp-action="Index">Employee Card</a></li>
+                            <li><a asp-area="AdminDashBoard" asp-controller="Series" asp-action="Index">Manage Series</a></li>
 
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-message"></span><span class="mtext">Mail</span>
+                            <span class="micon dw dw-video-file"></span><span class="mtext">Episodes</span>
                         </a>
                         <ul class="submenu">
-                            <li><a asp-controller="Mail" asp-action="Index">Send Mail</a></li>
+                            <li><a asp-area="AdminDashBoard" asp-controller="Episodes" asp-action="Index">Manage Episodes</a></li>
 
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-user-12"></span><span class="mtext">Roles&Users</span>
+                            <span class="micon dw dw-table"></span><span class="mtext">Lookup table</span>
                         </a>
                         <ul class="submenu">
-                            <li><a asp-controller="Role" asp-action="Index">Roles</a></li>
-                            <li><a asp-controller="User" asp-action="Index">Users</a></li>
+                            <li><a asp-area="AdminDashBoard" asp-controller="LookUpTables" asp-action="Index">Manage Lookup Table</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <span class="micon dw dw-attachment"></span><span class="mtext">Lookup Values</span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a asp-area="AdminDashBoard" asp-controller="LookUpValues" asp-action="Index">Manage Lookup Values</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <span class="micon dw dw-user-12"></span><span class="mtext">Identity</span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a asp-area="AdminDashBoard" asp-controller="User" asp-action="Index">Manage Users</a></li>
+                            <li><a asp-area="AdminDashBoard" asp-controller="Role" asp-action="Index">Manage Roles</a></li>
 
                         </ul>
                     </li>
@@ -328,15 +348,13 @@
         <div class="pd-ltr-20">
             @RenderBody()
 
-            <div class="footer-wrap pd-20 mb-20 card-box">
-                DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
-            </div>
+          
         </div>
     </div>
     <!-- js -->
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/src/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/src/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/src/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     @RenderSection("AjaxCode", required: false)
     <script src="~/vendors/scripts/core.js"></script>
     <script src="~/vendors/scripts/script.min.js"></script>
@@ -347,9 +365,10 @@
     <script src="~/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
     <script src="~/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
     <script src="~/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/src/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/vendors/scripts/dashboard.js"></script>
-    @RenderSection("Scripts",required:false)
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+    @*@RenderSection("Scripts",required:false)*@
     @RenderSection("DataTable", required: false)
 
 
