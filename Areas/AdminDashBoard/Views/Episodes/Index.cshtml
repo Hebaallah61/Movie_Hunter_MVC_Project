@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Movie_Hunter_FinalProject.Models.Episodes>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form method="post" action="/AdminDashBoard/Episodes/Index">
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-md-2">Series</label>
+            <div class="col-md-10">
+               <select name="S" >
+                    @foreach (Series item in ViewBag.Series)
+                    {
+                    <option value="@item.id">@item.Name</option>
+                    }
+               </select>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input style="color:yellow" type="submit" value="Search" class="btn btn-default" />
+        </div>
+    </div>
+</form>
+<table style="color:floralwhite" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Episode_Path)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.season)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.series)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Episode_Path)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.season)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.series.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

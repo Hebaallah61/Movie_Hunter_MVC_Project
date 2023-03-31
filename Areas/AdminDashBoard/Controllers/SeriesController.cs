@@ -7,78 +7,78 @@ using Movie_Hunter_FinalProject.RepoInterface;
 namespace Movie_Hunter_FinalProject.Areas.AdminDashBoard.Controllers
 {
     [Area("AdminDashBoard")]
-    public class MoviesController : Controller
+    public class SeriesController : Controller
     {
-        // GET: MoviesController
-        private IGenericRepo<Movies> repo {get;}
+        private IGenericRepo<Series> repo { get; }
         private ILookValueRepo Vrepo { get; }
 
-        public MoviesController(IGenericRepo<Movies> repo, ILookValueRepo Vrepo)
+        public SeriesController(IGenericRepo<Series> repo, ILookValueRepo Vrepo)
         {
             this.repo = repo;
             this.Vrepo = Vrepo;
         }
+        // GET: SeriesController
         public ActionResult Index()
         {
             return View(repo.GetAll());
         }
 
-        // GET: MoviesController/Details/5
+        // GET: SeriesController/Details/5
         public ActionResult Details(int id)
         {
             return View(repo.GetById(id));
         }
 
-        // GET: MoviesController/Create
+        // GET: SeriesController/Create
         public ActionResult Create()
         {
             ViewBag.Category_Id = new SelectList(Vrepo.GetByName("Categories"), "Id", "Value");
             return View();
         }
 
-        // POST: MoviesController/Create
+        // POST: SeriesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Movies movie)
+        public ActionResult Create(Series series)
         {
-            if(ModelState.IsValid)
-            if (repo.Create(movie))
-            {
-                return RedirectToAction(nameof(Index));
-            }           
-                return View();
+            if (ModelState.IsValid)
+                if (repo.Create(series))
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+            return View();
         }
-        
 
-        // GET: MoviesController/Edit/5
+        // GET: SeriesController/Edit/5
         public ActionResult Edit(int id)
         {
             ViewBag.Category_Id = new SelectList(Vrepo.GetByName("Categories"), "Id", "Value");
             return View(repo.GetById(id));
         }
 
-        // POST: MoviesController/Edit/5
+        // POST: SeriesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Movies movie)
+        public ActionResult Edit(int id, Series series)
         {
             if (ModelState.IsValid)
-                if (repo.update(id, movie))
+                if (repo.update(id, series))
                     return RedirectToAction(nameof(Index));
             ViewBag.Category_Id = new SelectList(Vrepo.GetByName("Categories"), "Id", "Value");
-            return View(movie);
+            return View(series);
         }
 
-        // GET: MoviesController/Delete/5
+        // GET: SeriesController/Delete/5
         public ActionResult Delete(int id)
         {
             return View(repo.GetById(id));
+
         }
 
-        // POST: MoviesController/Delete/5
+        // POST: SeriesController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Movies movie )
+        public ActionResult Delete(int id, Series series)
         {
             try
             {
