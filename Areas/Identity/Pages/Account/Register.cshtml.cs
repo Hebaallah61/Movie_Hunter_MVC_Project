@@ -118,8 +118,8 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            var test = _LookValues.GetByName("Category");
-            ViewData["Categories"] = _LookValues.GetByName("Category");
+            //var test = _LookValues.GetByName("Category");
+            //ViewData["Categories"] = _LookValues.GetByName("Category");
 
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();

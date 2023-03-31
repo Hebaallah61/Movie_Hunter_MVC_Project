@@ -3,8 +3,6 @@
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
-   // List<LookUpValues> Values = (List<LookUpValues>)ViewData["Categories"];
-    var list = new SelectList((List<LookUpValues>)ViewData["Categories"], "Id", "Value");
 }
 
 <h1>@ViewData["Title"]</h1>
