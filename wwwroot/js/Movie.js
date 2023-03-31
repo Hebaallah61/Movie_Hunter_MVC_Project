@@ -34,4 +34,17 @@ function ChangingRatingStar() {
     })
 }
 
-ChangingRatingStar()
+
+ChangingRatingStar(); 
+
+function myFun() {
+    if (document.getElementById("myMovie").style.display == "none")
+        document.getElementById("myMovie").style.display = "block";
+    else {
+        document.getElementById("myMovie").style.display = "none";
+    }
+}
+
+document.getElementById("watchMovieBtn").addEventListener("click", myFun); 
+ 
+

@@ -2,6 +2,7 @@
     Layout = null;
     var SelectedMovie = (Movies)Model;
     var CatName = ViewBag.CatName;
+    var allMoviesCat = ViewBag.allMoviesCat ; 
 }
 
 <!DOCTYPE html
@@ -51,10 +52,10 @@
 
             <section class="movie-detail">
                 <div class="container">
-
+                    <a href="@SelectedMovie.Trailer_Path" target="_blank">
                     <figure class="movie-detail-banner">
 
-                        <img src=@SelectedMovie.Thumbnail_Path class="MoviePoster" alt="Free guy movie poster">
+                        <img src=@SelectedMovie.Thumbnail_Path class="MoviePoster" alt="Movie poster" style="width:300px;height:450px;">
 
                         <button class="play-btn">
                             <ion-icon name="play-circle-outline"></ion-icon>
@@ -62,7 +63,7 @@
                         </button>
 
                     </figure>
-
+                    </a>
                     <div class="movie-detail-content">
 
                         <!-- <p class="detail-subtitle">New Episodes</p> -->
@@ -91,11 +92,11 @@
 
                             <div class="date-time">
 
-                                <div>
+                               @* <div>
                                     <ion-icon name="calendar-outline"></ion-icon>
 
                                     <time datetime="2021">2021</time>
-                                </div>
+                                </div>*@
 
                                 <div>
                                     <ion-icon name="time-outline"></ion-icon>
@@ -108,16 +109,16 @@
                         </div>
 
                         <p class="storyline">
-                            A bank teller called Guy realizes he is a background character in an open world video game
+                            @SelectedMovie.Description
+                            @*A bank teller called Guy realizes he is a background character in an open world video game
                             called Free
                             City that will
-                            soon go offline.
+                            soon go offline.*@
                         </p>
 
                         <div class="details-actions">
 
-
-                            <button class="btn btn-primary">
+                            <button class="btn btn-primary" id="watchMovieBtn">
                                 <ion-icon name="play"></ion-icon>
 
                                 <span>Watch Now</span>
@@ -125,18 +126,18 @@
 
                         </div>
 
-                        <a href="./assets/images/movie-4.png" download class="download-btn">
+                      @*  <a href="./assets/images/movie-4.png" download class="download-btn">
                             <span>Download</span>
 
                             <ion-icon name="download-outline"></ion-icon>
-                        </a>
+                        </a>*@
 
                     </div>
 
                 </div>
             </section>
 
-            <video style="width:100%" controls="controls"><source src="~/movies/as.webm" type="audio/webm"/></video> 
+            <video id="myMovie" style="width:100%" controls="controls"><source src="~/movies/@SelectedMovie.Movie_Path" type="audio/webm"/></video> 
 
             <!--
               - #TV SERIES
@@ -150,9 +151,48 @@
                     <h2 class="h2 section-title">Based on your preferences</h2>
 
                     <ul class="movies-list">
+                            @for(var i=0;i<4;i++)
+                            @*Movies movie in allMoviesCat*@
+                            {
+                                <li>
+                                  <div class="movie-card">
+                                <a href="https://localhost:7063/MovieShow/Details?id=@allMoviesCat[i].id">
+                                    @*/Movies/@movie.Movie_Path*@
+                                    <figure class="card-banner">
+                                        <img src="@allMoviesCat[i].Thumbnail_Path" alt="Movie poster">
+                                    </figure>
+                                </a>
 
-                        <li>
-                            <div class="movie-card">
+                                <div class="title-wrapper">
+                                    <a href="https://localhost:7063/MovieShow/Details?id=@allMoviesCat[i].id">
+                                        <h3 class="card-title">@allMoviesCat[i].Name</h3>
+                                    </a>
+
+                                    @*<time datetime="2022">2022</time>*@
+                                </div>
+
+                                <div class="card-meta">
+                                    <div class="badge badge-outline">HD</div>
+
+                                    <div class="duration">
+                                        <ion-icon name="time-outline"></ion-icon>
+
+                                        <time datetime="PT47M">@allMoviesCat[i].Duration</time>
+                                    </div>
+
+                                    <div class="rating">
+                                        <ion-icon name="star"></ion-icon>
+
+                                        <data>@allMoviesCat[i].Rating</data>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </li>
+                            }
+
+                            @*<li>*@
+                      @*      <div class="movie-card">
 
                                 <a href="./movie-details.html">
                                     <figure class="card-banner">
@@ -293,7 +333,7 @@
                                 </div>
 
                             </div>
-                        </li>
+                        </li>*@
 
                     </ul>
 
@@ -369,7 +409,8 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     @*<script src="../BootStrap/bootstrap.bundle.js"></script>
     <script src="../JS/Movie.js"></script>*@
-    <script src="~/js/movie.js"></script>
+
+    <script src="~/js/Movie.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

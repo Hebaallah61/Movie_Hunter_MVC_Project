@@ -1,0 +1,51 @@
+﻿body {
+    background-color: #1c1e21;
+    color: #fff;
+}
+
+.login-header {
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+}
+
+.login-wrap {
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+}
+
+.login-box {
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+    background-color: #333;
+}
+
+.form-control {
+    background-color: #555;
+    color: #fff;
+    border-color: #ff9600;
+}
+
+.btn-primary {
+    background-color: #ff9600;
+    border-color: #ff9600;
+}
+
+    .btn-primary:hover {
+        background-color: #e78f00;
+        border-color: #e78f00;
+    }
+
+.custom-control-input:checked ~ .custom-control-label::before {
+    border-color: #ff9600;
+    background-color: #ff9600;
+}
+
+.custom-control-input:focus ~ .custom-control-label::before {
+    border-color: #ff9600;
+    box-shadow: 0 0 0 0.2rem rgba(255, 150, 0, 0.5);
+}
+
+.custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
+    border-color: #ff9600;
+}
+
+.OrangeShadow {
+    text-shadow: 2px 2px 4px #FFA500;
+}

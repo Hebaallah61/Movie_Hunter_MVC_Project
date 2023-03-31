@@ -9,7 +9,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table style="color: floralwhite"; class="table">
     <thead>
         <tr>
             <th>
@@ -31,7 +31,7 @@
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Category_Id)
+                Category
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Trailer_Path)
@@ -61,7 +61,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Category_Id)
+                @Html.DisplayFor(modelItem => item.lookUpValues.Value)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Trailer_Path)
