@@ -27,10 +27,10 @@ function ChangingRatingStar() {
             Check1 = false;
         }
 
-        else if (Check1 == false) {
-            document.getElementById("RatingStar").classList.remove('full');
-            Check1 = true;
-        }
+        //else if (Check1 == false) {
+        //    document.getElementById("RatingStar").classList.remove('full');
+        //    Check1 = true;
+        //}
     })
 }
 
