@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Movie_Hunter_FinalProject.Areas.Identity.Data;
 using Movie_Hunter_FinalProject.Models;
 using Movie_Hunter_FinalProject.RepoClasses;
 using Movie_Hunter_FinalProject.RepoInterface;
@@ -10,13 +12,17 @@ namespace Movie_Hunter_FinalProject.Areas.MovieSeries.Controllers
     public class MovieShowController : Controller
     {
         IGenericRepo<Movies> MovieRepo { get; }
-        IUserMovieRepo UserMoviesRepo { get; }
+        IUserMovieRepo userMoviesRepo { get; }
         ILookValueRepo lookValueRepo { get; }
-        public MovieShowController(IGenericRepo<Movies> MR, IUserMovieRepo UMR, ILookValueRepo LVR)
+
+        private readonly UserManager<SystemUser> _userManager;
+
+        public MovieShowController(IGenericRepo<Movies> MR, IUserMovieRepo UMR, ILookValueRepo LVR, UserManager<SystemUser> userManager)
         {
             MovieRepo = MR;
-            UserMoviesRepo = UMR;
+            userMoviesRepo = UMR;
             lookValueRepo = LVR;
+            _userManager = userManager;
         }
         // GET: MovieShowController
         [Route("MovieSeries/Index")]
@@ -33,6 +39,21 @@ namespace Movie_Hunter_FinalProject.Areas.MovieSeries.Controllers
             var movie = MovieRepo.GetById(id);
             var CatID = MovieRepo.GetById(id).Category_Id;
             var Cat = lookValueRepo.GetById(CatID).Value;
+            var userId = _userManager.GetUserId(User);
+            var UserMovie = (UserMovies)userMoviesRepo.GetByMovieId(id).Where(x => x.user_id==userId).FirstOrDefault();
+            if(UserMovie==null)
+            {
+                UserMovies NewUser = new();
+                NewUser.user_id = userId;
+                NewUser.MovieId = id;
+                userMoviesRepo.Create(NewUser);
+                var NewUserMovie = (UserMovies)userMoviesRepo.GetByMovieId(id).Where(x => x.user_id == userId).FirstOrDefault();
+                ViewBag.User = NewUserMovie;
+            }
+            else
+            {
+                ViewBag.User = UserMovie;
+            }
             ViewBag.CatName = Cat;
             return View(movie);
         }
