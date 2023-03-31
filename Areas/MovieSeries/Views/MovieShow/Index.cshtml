@@ -1,6 +1,4 @@
-﻿
-
-    <div id="shell">
+﻿    <div id="shell">
         <div id="header">
             <h1 id="logo"><a href="#">MovieHunter</a></h1>
             <div class="social">
@@ -46,7 +44,25 @@
                         <h2>LATEST TRAILERS</h2>
                         <p class="text-right"><a href="#">See all</a></p>
                     </div>
-                    <div class="movie">
+
+                @{
+                    foreach(Movies movie in Model)
+                    {
+                        <div class="movie" style="margin-right:10px">
+                            <div class="movie-image">
+                            <a asp-area="MovieSeries" asp-controller="MovieShow" asp-action="Details" asp-route-id="@movie.id">
+                             <span class="play"><span class="name">@movie.Name</span></span>
+                            <img src=@movie.Thumbnail_Path alt="" />
+                            </a> 
+                            </div>
+                    <div class="rating">
+                        <p>@movie.Rating/10</p>
+                        <span class="comments">12</span>
+                    </div>
+                </div>
+                    }
+                }
+                    @*<div class="movie">
                         <div class="movie-image"> <span class="play"><span class="name">X-MAN</span></span> <a href="#"><img src="css/images/movie1.jpg" alt="" /></a> </div>
                         <div class="rating">
                             <p>RATING</p>
@@ -65,7 +81,7 @@
                             </div>
                             <span class="comments">12</span>
                         </div>
-                    </div>
+                    @*</div>
                     <div class="movie">
                         <div class="movie-image"> <span class="play"><span class="name">SPIDER MAN 3</span></span> <a href="#"><img src="css/images/movie3.jpg" alt="" /></a> </div>
                         <div class="rating">
@@ -137,8 +153,8 @@
                         <div class="movie-image"> <span class="play"><span class="name">KUNG FU PANDA</span></span> <a href="#"><img src="css/images/movie9.jpg" alt="" /></a> </div>
                         <div class="rating">
                             <p>RATING</p>
-                            <div class="stars">
-                                <div class="stars-in"> </div>
+                            <div class="stars">*
+                                @*<div class="stars-in"> </div>
                             </div>
                             <span class="comments">12</span>
                         </div>
@@ -238,7 +254,7 @@
                                 <div class="stars-in"> </div>
                             </div>
                             <span class="comments">12</span>
-                        </div>
+                        </div>*@
                     </div>
                     <div class="cl">&nbsp;</div>
                 </div>
