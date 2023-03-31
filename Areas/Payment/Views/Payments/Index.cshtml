@@ -38,7 +38,7 @@ body{
 .price .header {
   background-color: #111;
   color: white;
-  font-size: 25px;
+  font-size: 45px;
 }
 
 .price li {
@@ -53,27 +53,127 @@ body{
   font-size: 20px;
 }
 
-.button {
+/*.button {
   background-color: #04AA6D;
   border: none;
-  color: white;
+  color: orange;
   padding: 10px 25px;
   text-align: center;
   text-decoration: none;
   font-size: 18px;
-}
+}*/
 h1{
     text-align:center;
-    color:white
+    color:orange
 }
+table{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align:center
+}
+th{
+    color:orange
+}
+
 
 </style>
 </head>
 <body>
-
+<div id="shell" style="font-size:25px">
     <h1>Select your Suitable Plan</h1>
 
+    <br /><br />
+    <div class="row">
+        <div class="col-4">
+            <div class="card" style="background-color:#ffe0b3;color:orange">
+                
+                <table class="table table-hover" style="background-color:#ffe0b3;color:orange">
+                   
+                    <tr><th>Basic</th></tr>
+                    <tr><td>$ 34.99 / year</td></tr>
+                    <tr><td>Good Quality</td></tr>
+                    <tr><td>720P</td></tr>
+                    <tr><td>TV support</td></tr>
+                    <tr><td>100GB Surfing</td></tr>
+                    <tr>
+                        <td>
+                         <form asp-action="Charge" asp-controller="Payments" asp-area="Payment" method="POST">
+                            <input type="text" name="test" value="3500" style="display:none" />
+                            <script src="//checkout.stripe.com/v2/checkout.js"
+                                    class="stripe-button"
+                                    data-key="@Stripee.Value.PublishableKey"
+                                    data-locale="auto"
+                                    data-description="test Charge">
+                            </script>
+                        </form>
+                            </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card" style="background-color:#ffe0b3;color:orange">
+                <table class="table table-hover" style="background-color:#ffe0b3;color:orange">
+                    <tr><th>Pro</th></tr>
+                    <tr><td>$ 99.99 / year</td></tr>
+                    <tr><td>Excellent Quality</td></tr>
+                    <tr><td>4K+HDR</td></tr>
+                    <tr><td>All Devices support</td></tr>
+                    <tr><td>Unlimited Surfing</td></tr>
+                    <tr>
+                            <td>
+                        <form action="Payments/Charge" method="POST">
+                            <input type="text" name="test" value="10000" style="display:none" />
+                            <script src="//checkout.stripe.com/v2/checkout.js"
+                                    class="stripe-button"
+                                    data-key="@Stripee.Value.PublishableKey"
+                                    data-locale="auto"
+                                    data-description="test Charge">
+                            </script>
+                        </form>
+                            </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+       
 
+        <div class="col-4">
+            <div class="card" style="background-color:#ffe0b3;color:orange">
+                <table class="table table-hover" style="background-color:#ffe0b3;color:orange">
+                    <tr><th>Premium</th></tr>
+                    <tr><td>$ 69.99 / year</td></tr>
+                    <tr><td>very Good Quality</td></tr>
+                    <tr><td>1080P</td></tr>
+                    <tr><td>TV & mobile support</td></tr>
+                    <tr><td>200GB Surfing</td></tr>
+                    <tr>
+                            <td>
+                        <form action="Payments/Charge" method="POST">
+                            <input type="text" name="test" value="7000" style="display:none" />
+                            <script src="//checkout.stripe.com/v2/checkout.js"
+                                    class="stripe-button"
+                                    data-key="@Stripee.Value.PublishableKey"
+                                    data-locale="auto"
+                                    data-description="test Charge">
+                            </script>
+                        </form>
+                            </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    </div>
+
+
+@*
 <div class="columns">
   <ul class="price">
     <li class="header">Basic</li>
@@ -140,12 +240,11 @@ h1{
     </li>
   </ul>
 </div>
-
+    *@
 </body>
 
 
 
-<a href="https://www.youtube.com/watch?v=j02OZRjf2d8" style="color:wheat">click here</a>
 </html>
 
 
@@ -179,6 +278,6 @@ h1{
             data-key="@Stripee.Value.PublishableKey"
             data-locale="auto"
             data-description="test Charge"
-            @*data-amount="100"
+            data-amount="100"
     </script>
 </form>*@
