@@ -19,7 +19,6 @@ namespace Movie_Hunter_FinalProject.Areas.MovieSeries.Controllers
             lookValueRepo = LVR;
         }
         // GET: MovieShowController
-        [Route("MovieSeries/Index")]
         public ActionResult Index()
         {
             var movies = MovieRepo.GetAll(); 
