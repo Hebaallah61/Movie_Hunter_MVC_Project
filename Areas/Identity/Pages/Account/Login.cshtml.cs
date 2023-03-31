@@ -117,7 +117,7 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User logged in.");
                     //return LocalRedirect(returnUrl);
-                    return RedirectToRoute("/MovieSeries/MovieShow/Index");
+                    return RedirectToAction("Index", "MovieShow",new {area= "MovieSeries" });
                 }
                 if (result.RequiresTwoFactor)
                 {
