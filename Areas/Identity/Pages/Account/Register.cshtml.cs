@@ -32,22 +32,21 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
         private readonly IUserStore<SystemUser> _userStore;
         private readonly IUserEmailStore<SystemUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
-        private readonly IEmailSender _emailSender;
-
+        private readonly RoleManager<IdentityRole> _roleManager;
         public RegisterModel(
             UserManager<SystemUser> userManager,
             IUserStore<SystemUser> userStore,
             SignInManager<SystemUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender, ILookValueRepo looks)
+            ILookValueRepo looks, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
             _signInManager = signInManager;
             _logger = logger;
-            _emailSender = emailSender;
-            _LookValues= looks;
+            _LookValues = looks;
+            _roleManager = roleManager;
         }
 
         /// <summary>
@@ -78,11 +77,11 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
         {
 
             [Required(ErrorMessage = "Plesae enter First name")]
-            [RegularExpression(@"^[A-Za-z]{1,15}$", ErrorMessage = "First Name should contain only alphabetical characters with maximum length of 15")]
+            [RegularExpression(@"^[A-Za-z]{1,15}$", ErrorMessage = "Only  alphabet with max length of 15")]
             [Display(Name ="First Name")]
             public string First_Name { get; set; }
             [Required(ErrorMessage = "Plesae enter last name")]
-            [RegularExpression(@"^[A-Za-z]{1,15}$", ErrorMessage = "First Name should contain only alphabetical characters with maximum length of 15")]
+            [RegularExpression(@"^[A-Za-z]{1,15}$", ErrorMessage = "Only  alphabet with max length of 15")]
             [Display(Name ="Last Name")]
             public string Last_Name { get; set; }
             /// <summary>
@@ -118,15 +117,17 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            //var test = _LookValues.GetByName("Category");
-            //ViewData["Categories"] = _LookValues.GetByName("Category");
 
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            
+
+            
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
@@ -142,17 +143,7 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    var userId = await _userManager.GetUserIdAsync(user);
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
-
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

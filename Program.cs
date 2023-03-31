@@ -22,7 +22,8 @@ namespace Movie_Hunter_FinalProject
 
             builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
 
-            builder.Services.AddDefaultIdentity<SystemUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationContext>();
+            //builder.Services.AddDefaultIdentity<SystemUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationContext>();
+            builder.Services.AddIdentity<SystemUser,IdentityRole>().AddEntityFrameworkStores<ApplicationContext>();
             builder.Services.Configure<StripSetting>(builder.Configuration.GetSection("Stripe"));
 
             StripeConfiguration.SetApiKey(builder.Configuration.GetSection("Stripe")["SecretKey"]);
@@ -32,7 +33,7 @@ namespace Movie_Hunter_FinalProject
                 googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
                 googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
             });
-
+            builder.Services.AddRazorPages();
 
             builder.Services.AddAuthentication().AddFacebook(facebookOptions =>
             {
@@ -70,7 +71,7 @@ namespace Movie_Hunter_FinalProject
             app.MapAreaControllerRoute(
                 name: "default2",
                 areaName: "MovieSeries",
-                pattern: "{controller=MovieShow}/{action=Index}/{id}"
+                pattern: "{controller=MovieShow}/{action=Index}"
                 );
           app.MapControllerRoute(
              name: "defaultWithArea",

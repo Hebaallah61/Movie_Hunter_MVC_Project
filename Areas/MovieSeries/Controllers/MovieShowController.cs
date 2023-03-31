@@ -25,7 +25,6 @@ namespace Movie_Hunter_FinalProject.Areas.MovieSeries.Controllers
             _userManager = userManager;
         }
         // GET: MovieShowController
-        [Route("MovieSeries/Index")]
         public ActionResult Index()
         {
             var movies = MovieRepo.GetAll(); 
@@ -36,25 +35,12 @@ namespace Movie_Hunter_FinalProject.Areas.MovieSeries.Controllers
         //[Route("MovieSeries/MovieShow/{id}")]
         public ActionResult Details(int id)
         {
+
             var movie = MovieRepo.GetById(id);
             var CatID = MovieRepo.GetById(id).Category_Id;
             var Cat = lookValueRepo.GetById(CatID).Value;
-            var userId = _userManager.GetUserId(User);
-            var UserMovie = (UserMovies)userMoviesRepo.GetByMovieId(id).Where(x => x.user_id==userId).FirstOrDefault();
-            if(UserMovie==null)
-            {
-                UserMovies NewUser = new();
-                NewUser.user_id = userId;
-                NewUser.MovieId = id;
-                userMoviesRepo.Create(NewUser);
-                var NewUserMovie = (UserMovies)userMoviesRepo.GetByMovieId(id).Where(x => x.user_id == userId).FirstOrDefault();
-                ViewBag.User = NewUserMovie;
-            }
-            else
-            {
-                ViewBag.User = UserMovie;
-            }
             ViewBag.CatName = Cat;
+            ViewBag.allMoviesCat = allMoviesInCat; 
             return View(movie);
         }
 

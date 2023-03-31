@@ -33,4 +33,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\HTML\News.html" />
+  </ItemGroup>
+
 </Project>

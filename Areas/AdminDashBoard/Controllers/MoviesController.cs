@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Movie_Hunter_FinalProject.Models;
 using Movie_Hunter_FinalProject.RepoInterface;
 
@@ -10,9 +11,12 @@ namespace Movie_Hunter_FinalProject.Areas.AdminDashBoard.Controllers
     {
         // GET: MoviesController
         private IGenericRepo<Movies> repo {get;}
-        public MoviesController(IGenericRepo<Movies> repo)
+        private ILookValueRepo Vrepo { get; }
+
+        public MoviesController(IGenericRepo<Movies> repo, ILookValueRepo Vrepo)
         {
             this.repo = repo;
+            this.Vrepo = Vrepo;
         }
         public ActionResult Index()
         {
@@ -22,12 +26,13 @@ namespace Movie_Hunter_FinalProject.Areas.AdminDashBoard.Controllers
         // GET: MoviesController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(repo.GetById(id));
         }
 
         // GET: MoviesController/Create
         public ActionResult Create()
         {
+            ViewBag.Category_Id = new SelectList(Vrepo.GetByName("Categories"), "Id", "Value");
             return View();
         }
 
@@ -36,52 +41,55 @@ namespace Movie_Hunter_FinalProject.Areas.AdminDashBoard.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Movies movie)
         {
+            if(ModelState.IsValid)
             if (repo.Create(movie))
             {
                 return RedirectToAction(nameof(Index));
-            }
-            else
-            {
+            }           
                 return View();
-            }
         }
         
 
         // GET: MoviesController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ViewBag.Category_Id = new SelectList(Vrepo.GetByName("Categories"), "Id", "Value");
+            return View(repo.GetById(id));
         }
 
         // POST: MoviesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Movies movie)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            if (ModelState.IsValid)
+                if (repo.update(id, movie))
+                    return RedirectToAction(nameof(Index));
+            ViewBag.Category_Id = new SelectList(Vrepo.GetByName("Categories"), "Id", "Value");
+            return View(movie);
         }
 
         // GET: MoviesController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(repo.GetById(id));
         }
 
         // POST: MoviesController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Movies movie )
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (repo.DeleteById(id))
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    return View();
+                }
             }
             catch
             {

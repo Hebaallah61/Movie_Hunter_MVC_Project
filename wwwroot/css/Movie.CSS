@@ -1916,5 +1916,11 @@ body.active {
   input:checked~label {
     color: gold;
   }
+  #myMovie{
+      display:none; 
+      
+  }
+
+
 }
 
