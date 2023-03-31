@@ -65,7 +65,7 @@ namespace Movie_Hunter_FinalProject
             app.MapAreaControllerRoute(
                 name: "default2",
                 areaName: "MovieSeries",
-                pattern: "{controller=MovieShow}/{action=Index}"
+                pattern: "{controller=MovieShow}/{action=Index}/{id}"
                 );
           app.MapControllerRoute(
              name: "defaultWithArea",

@@ -1,21 +1,40 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Movie_Hunter_FinalProject.Models;
+using Movie_Hunter_FinalProject.RepoClasses;
+using Movie_Hunter_FinalProject.RepoInterface;
 
 namespace Movie_Hunter_FinalProject.Areas.MovieSeries.Controllers
 {
     [Area("MovieSeries")]
     public class MovieShowController : Controller
     {
+        IGenericRepo<Movies> MovieRepo { get; }
+        IUserMovieRepo UserMoviesRepo { get; }
+        ILookValueRepo lookValueRepo { get; }
+        public MovieShowController(IGenericRepo<Movies> MR, IUserMovieRepo UMR, ILookValueRepo LVR)
+        {
+            MovieRepo = MR;
+            UserMoviesRepo = UMR;
+            lookValueRepo = LVR;
+        }
         // GET: MovieShowController
+        [Route("MovieSeries/Index")]
         public ActionResult Index()
         {
-            return View();
+            var movies = MovieRepo.GetAll(); 
+            return View(movies);
         }
 
         // GET: MovieShowController/Details/5
+        //[Route("MovieSeries/MovieShow/{id}")]
         public ActionResult Details(int id)
         {
-            return View();
+            var movie = MovieRepo.GetById(id);
+            var CatID = MovieRepo.GetById(id).Category_Id;
+            var Cat = lookValueRepo.GetById(CatID).Value;
+            ViewBag.CatName = Cat;
+            return View(movie);
         }
 
         // GET: MovieShowController/Create

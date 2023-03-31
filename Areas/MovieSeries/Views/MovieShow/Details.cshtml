@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html
+﻿@{
+    Layout = null;
+    var SelectedMovie = (Movies)Model;
+    var CatName = ViewBag.CatName;
+}
+
+<!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -27,9 +33,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body style="background-image:url('../css/images/body-bg.gif')" id="#top">
-    <h1>Helloooooooo</h1>
-
+<body id="#top" style="background-color:black">
     <!--
       - #HEADER
     -->
@@ -50,7 +54,7 @@
 
                     <figure class="movie-detail-banner">
 
-                        <img src='~/css/images/MoviePoster3.jpg' class="MoviePoster" alt="Free guy movie poster">
+                        <img src=@SelectedMovie.Thumbnail_Path class="MoviePoster" alt="Free guy movie poster">
 
                         <button class="play-btn">
                             <ion-icon name="play-circle-outline"></ion-icon>
@@ -64,19 +68,19 @@
                         <!-- <p class="detail-subtitle">New Episodes</p> -->
 
                         <h1 class="h1 detail-title">
-                            Free <strong>Guy</strong>
+                            @*Free*@ <strong>@SelectedMovie.Name</strong>
                         </h1>
 
                         <div class="meta-wrapper">
 
                             <div class="badge-wrapper">
-                                <span id="MovieRate">8.6/10</span>
+                                <span id="MovieRate">@SelectedMovie.Rating/10</span>
 
                                 <div class="badge badge-outline">HD</div>
                             </div>
 
                             <div class="ganre-wrapper">
-                                <a href="#">Comedy</a>
+                                <a href="#">@CatName</a>
                                 <span class="star-icon" id="RatingStar">☆</span>
                                 <a data-bs-toggle="modal" data-bs-target="#exampleModal"
                                     style="color: rgb(255, 255, 255); cursor: pointer;">Rate</a>
@@ -96,7 +100,7 @@
                                 <div>
                                     <ion-icon name="time-outline"></ion-icon>
 
-                                    <time datetime="PT115M">115 min</time>
+                                    <time datetime="PT115M">@SelectedMovie.Duration min</time>
                                 </div>
 
                             </div>
@@ -132,9 +136,7 @@
                 </div>
             </section>
 
-
-
-
+            <video style="width:100%" controls="controls"><source src="~/movies/as.webm" type="audio/webm"/></video> 
 
             <!--
               - #TV SERIES
