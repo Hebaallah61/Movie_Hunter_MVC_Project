@@ -29,10 +29,13 @@ namespace Movie_Hunter_FinalProject.Areas.MovieSeries.Controllers
         //[Route("MovieSeries/MovieShow/{id}")]
         public ActionResult Details(int id)
         {
+
             var movie = MovieRepo.GetById(id);
             var CatID = MovieRepo.GetById(id).Category_Id;
             var Cat = lookValueRepo.GetById(CatID).Value;
+            var allMoviesInCat = MovieRepo.GetAll().Where(m=>m.Category_Id==CatID&&m.id!=id).ToList();
             ViewBag.CatName = Cat;
+            ViewBag.allMoviesCat = allMoviesInCat; 
             return View(movie);
         }
 
