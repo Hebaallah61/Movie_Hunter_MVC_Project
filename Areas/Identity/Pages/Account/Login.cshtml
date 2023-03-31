@@ -65,7 +65,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 col-lg-7">
-                    <img src="~/vendors/images/Ninja-cuate.png" alt="">
+                    <img src="~/vendors/images/Ninja2.gif" alt="">
                 </div>
                 <div class="col-md-6 col-lg-5">
                     <div class="login-box bg-white box-shadow border-radius-10">
@@ -114,32 +114,37 @@
                                         <a class="btn btn-outline-primary btn-lg btn-block" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register To Create Account</a>
                                     </div>
                                     <div class="font-16 weight-600 pt-10 pb-10 text-center" data-color="#707373">OR</div>
-                                    @{
-                                        if ((Model.ExternalLogins?.Count ?? 0) != 0)
-                                        {
-                                            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                                                <div class=" d-flex justify-content-center">
-                                                    <p>
-                                                        @foreach (var provider in Model.ExternalLogins!)
-                                                        {
-                                                            if(provider.Name=="Google")
-                                                            {
-                                                                <button type="submit" class="btn btn-primary rounded-3" name="provider" value="@provider.Name"><i class="fa fa-google"></i></button>
-                                                                
-                                                            }else{
-                                                                <button type="submit" class="btn btn-primary rounded-3" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><i class="fa fa-facebook text-primary"></i></button>
+                                   
 
-                                                            }
-                                                        }
-                                                    </p>
-                                                </div>
-                                            </form>
-                                        }
-                                       
-                                    }
+                             
                                 </div>
                             </div>
                         </form>
+                        @{
+                            if ((Model.ExternalLogins?.Count ?? 0) != 0)
+                            {
+                                <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                                    <div class=" d-flex justify-content-center">
+                                        <p>
+                                            @foreach (var provider in Model.ExternalLogins!)
+                                            {
+                                                if (provider.Name == "Google")
+                                                {
+                                                    <button type="submit" class="btn btn-primary rounded-3" name="provider" value="@provider.Name"><i class="fa fa-google text-danger"></i></button>
+
+                                                }
+                                                else
+                                                {
+                                                    <button type="submit" class="btn btn-primary rounded-3" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><i class="fa fa-facebook text-primary"></i></button>
+
+                                                }
+                                            }
+                                        </p>
+                                    </div>
+                                </form>
+                            }
+
+                        }
                     </div>
                 </div>
             </div>
@@ -147,13 +152,13 @@
     </div>
     <!-- js -->
 
-    <script src="~/Lib/jquery/jquery.min.js"></script>
+    <script src="~/Lib/jquery/dist/jquery.min.js"></script>
     <script src="~/vendors/scripts/core.js"></script>
     <script src="~/vendors/scripts/script.min.js"></script>
     <script src="~/vendors/scripts/process.js"></script>
     <script src="~/vendors/scripts/layout-settings.js"></script>
- @*   <script src="~/Lib/jquery-validate/jquery.validate.min.js"></script>
-    <script src="~/Lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>*@
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/Lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     }
