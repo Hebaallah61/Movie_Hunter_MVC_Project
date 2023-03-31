@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Movie_Hunter_FinalProject.Models.Movies>
+﻿@model IEnumerable<Movie_Hunter_FinalProject.Models.Series>
 
 @{
     ViewData["Title"] = "Index";
@@ -9,14 +9,11 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table style="color: floralwhite"; class="table">
+<table style="color:floralwhite" class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Duration)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Movie_Path)
+                @Html.DisplayNameFor(model => model.NumberOfSeasons)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -31,10 +28,10 @@
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                Category
+                @Html.DisplayNameFor(model => model.Trailer_Path)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Trailer_Path)
+               Category
             </th>
             <th></th>
         </tr>
@@ -43,10 +40,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Duration)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Movie_Path)
+                @Html.DisplayFor(modelItem => item.NumberOfSeasons)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -61,10 +55,10 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.lookUpValues.Value)
+                @Html.DisplayFor(modelItem => item.Trailer_Path)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Trailer_Path)
+                @Html.DisplayFor(modelItem => item.lookUpValues.Value)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |

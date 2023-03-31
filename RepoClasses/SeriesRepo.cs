@@ -1,4 +1,5 @@
-﻿using Movie_Hunter_FinalProject.Areas.Identity.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Movie_Hunter_FinalProject.Areas.Identity.Data;
 using Movie_Hunter_FinalProject.Models;
 using Movie_Hunter_FinalProject.RepoInterface;
 
@@ -40,12 +41,12 @@ namespace Movie_Hunter_FinalProject.RepoClasses
 
         public List<Series> GetAll()
         {
-            return _context.series.ToList();
+            return _context.series.Include(s => s.lookUpValues).ToList();
         }
 
         public Series GetById(int id)
         {
-            var result = _context.series.Find(id);
+            var result = _context.series.Include(s =>s.lookUpValues).FirstOrDefault(s => s.id == id);
             if (result != null)
             {
                 return result;
