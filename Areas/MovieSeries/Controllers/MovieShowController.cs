@@ -89,6 +89,22 @@ namespace Movie_Hunter_FinalProject.Areas.MovieSeries.Controllers
             return RedirectToAction("Details", new { id = movieID });
 
         }
+<<<<<<< Updated upstream
+=======
+        //---------------------------------------------------Heba
+        public ActionResult GetWatched(bool Wat, int movieID)
+        {
+            var userId = _userManager.GetUserId(User);
+            var id = userMoviesRepo.GetByMovieId(movieID).Where(usrID => usrID.user_id == userId).FirstOrDefault().id;
+            var UpdatingUser = (UserMovies)userMoviesRepo.GetByMovieId(movieID).Where(usrID => usrID.user_id == userId).FirstOrDefault();
+            UpdatingUser.Watched = Wat;
+            userMoviesRepo.Update(id, UpdatingUser);
+            return RedirectToAction("Details", new { id = movieID });
+
+        }
+        //---------------------------------
+
+>>>>>>> Stashed changes
         // POST: MovieShowController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
