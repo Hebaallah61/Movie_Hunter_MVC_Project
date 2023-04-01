@@ -192,7 +192,8 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
                                 await _userManager.AddToRoleAsync(user, "Admin");
                             }
                         }
-                        return true;
+						await _signInManager.PasswordSignInAsync(email, password, remember, false);
+						return true;
                     }
                     else
                     {
