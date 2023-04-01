@@ -13,7 +13,7 @@ namespace Movie_Hunter_FinalProject.Models
         
         public int? Rating { get; set; }
 
-        public bool? AddToFavorite { get; set; }
+        public bool? AddToFavorite { get; set; } = false;
 
         public string? Review { get; set; }
 
