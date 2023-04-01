@@ -122,7 +122,8 @@ th{
                     <tr>
                             <td>
                         <form action="Payments/Charge" method="POST">
-                            <input type="text" name="test" value="10000" style="display:none" />
+                                    <input type="text" name="test" value="10000" style="display:none" />
+                                    <input type="text" name="plan" value="pro" hidden  />
                             <script src="//checkout.stripe.com/v2/checkout.js"
                                     class="stripe-button"
                                     data-key="@Stripee.Value.PublishableKey"

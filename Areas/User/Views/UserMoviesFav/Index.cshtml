@@ -26,7 +26,7 @@
 
 
   <div class="container-fluid row">
-       
+      
  @foreach (var item in Model){
                      
   <div class=" col-2 m-2">
@@ -91,6 +91,7 @@
                             </a> 
                             </div>
                             </div>
+                            <div class="d-flex justify-content-between flex-column">
                             <div class="title-wrapper">
                                    <a asp-area="MovieSeries" asp-controller="MovieShow" asp-action="Details" asp-route-id="@item.SeriesId">
 
@@ -112,6 +113,7 @@
                                     </div>
                                 </div>
    
+                            </div>
                             </div>
   </div>
 

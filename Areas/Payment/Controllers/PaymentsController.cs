@@ -12,7 +12,7 @@ namespace Stripe_Payment.Areas.Payment.Controllers
         }
 
 
-        public ActionResult Charge(string stripeEmail, string stripeToken,string test)
+        public ActionResult Charge(string stripeEmail, string stripeToken,string test, string plan)
         {
             var customers = new CustomerService();
             var charges = new ChargeService();
