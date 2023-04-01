@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -9,6 +10,7 @@ using Movie_Hunter_FinalProject.RepoInterface;
 namespace Movie_Hunter_FinalProject.Areas.AdminDashBoard.Controllers
 {
     [Area("AdminDashBoard")]
+    [Authorize(Roles = "Admin")]
     public class LookUpValuesController : Controller
     {
         private ILookValueRepo repo { get; }

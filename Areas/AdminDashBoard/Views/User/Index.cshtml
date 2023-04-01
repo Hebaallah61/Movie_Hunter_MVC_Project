@@ -3,7 +3,6 @@
 @model IEnumerable<SystemUser>
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Layout/MainLayout.cshtml";
 }
 
 
@@ -12,7 +11,6 @@
         <tr>
             <th>Name</th>
             <th>Email</th>
-            <th>Phone Number</th>
             <th>Assign Role</th>
             <th>Delete Role</th>
 
@@ -24,7 +22,6 @@
             <tr>
                 <td>@item.First_Name</td>
                 <td>@item.Email</td>
-                <td>@item.PhoneNumber</td>
                 <td><a class="btn btn-primary" asp-controller="User" asp-action="AssignRole" asp-route-id="@item.Id">Assign Role</a></td>
                 <td><a class="btn btn-danger" asp-controller="User" asp-action="RemoveRole" asp-route-id="@item.Id">Remove Role</a></td>
 

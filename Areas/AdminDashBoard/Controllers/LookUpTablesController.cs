@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Movie_Hunter_FinalProject.Models;
 using Movie_Hunter_FinalProject.RepoInterface;
@@ -7,6 +8,7 @@ using System.Net;
 namespace Movie_Hunter_FinalProject.Areas.AdminDashBoard.Controllers
 {
     [Area("AdminDashBoard")]
+    [Authorize(Roles = "Admin")]
     public class LookUpTablesController : Controller
     {
         private IGenericRepo<LookUpTable> repo { get; }
