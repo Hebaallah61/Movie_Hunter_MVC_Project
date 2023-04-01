@@ -88,10 +88,10 @@ var mySeries = ViewBag.mySeries ;
                     </a>
                     <div class="movie-detail-content">
 
-                        <p class="detail-subtitle">New Episodes</p> 
+                        <p class="detail-subtitle">New Episode</p> 
 
                         <h1 class="h1 detail-title">
-                            @*Free*@ <strong>@SelectedEpisode.Title</strong>
+                            <strong>@SelectedEpisode.Title</strong>
                         </h1>
 
                         <div class="meta-wrapper">
@@ -186,8 +186,8 @@ var mySeries = ViewBag.mySeries ;
                                 </div>*@
 
                                 <div>
-                                    <ion-icon name="time-outline"></ion-icon>
-                                /   <time datetime="PT115M">@mySeries.NumberOfSeasons</time>
+                                    <ion-icon name="tv-outline"></ion-icon>
+                                 <time datetime="PT115M">Season @mySeries.NumberOfSeasons</time>
                                 </div>
 
                             </div>
@@ -199,7 +199,7 @@ var mySeries = ViewBag.mySeries ;
                       
                         </p>
 
-                        @*<div class="details-actions">
+                        <div class="details-actions">
 
                             <button class="btn btn-primary" id="watchMovieBtn">
                                 <ion-icon name="play"></ion-icon>
@@ -207,7 +207,7 @@ var mySeries = ViewBag.mySeries ;
                                 <span>Watch Now</span>
                             </button>
 
-                        </div>*@
+                        </div>
 
                         @* <a href="./assets/images/movie-4.png" download class="download-btn">
                             <span>Download</span>
@@ -221,7 +221,7 @@ var mySeries = ViewBag.mySeries ;
             </section>
 
             <video id="myMovie" style="width:100%" controls="controls">
-                @*<source src="~/movies/@SelectedSeries.Series_Path" type="audio/webm" />*@
+                <source src="~/movies/@SelectedEpisode.Episode_Path" type="audio/webm" />
             </video>
 
             <!--

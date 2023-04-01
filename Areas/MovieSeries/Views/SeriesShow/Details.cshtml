@@ -90,11 +90,16 @@ var myEpisodes=(List<Episodes>) ViewBag.Episodes;
                     <div class="movie-detail-content">
 
                         <p class="detail-subtitle">New Episodes</p> 
+                    
 
-                        <h1 class="h1 detail-title">
-                            @*Free*@ <strong>@SelectedSeries.Name</strong>
+                               
+
+                          
+                        <h1 class="h1 detail-title" >
+                             <strong>@SelectedSeries.Name</strong>
                         </h1>
 
+                                  <h4 class="mySeason">Season @SelectedSeries.NumberOfSeasons</h4>
                         <div class="meta-wrapper">
 
                             <div class="badge-wrapper">
@@ -178,21 +183,7 @@ var myEpisodes=(List<Episodes>) ViewBag.Episodes;
                             </div>
                             </form>
 
-                            <div class="date-time">
-
-                                @* <div>
-                                    <ion-icon name="calendar-outline"></ion-icon>
-
-                                    <time datetime="2021">2021</time>
-                                </div>*@
-
-                                <div>
-                                  <ion-icon name="time-outline"></ion-icon>
-
-                                   <time datetime="PT115M">@SelectedSeries.NumberOfSeasons</time>
-                               </div>
-
-                            </div>
+                        
 
                         </div>
 
@@ -268,9 +259,9 @@ var myEpisodes=(List<Episodes>) ViewBag.Episodes;
                                     </div>
 
                                     <div class="rating">
-                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="tv-outline</ion-icon>"></ion-icon>
 
-                                        <data>@episode.season</data>
+                                        <data>Season @episode.season</data>
                                     </div>
                                 </div>
 
