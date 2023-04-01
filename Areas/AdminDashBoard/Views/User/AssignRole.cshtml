@@ -1,0 +1,32 @@
+﻿@model Movie_Hunter_FinalProject.Models.UserRoleModel;
+@{
+    ViewData["Title"] = "AssignRole";
+}
+
+<h2>Assing User to a Role</h2>
+<form asp-controller="User" asp-action="AssignRole" method="post">
+    <input type="hidden" asp-for="userId" />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <br />
+    <input type="email" readonly asp-for="Email" class="form-control" />
+    <br />
+    <h3>This User is also Assigned to these Roles</h3>
+    @foreach (var item in ViewBag.MyRoles)
+    {
+        <ol>
+            <li>@item</li>
+        </ol>
+
+    }
+    <br /><br />
+    <select asp-for="RolenName" class="form-control" asp-items="ViewBag.Roles">
+        
+
+    </select>
+    <br /><br />
+    <button type="submit" class="btn btn-primary"> Add</button>
+    <a class="btn btn-info" asp-controller="User" asp-action="Index"> Back</a>
+    <br />
+    <br />
+</form>
+

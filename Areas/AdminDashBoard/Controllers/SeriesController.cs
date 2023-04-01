@@ -32,7 +32,7 @@ namespace Movie_Hunter_FinalProject.Areas.AdminDashBoard.Controllers
         // GET: SeriesController/Create
         public ActionResult Create()
         {
-            ViewBag.Category_Id = new SelectList(Vrepo.GetByName("Categories"), "Id", "Value");
+            ViewBag.Category_Id = new SelectList(Vrepo.GetByName("Category"), "Id", "Value");
             return View();
         }
 
@@ -52,7 +52,7 @@ namespace Movie_Hunter_FinalProject.Areas.AdminDashBoard.Controllers
         // GET: SeriesController/Edit/5
         public ActionResult Edit(int id)
         {
-            ViewBag.Category_Id = new SelectList(Vrepo.GetByName("Categories"), "Id", "Value");
+            ViewBag.Category_Id = new SelectList(Vrepo.GetByName("Category"), "Id", "Value");
             return View(repo.GetById(id));
         }
 
@@ -64,7 +64,7 @@ namespace Movie_Hunter_FinalProject.Areas.AdminDashBoard.Controllers
             if (ModelState.IsValid)
                 if (repo.update(id, series))
                     return RedirectToAction(nameof(Index));
-            ViewBag.Category_Id = new SelectList(Vrepo.GetByName("Categories"), "Id", "Value");
+            ViewBag.Category_Id = new SelectList(Vrepo.GetByName("Category"), "Id", "Value");
             return View(series);
         }
 
