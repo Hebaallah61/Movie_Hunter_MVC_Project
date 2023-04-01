@@ -32,6 +32,8 @@ namespace Movie_Hunter_FinalProject.Areas.MovieSeries.Controllers
             var movie = MovieRepo.GetById(id);
             var CatID = MovieRepo.GetById(id).Category_Id;
             var Cat = lookValueRepo.GetById(CatID).Value;
+            var allMoviesInCat = MovieRepo.GetAll().Where(m => m.Category_Id == CatID && m.id != id).ToList();
+            ViewBag.allMoviesCat=allMoviesInCat;
             ViewBag.CatName = Cat;
             return View(movie);
         }

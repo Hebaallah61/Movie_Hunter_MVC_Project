@@ -10,8 +10,11 @@
 
     <!-- Site favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="~/vendors/images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="~/vendors/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="~/vendors/images/favicon-16x16.png">
+    @*<link rel="icon" type="image/png" sizes="32x32" href="~/vendors/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/vendors/images/favicon-16x16.png">*@
+    <link rel="icon" type="image/png" sizes="16x16" href="~/MyLogo/favicon.png">
+
+
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -28,6 +31,12 @@
     <link href="~/css/datatables.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
 
+    <style>
+        .OrangeShadow {
+            text-shadow: 2px 2px 4px #FFA500;
+        }
+
+    </style>
     
 
 
@@ -58,7 +67,7 @@
     <div class="header">
         <div class="header-left">
             <div class="menu-icon dw dw-menu"></div>
-            <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
+@*            <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
             <div class="header-search">
                 <form>
                     <div class="form-group mb-0">
@@ -94,7 +103,7 @@
                         </div>
                     </div>
                 </form>
-            </div>
+            </div>*@
         </div>
         <div class="header-right">
             <div class="dashboard-setting user-notification">
@@ -104,7 +113,7 @@
                     </a>
                 </div>
             </div>
-            <div class="user-notification">
+@*            <div class="user-notification">
                 <div class="dropdown">
                     <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
                         <i class="icon-copy dw dw-notification"></i>
@@ -159,7 +168,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
             <div class="user-info-dropdown">
                 <div class="dropdown">
                     <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -172,19 +181,22 @@
                         }*@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                        <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-                        <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
-                        <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-                        <form asp-controller="Account" asp-action="Logout">
+                        @*<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>*@
+                       @* <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
+                        <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>*@
+                        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                             <button class="dropdown-item" type="submit"><i class="dw dw-logout"></i> Log Out</button>
                         </form>
+                      @*  <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">Logout</button>
+                        </form>*@
 
                     </div>
                 </div>
             </div>
-            <div class="github-link">
+           @* <div class="github-link">
                 <a href="https://github.com/dropways/deskapp" target="_blank"><img src="~/vendors/images/github.svg" alt=""></a>
-            </div>
+            </div>*@
         </div>
     </div>
 
@@ -265,9 +277,10 @@
 
     <div class="left-side-bar">
         <div class="brand-logo">
-            <a href="index.html">
-                <img src="~/vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
-                <img src="~/vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
+            <a asp-area="AdminDashBoard" asp-controller="Home" asp-action="Index" class="OrangeShadow">
+                @*<img src="~/vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
+                <img src="~/vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">*@
+                𝓶𝓸𝓿𝓲𝓮 𝓱𝓾𝓷𝓽𝓮𝓻
             </a>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>

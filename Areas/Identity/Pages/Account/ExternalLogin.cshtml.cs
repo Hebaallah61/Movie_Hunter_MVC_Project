@@ -25,6 +25,7 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ExternalLoginModel : PageModel
     {
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<SystemUser> _signInManager;
         private readonly UserManager<SystemUser> _userManager;
         private readonly IUserStore<SystemUser> _userStore;
@@ -35,13 +36,14 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
             SignInManager<SystemUser> signInManager,
             UserManager<SystemUser> userManager,
             IUserStore<SystemUser> userStore,
-            ILogger<ExternalLoginModel> logger)
+            ILogger<ExternalLoginModel> logger, RoleManager<IdentityRole> _roleManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
             _logger = logger;
+            this._roleManager = _roleManager;
         }
 
         /// <summary>
@@ -161,7 +163,25 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
-                    result = await _userManager.AddLoginAsync(user, info);
+					var registeredUser = await _userManager.FindByEmailAsync(Input.Email);
+					var Roles = _roleManager.Roles;
+
+					if (Roles.Any(r => r.Name == "NormalUser"))
+					{
+						await _userManager.AddToRoleAsync(registeredUser, "NormalUser");
+					}
+					else
+					{
+						var roleResult = await _roleManager.CreateAsync(new IdentityRole() { Id = "39cd698b-dd8e-441d-a01b-b1c29c25e827", Name = "NormalUser" });
+						if (roleResult.Succeeded)
+						{
+							await _userManager.AddToRoleAsync(registeredUser, "NormalUser");
+						}
+					}
+
+
+
+					result = await _userManager.AddLoginAsync(user, info);
                     if (result.Succeeded)
                     {
                         _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);

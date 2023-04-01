@@ -1,0 +1,35 @@
+﻿@model Movie_Hunter_FinalProject.Models.CreateRoleVM
+@{
+    ViewData["Title"] = "DeleteRole";
+   
+}
+
+<h1 class="text-danger">Delete Role</h1>
+
+<br />
+<br />
+
+<form asp-controller="Role" asp-action="DeleteRole">
+    <input type="hidden" asp-for="id" />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <br />
+    <div class="form-group">
+        <label>Role Name</label>
+        <input asp-for="RoleName" readonly class="form-control" />
+
+    </div>
+
+
+
+
+
+    <center>
+        <button type="submit" class="btn btn-danger"> Delete</button>
+        <a class="btn btn-info" asp-controller="Role" asp-action="Index"> Back</a>
+    </center>
+
+    <br /><br />
+
+</form>
+
+
