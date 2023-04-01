@@ -1,0 +1,26 @@
+﻿@model Movie_Hunter_FinalProject.Models.UserRoleModel;
+@{
+    ViewData["Title"] = "RemoveRole";
+   
+}
+
+<h2 class="text-danger">Remove User from Role</h2>
+<form asp-controller="User" asp-action="RemoveRole" method="post">
+    <input type="hidden" asp-for="userId" />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <br />
+    <input type="email" readonly asp-for="Email" class="form-control" />
+    <br /><br />
+    <select asp-for="RolenName" class="form-control">
+        <option> Choose Role </option>
+        @foreach (var item in ViewBag.Roles)
+        {
+            <option> @item </option>
+        }
+    </select>
+    <br /><br />
+    <button type="submit" class="btn btn-danger"> Remove</button>
+    <a class="btn btn-info" asp-controller="User" asp-action="Index"> Back</a>
+    <br />
+    <br />
+</form>

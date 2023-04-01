@@ -20,13 +20,20 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<SystemUser> _userManager;
         private readonly SignInManager<SystemUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly IConfiguration _config;
 
-        public LoginModel(SignInManager<SystemUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<SystemUser> signInManager, ILogger<LoginModel> logger, 
+            UserManager<SystemUser> userManager, IConfiguration config, RoleManager<IdentityRole> roleManager)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _userManager = userManager;
+            _config = config;
+            _roleManager = roleManager;
         }
 
         /// <summary>
@@ -110,6 +117,14 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
+                
+                if(await CreateAdminAccountIfNotExist(Input.Email,Input.Password,Input.RememberMe)==true)
+                {
+
+                    return RedirectToAction("Index", "Home", new { area = "AdminDashBoard" });
+                }
+
+
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
@@ -137,6 +152,61 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
+        }
+
+        private async Task<bool> CreateAdminAccountIfNotExist(string email, string password,bool remember)
+        {
+            if (email == _config["AdminCred:email"] &&  password== _config["AdminCred:password"])
+            {
+                var result = await _signInManager.PasswordSignInAsync(email, password, remember, false);
+                if (result.Succeeded)
+                {
+                   
+                    return true;
+                }
+                else
+                {
+                    var admin = new SystemUser()
+                    {
+                        First_Name = "MovieHunter",
+                        Last_Name = "Admin",
+                        Email = _config["AdminCred:email"],
+                        UserName = _config["AdminCred:email"]
+                    };
+
+                    var createResult = await _userManager.CreateAsync(admin, _config["AdminCred:password"]);
+                    if (createResult.Succeeded)
+                    {
+                        var user=await _userManager.FindByEmailAsync(email);
+                        var Roles = _roleManager.Roles;
+
+                        if (Roles.Any(r => r.Name == "Admin"))
+                        {
+                            await _userManager.AddToRoleAsync(user, "Admin");
+                        }
+                        else
+                        {
+                           var roleResult=await _roleManager.CreateAsync(new IdentityRole() { Id = "5867314b-27d5-4800-b4f2-7fa99219c3e5", Name = "Admin" });
+                            if(roleResult.Succeeded)
+                            {
+                                await _userManager.AddToRoleAsync(user, "Admin");
+                            }
+                        }
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+
         }
     }
 }

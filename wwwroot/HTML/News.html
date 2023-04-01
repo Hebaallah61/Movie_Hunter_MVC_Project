@@ -14,7 +14,7 @@
     <script src="../js/jquery-func.js"></script>
     <script src="../js/site.js"></script>
     <script src="../lib/jquery/dist/jquery.min.js"></script>
-    
+
     <link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 
@@ -26,24 +26,26 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow mb-3" style="background-color:#232323;box-shadow: 0px 0px 15px 3px rgba(255, 99, 71, 0.9);">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Movie_Hunter_FinalProject</a>
+
+                <a class="navbar-brand text-white" href="/">MOVIE HUNTER</a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="MovieSeries" asp-controller="MovieShow" asp-action="Details">Movieeess</a>
-                        </li>
+                        <!--<li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="MovieSeries" asp-controller="MovieShow" asp-action="Details">Movieeess</a>
+            </li>-->
                     </ul>
                 </div>
                 <partial name="_LoginPartial">
@@ -51,109 +53,110 @@
         </nav>
     </header>
     <div class="container-fluid row">
-        <div class="row">
-            <div class="col-10" style="font-size:50px;color:orange">
-                Latest News
+        <div id="shell">
+            <div class="row">
+                <div class="col-10" style="font-size:50px;color:orange">
+                    Latest News
+                </div>
+
             </div>
-           
-        </div>
-        <div class="row">
-            <div class="col-lg-2 col-md-2 col-sm-2">
-                <br />
-                <img src="../css/images/R (10).jpg" width="200" height="200" class="rounded-circle me-md-5 mb-sm-2 mb-lg-3" />
-                <br />
-                <img src="../css/images/R (9).jpg" width="200" height="200" class="rounded-circle me-md-5 mb-sm-2 mb-lg-3" />
-                <br />
-                <img src="../css/images/OIP (9).jpg" width="200" height="200" class="rounded-circle me-md-5 mb-sm-2 mb-lg-3" />
-                <br />
-                <img src="../css/images/OIP (11).jpg" width="200" height="200" class="rounded-circle me-md-5 mb-sm-2 mb-lg-3" />
-                <br />
-                <img src="../css/images/R (8).jpg" width="200" height="200" class="rounded-circle me-md-5 mb-sm-2 mb-lg-3" />
-                <br />
-            </div>
-            <div class="col-8">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-6 m-2">
-                            <div class="card" style="background-color: #ffd699 ">
-                                <div class="card-body">
-                                    <h5 class="card-title">Taron Egerton</h5>
-                                    <p class="card-text">Taron Egerton is set to lead the new AppleTV thriller, Tetris. It's the true story behind the invention, marketing, and battle over the blockbuster video game Tetris licensing rights. Egerton plays Henk Rogers, a Dutch video game developer who joins forces with the Russian inventor of the game, Aleksei Pajitnov to wage war with the Russian authorities to get the rights to produce the gaming phenomenon and sell it to the rest of the world.</p>
-                                    <a href="https://www.imdb.com/news/movie" class="btn btn-warning">More...</a>
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <br />
+                    <img src="../css/images/R (10).jpg" width="100" height="100" class="rounded-circle me-md-5 mb-sm-2 mb-lg-3" />
+                    <br />
+                    <img src="../css/images/R (9).jpg" width="100" height="100" class="rounded-circle me-md-5 mb-sm-2 mb-lg-3" />
+                    <br />
+                    <img src="../css/images/OIP (9).jpg" width="100" height="100" class="rounded-circle me-md-5 mb-sm-2 mb-lg-3" />
+                    <br />
+                    <img src="../css/images/OIP (11).jpg" width="100" height="100" class="rounded-circle me-md-5 mb-sm-2 mb-lg-3" />
+                    <br />
+                    <img src="../css/images/R (8).jpg" width="100" height="100" class="rounded-circle me-md-5 mb-sm-2 mb-lg-3" />
+                    <br />
+                </div>
+                <div class="col-8">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6 m-2">
+                                <div class="card" style="background-color: #ffd699 ">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Taron Egerton</h5>
+                                        <p class="card-text">Taron Egerton is set to lead the new AppleTV thriller, Tetris.  </p>
+                                        <a href="https://www.imdb.com/news/movie" class="btn btn-warning">More...</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-5 m-2" style="text-align:center">
+                            <div class="col-5 m-2" style="text-align:center">
 
-                            <img src="../css/images/Taron-Egerton-2.jpg" width="280" height="280" class="rounded-circle me-md-5 mb-sm-2 mb-lg-3" />
+                                <img src="../css/images/Taron-Egerton-2.jpg" width="200" height="200" class="rounded-circle me-md-5 mb-sm-2 mb-lg-3" />
 
-                        </div>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-6 m-2">
-                            <div class="card" style="background-color: #ffd699">
-                                <div class="card-body">
-
-                                    <h5 class="card-title">Kieran Culkin</h5>
-                                    <p class="card-text">Kieran Culkin comes from a family of actors, most famously his brothers Macaulay and Rory, though he tops both as a comedic performer. He began acting at a young age, appearing in movies such as Home Alone and Father of the Bride. He has since established himself as a versatile and dynamic actor, earning critical acclaim for his roles in independent films such as Igby Goes Down and Margaret.</p>
-                                    <a href="https://www.imdb.com/news/movie" class="btn btn-warning">More...</a>
-                                </div>
                             </div>
                         </div>
-                        <div class="col-5 m-2" style="text-align:center">
 
+                        <div class="row">
 
-                            <img src="../css/images/d2d00057c959f2ebc1361cb2f359fbf9--filmer-shannon-leto.jpg" width="280" height="280" class="rounded-circle me-md-5 mb-sm-2 mb-lg-3" />
+                            <div class="col-6 m-2">
+                                <div class="card" style="background-color: #ffd699">
+                                    <div class="card-body">
 
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6 m-2">
-                            <div class="card" style="background-color: #ffd699 ">
-                                <div class="card-body">
-                                    <h5 class="card-title">Michelle Rodriguez</h5>
-                                    <p class="card-text">
-                                        Michelle Rodriguez doesn’t think Hollywood knows what to do with her.
-
-                                        The franchise staple actress, most famously in the decades-spanning “Fast and Furious” universe, recalled turning down appearing in “Avatar: The Way of Water” after her character Trudy Chacón died in the first 2009 film. Trudy (Rodriguez) is a combat pilot working for the government Avatar Program who dies in battle after sacrificing her life to support the Indigenous Na’vi of Pandora.
-                                    </p>
-                                    <a href="https://www.imdb.com/news/movie" class="btn btn-warning">More...</a>
+                                        <h5 class="card-title">Kieran Culkin</h5>
+                                        <p class="card-text">Kieran Culkin comes from a family of actors, most famously his brothers Macaulay and Rory.</p>
+                                        <a href="https://www.imdb.com/news/movie" class="btn btn-warning">More...</a>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="col-5 m-2" style="text-align:center">
+
+
+                                <img src="../css/images/d2d00057c959f2ebc1361cb2f359fbf9--filmer-shannon-leto.jpg" width="200" height="200" class="rounded-circle me-md-5 mb-sm-2 mb-lg-3" />
+
+                            </div>
                         </div>
-                        <div class="col-5 m-2" style="text-align:center">
+
+                        <div class="row">
+                            <div class="col-6 m-2">
+                                <div class="card" style="background-color: #ffd699 ">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Michelle Rodriguez</h5>
+                                        <p class="card-text">
+                                            Michelle Rodriguez doesn’t think Hollywood knows what to do with her.
+
+                                        </p>
+                                        <a href="https://www.imdb.com/news/movie" class="btn btn-warning">More...</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5 m-2" style="text-align:center">
 
 
 
-                            <img src="../css/images/R (8).jpg" width="280" height="280" class="rounded-circle me-md-5 mb-sm-2 mb-lg-3" />
+                                <img src="../css/images/R (8).jpg" width="200" height="200" class="rounded-circle me-md-5 mb-sm-2 mb-lg-3" />
 
 
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-2">
-                <div>
-                    <div class="col-2">
-                        <img src="../css/images/news-icon-24-removebg-preview.png" width="200" height="200" />
+                <div class="col-2">
+                    <div>
+                        <div class="col-2">
+                            <img src="../css/images/news-icon-24-removebg-preview.png" width="100" height="100" />
 
+                        </div>
                     </div>
-                </div>
-               
-                <div style="font-size:100px; color:orange;text-align:center">3</div>
-                <br /><br />
-                <div style="font-size: 100px; color: orange; text-align: center ">2</div>
-                <br /><br />
-                <div style="font-size: 100px; color: orange; text-align: center ">0</div>
-                <br /><br />
-                <div style="font-size: 100px; color: orange; text-align: center ">2</div>
 
+                    <div style="font-size:50px; color:orange;text-align:center">2</div>
+                    <br /><br />
+                    <div style="font-size: 50px; color: orange; text-align: center ">0</div>
+                    <br /><br />
+                    <div style="font-size: 50px; color: orange; text-align: center ">2</div>
+                    <br /><br />
+                    <div style="font-size: 50px; color: orange; text-align: center ">3</div>
+
+                </div>
             </div>
         </div>
     </div>
-    
+
 </body>
 </html>

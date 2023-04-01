@@ -4,39 +4,54 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>All Movies</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-primary" asp-action="Create">Create New Movie</a>
 </p>
-<table style="color: floralwhite"; class="table">
+<table id="example" class="display datatable" style="width:100%">
     <thead>
         <tr>
             <th>
+               
                 @Html.DisplayNameFor(model => model.Duration)
             </th>
             <th>
+               
                 @Html.DisplayNameFor(model => model.Movie_Path)
             </th>
             <th>
+                
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
+                
                 @Html.DisplayNameFor(model => model.Thumbnail_Path)
             </th>
             <th>
+               
                 @Html.DisplayNameFor(model => model.Rating)
             </th>
             <th>
+                
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
                 Category
             </th>
             <th>
+                
                 @Html.DisplayNameFor(model => model.Trailer_Path)
             </th>
-            <th></th>
+            <th>
+                Edit
+            </th>
+            <th>
+                Details
+            </th>
+            <th>
+                Delete
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -67,11 +82,28 @@
                 @Html.DisplayFor(modelItem => item.Trailer_Path)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.id">Edit</a> 
+               
             </td>
+               <td>
+                    <a class="btn btn-success" asp-action="Details" asp-route-id="@item.id">Details</a>
+                
+              </td>
+             <td>    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.id">Delete</a></td>
         </tr>
 }
     </tbody>
 </table>
+@section DataTable {
+    <script src="~/js/datatables2.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#example').DataTable({
+
+                "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
+            });
+        });
+    </script>
+}

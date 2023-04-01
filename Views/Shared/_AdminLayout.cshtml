@@ -10,8 +10,11 @@
 
     <!-- Site favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="~/vendors/images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="~/vendors/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="~/vendors/images/favicon-16x16.png">
+    @*<link rel="icon" type="image/png" sizes="32x32" href="~/vendors/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/vendors/images/favicon-16x16.png">*@
+    <link rel="icon" type="image/png" sizes="16x16" href="~/MyLogo/favicon.png">
+
+
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -26,7 +29,15 @@
     <link rel="stylesheet" type="text/css" href="~/src/plugins/datatables/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="~/vendors/styles/style.css">
     <link href="~/css/datatables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
 
+    <style>
+        .OrangeShadow {
+            text-shadow: 2px 2px 4px #FFA500;
+        }
+
+    </style>
+    
 
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -56,7 +67,7 @@
     <div class="header">
         <div class="header-left">
             <div class="menu-icon dw dw-menu"></div>
-            <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
+@*            <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
             <div class="header-search">
                 <form>
                     <div class="form-group mb-0">
@@ -92,7 +103,7 @@
                         </div>
                     </div>
                 </form>
-            </div>
+            </div>*@
         </div>
         <div class="header-right">
             <div class="dashboard-setting user-notification">
@@ -102,7 +113,7 @@
                     </a>
                 </div>
             </div>
-            <div class="user-notification">
+@*            <div class="user-notification">
                 <div class="dropdown">
                     <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
                         <i class="icon-copy dw dw-notification"></i>
@@ -157,7 +168,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
             <div class="user-info-dropdown">
                 <div class="dropdown">
                     <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -170,19 +181,22 @@
                         }*@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                        <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-                        <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
-                        <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-                        <form asp-controller="Account" asp-action="Logout">
+                        @*<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>*@
+                       @* <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
+                        <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>*@
+                        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                             <button class="dropdown-item" type="submit"><i class="dw dw-logout"></i> Log Out</button>
                         </form>
+                      @*  <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">Logout</button>
+                        </form>*@
 
                     </div>
                 </div>
             </div>
-            <div class="github-link">
+           @* <div class="github-link">
                 <a href="https://github.com/dropways/deskapp" target="_blank"><img src="~/vendors/images/github.svg" alt=""></a>
-            </div>
+            </div>*@
         </div>
     </div>
 
@@ -263,9 +277,10 @@
 
     <div class="left-side-bar">
         <div class="brand-logo">
-            <a href="index.html">
-                <img src="~/vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
-                <img src="~/vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
+            <a asp-area="AdminDashBoard" asp-controller="Home" asp-action="Index" class="OrangeShadow">
+                @*<img src="~/vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
+                <img src="~/vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">*@
+                𝓶𝓸𝓿𝓲𝓮 𝓱𝓾𝓷𝓽𝓮𝓻
             </a>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>
@@ -282,39 +297,57 @@
                     </li>
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-building"></span><span class="mtext">Department</span>
+                            <span class="micon dw dw-video-camera"></span><span class="mtext">Movies</span>
                         </a>
                         <ul class="submenu">
-                            <li><a asp-controller="Department" asp-action="Index">Department Card</a></li>
+                            <li><a asp-area="AdminDashBoard" asp-controller="Movies" asp-action="Index">Manage Movies</a></li>
 
                         </ul>
                     </li>
 
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-user2"></span><span class="mtext">Employee</span>
+                            <span class="micon dw dw-television"></span><span class="mtext">Series</span>
                         </a>
                         <ul class="submenu">
-                            <li><a asp-controller="Employee" asp-action="Index">Employee Card</a></li>
+                            <li><a asp-area="AdminDashBoard" asp-controller="Series" asp-action="Index">Manage Series</a></li>
 
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-message"></span><span class="mtext">Mail</span>
+                            <span class="micon dw dw-video-file"></span><span class="mtext">Episodes</span>
                         </a>
                         <ul class="submenu">
-                            <li><a asp-controller="Mail" asp-action="Index">Send Mail</a></li>
+                            <li><a asp-area="AdminDashBoard" asp-controller="Episodes" asp-action="Index">Manage Episodes</a></li>
 
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-user-12"></span><span class="mtext">Roles&Users</span>
+                            <span class="micon dw dw-table"></span><span class="mtext">Lookup table</span>
                         </a>
                         <ul class="submenu">
-                            <li><a asp-controller="Role" asp-action="Index">Roles</a></li>
-                            <li><a asp-controller="User" asp-action="Index">Users</a></li>
+                            <li><a asp-area="AdminDashBoard" asp-controller="LookUpTables" asp-action="Index">Manage Lookup Table</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <span class="micon dw dw-attachment"></span><span class="mtext">Lookup Values</span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a asp-area="AdminDashBoard" asp-controller="LookUpValues" asp-action="Index">Manage Lookup Values</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <span class="micon dw dw-user-12"></span><span class="mtext">Identity</span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a asp-area="AdminDashBoard" asp-controller="User" asp-action="Index">Manage Users</a></li>
+                            <li><a asp-area="AdminDashBoard" asp-controller="Role" asp-action="Index">Manage Roles</a></li>
 
                         </ul>
                     </li>
@@ -328,15 +361,13 @@
         <div class="pd-ltr-20">
             @RenderBody()
 
-            <div class="footer-wrap pd-20 mb-20 card-box">
-                DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
-            </div>
+          
         </div>
     </div>
     <!-- js -->
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/src/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/src/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/src/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     @RenderSection("AjaxCode", required: false)
     <script src="~/vendors/scripts/core.js"></script>
     <script src="~/vendors/scripts/script.min.js"></script>
@@ -347,9 +378,10 @@
     <script src="~/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
     <script src="~/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
     <script src="~/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/src/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/vendors/scripts/dashboard.js"></script>
-    @RenderSection("Scripts",required:false)
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+    @*@RenderSection("Scripts",required:false)*@
     @RenderSection("DataTable", required: false)
 
 
