@@ -1,15 +1,10 @@
 ﻿@{
 Layout = null;
-var SelectedMovie = (Movies)Model;
+var SelectedSeries = (Series)Model;
 var CatName = ViewBag.CatName;
-var allMoviesCat = ViewBag.allMoviesCat ;
-UserMovies MyUser = (UserMovies)ViewBag.User;
-var myMovies =allMoviesCat ;  
- @if(allMoviesCat.Count>4)
- {
-     myMovies = allMoviesCat.take(4) ; 
- }
-   
+var allSeriesCat = ViewBag.allSeriesCat ;
+UserSeries MyUser = (UserSeries)ViewBag.User;
+var myEpisodes=(List<Episodes>) ViewBag.Episodes;
 }
 
 <!DOCTYPE html
@@ -39,7 +34,7 @@ var myMovies =allMoviesCat ;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="~/css/movie.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script>
+  <script>
         document.getElementById("FavMovie").addEventListener("click", () => {
         @{
             if(MyUser.AddToFavorite == false || MyUser.AddToFavorite ==null)
@@ -80,10 +75,10 @@ var myMovies =allMoviesCat ;
                 <div class="container">
                        @*<iframe width="560" height="315" src="@SelectedMovie.Trailer_Path" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>*@
 
-                    <a href="@SelectedMovie.Trailer_Path" target="_blank">
+                    <a href="@SelectedSeries.Trailer_Path" target="_blank">
                     <figure class="movie-detail-banner">
 
-                        <img src=@SelectedMovie.Thumbnail_Path class="MoviePoster" alt="Movie poster" style="width:300px;height:450px;">
+                        <img src=@SelectedSeries.Thumbnail_Path class="MoviePoster" alt="Series poster" style="width:300px;height:450px;">
 
                         <button class="play-btn">
                             <ion-icon name="play-circle-outline"></ion-icon>
@@ -94,16 +89,16 @@ var myMovies =allMoviesCat ;
                     </a>
                     <div class="movie-detail-content">
 
-                        <!-- <p class="detail-subtitle">New Episodes</p> -->
+                        <p class="detail-subtitle">New Episodes</p> 
 
                         <h1 class="h1 detail-title">
-                            @*Free*@ <strong>@SelectedMovie.Name</strong>
+                            @*Free*@ <strong>@SelectedSeries.Name</strong>
                         </h1>
 
                         <div class="meta-wrapper">
 
                             <div class="badge-wrapper">
-                                <span id="MovieRate">@SelectedMovie.Rating/10</span>
+                                <span id="MovieRate">@SelectedSeries.Rating/10</span>
 
                                 <div class="badge badge-outline">HD</div>
                             </div>
@@ -112,7 +107,7 @@ var myMovies =allMoviesCat ;
                                 <span class="star-icon" id="RatingStar">☆</span>
                                 <a data-bs-toggle="modal" data-bs-target="#exampleModal"
                                     style="color: rgb(255, 255, 255); cursor: pointer;">Rate</a>
-                                <input type="text" value="@SelectedMovie.id" name="movieID" hidden/>
+                                <input type="text" value="@SelectedSeries.id" name="movieID" hidden/>
                                 @{if(MyUser.AddToFavorite==false)
                                   {
                                         <span class="star-icon" id="FavStar">☆</span>
@@ -124,12 +119,12 @@ var myMovies =allMoviesCat ;
                                     }
                                 }
                                 <button id="FavMovie">
-                                <a asp-area="MovieSeries" asp-controller="MovieShow" asp-action="GetFavourite" asp-route-Fav="@MyUser.AddToFavorite" asp-route-movieID="@MyUser.MovieId">Favourite</a>
+                                <a asp-area="MovieSeries" asp-controller="SeriesShow" asp-action="GetFavourite" asp-route-Fav="@MyUser.AddToFavorite" asp-route-movieID="@MyUser.SeriesId">Favourite</a>
                                 </button>
 
                             </div>
 
-                            <form method="post" asp-area="MovieSeries" asp-controller="MovieShow" asp-action="GetRating" >
+                            <form method="post" asp-area="MovieSeries" asp-controller="SeriesShow" asp-action="GetRating" >
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog">
@@ -141,7 +136,7 @@ var myMovies =allMoviesCat ;
                                         </div>
                                         <div class="rating-box">
                                             <div class="rating-container">
-                                                <input type="text" value="@SelectedMovie.id" name="movieID"/>
+                                                <input type="text" value="@SelectedSeries.id" name="movieID"/>
                                                 <input type="radio" name="rating" value="10" id="star-1"> <label
                                                     for="star-1">&#9733;</label>
 
@@ -192,24 +187,21 @@ var myMovies =allMoviesCat ;
                                 </div>*@
 
                                 <div>
-                                    <ion-icon name="time-outline"></ion-icon>
+                                  <ion-icon name="time-outline"></ion-icon>
 
-                                    <time datetime="PT115M">@SelectedMovie.Duration min</time>
-                                </div>
+                                   <time datetime="PT115M">@SelectedSeries.NumberOfSeasons</time>
+                               </div>
 
                             </div>
 
                         </div>
 
                         <p class="storyline">
-                            @SelectedMovie.Description
-                            @*A bank teller called Guy realizes he is a background character in an open world video game
-                            called Free
-                            City that will
-                            soon go offline.*@
+                            @SelectedSeries.Description
+                      
                         </p>
 
-                        <div class="details-actions">
+                        @*<div class="details-actions">
 
                             <button class="btn btn-primary" id="watchMovieBtn">
                                 <ion-icon name="play"></ion-icon>
@@ -217,7 +209,7 @@ var myMovies =allMoviesCat ;
                                 <span>Watch Now</span>
                             </button>
 
-                        </div>
+                        </div>*@
 
                         @* <a href="./assets/images/movie-4.png" download class="download-btn">
                             <span>Download</span>
@@ -231,7 +223,7 @@ var myMovies =allMoviesCat ;
             </section>
 
             <video id="myMovie" style="width:100%" controls="controls">
-                <source src="~/movies/@SelectedMovie.Movie_Path" type="audio/webm" />
+                @*<source src="~/movies/@SelectedSeries.Series_Path" type="audio/webm" />*@
             </video>
 
             <!--
@@ -241,27 +233,27 @@ var myMovies =allMoviesCat ;
             <section class="tv-series">
                 <div class="container">
 
-                    <!-- <p class="section-subtitle">Best TV Series</p> -->
+                   <p class="section-subtitle">Best TV Series</p>
 
-                    <h2 class="h2 section-title">Based on your preferences</h2>
+                    <h2 class="h2 section-title">Episodes</h2>
 
                     <ul class="movies-list">
-                            @foreach(Movies movie in allMoviesCat)
-                            @**@
+                            @foreach(Episodes episode in myEpisodes)
+       
                             {
                                 <li>
                                   <div class="movie-card">
-                                <a href="https://localhost:7063/MovieShow/Details?id=@movie.id">
-                                    @*/Movies/@movie.Movie_Path*@
+                                   <a asp-area="MovieSeries" asp-controller="SeriesShow" asp-action="EpisodeDetails"  asp-route-id="@episode.Id">
                                     <figure class="card-banner">
-                                        <img src="@movie.Thumbnail_Path" alt="Movie poster">
+                                        <img src="@SelectedSeries.Thumbnail_Path" alt="Series poster">
                                     </figure>
-                                </a>
-
+                                   </a>
+                                  
                                 <div class="title-wrapper">
-                                    <a href="https://localhost:7063/MovieShow/Details?id=@movie.id">
-                                        <h3 class="card-title">@movie.Name</h3>
-                                    </a>
+                                     <a asp-area="MovieSeries" asp-controller="SeriesShow" asp-action="EpisodeDetails"  asp-route-id="@episode.Id">
+                                        <h3 class="card-title">@episode.Title</h3>
+                                   </a>
+                                   
 
                                     @*<time datetime="2022">2022</time>*@
                                 </div>
@@ -272,13 +264,13 @@ var myMovies =allMoviesCat ;
                                     <div class="duration">
                                         <ion-icon name="time-outline"></ion-icon>
 
-                                        <time datetime="PT47M">@movie.Duration</time>
+                                        <time datetime="PT47M">@episode.duration</time>
                                     </div>
 
                                     <div class="rating">
                                         <ion-icon name="star"></ion-icon>
 
-                                        <data>@movie.Rating</data>
+                                        <data>@episode.season</data>
                                     </div>
                                 </div>
 
@@ -286,150 +278,7 @@ var myMovies =allMoviesCat ;
                             </li>
                             }
 
-                            @*<li>*@
-                                @* <div class="movie-card">
-
-                                    <a href="./movie-details.html">
-                                        <figure class="card-banner">
-                                            <img src="./assets/images/series-1.png" alt="Moon Knight movie poster">
-                                        </figure>
-                                    </a>
-
-                                    <div class="title-wrapper">
-                                        <a href="./movie-details.html">
-                                            <h3 class="card-title">Moon Knight</h3>
-                                        </a>
-
-                                        <time datetime="2022">2022</time>
-                                    </div>
-
-                                    <div class="card-meta">
-                                        <div class="badge badge-outline">2K</div>
-
-                                        <div class="duration">
-                                            <ion-icon name="time-outline"></ion-icon>
-
-                                            <time datetime="PT47M">47 min</time>
-                                        </div>
-
-                                        <div class="rating">
-                                            <ion-icon name="star"></ion-icon>
-
-                                            <data>8.6</data>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="movie-card">
-
-                                    <a href="./movie-details.html">
-                                        <figure class="card-banner">
-                                            <img src="./assets/images/series-2.png" alt="Halo movie poster">
-                                        </figure>
-                                    </a>
-
-                                    <div class="title-wrapper">
-                                        <a href="./movie-details.html">
-                                            <h3 class="card-title">Halo</h3>
-                                        </a>
-
-                                        <time datetime="2022">2022</time>
-                                    </div>
-
-                                    <div class="card-meta">
-                                        <div class="badge badge-outline">2K</div>
-
-                                        <div class="duration">
-                                            <ion-icon name="time-outline"></ion-icon>
-
-                                            <time datetime="PT59M">59 min</time>
-                                        </div>
-
-                                        <div class="rating">
-                                            <ion-icon name="star"></ion-icon>
-
-                                            <data>8.8</data>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="movie-card">
-
-                                    <a href="./movie-details.html">
-                                        <figure class="card-banner">
-                                            <img src="./assets/images/series-3.png"
-                                                alt="Vikings: Valhalla movie poster">
-                                        </figure>
-                                    </a>
-
-                                    <div class="title-wrapper">
-                                        <a href="./movie-details.html">
-                                            <h3 class="card-title">Vikings: Valhalla</h3>
-                                        </a>
-
-                                        <time datetime="2022">2022</time>
-                                    </div>
-
-                                    <div class="card-meta">
-                                        <div class="badge badge-outline">2K</div>
-
-                                        <div class="duration">
-                                            <ion-icon name="time-outline"></ion-icon>
-
-                                            <time datetime="PT51M">51 min</time>
-                                        </div>
-
-                                        <div class="rating">
-                                            <ion-icon name="star"></ion-icon>
-
-                                            <data>8.3</data>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="movie-card">
-
-                                    <a href="./movie-details.html">
-                                        <figure class="card-banner">
-                                            <img src="./assets/images/series-4.png" alt="Money Heist movie poster">
-                                        </figure>
-                                    </a>
-
-                                    <div class="title-wrapper">
-                                        <a href="./movie-details.html">
-                                            <h3 class="card-title">Money Heist</h3>
-                                        </a>
-
-                                        <time datetime="2017">2017</time>
-                                    </div>
-
-                                    <div class="card-meta">
-                                        <div class="badge badge-outline">4K</div>
-
-                                        <div class="duration">
-                                            <ion-icon name="time-outline"></ion-icon>
-
-                                            <time datetime="PT70M">70 min</time>
-                                        </div>
-
-                                        <div class="rating">
-                                            <ion-icon name="star"></ion-icon>
-
-                                            <data>8.3</data>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </li>*@
+                           
 
                     </ul>
 
