@@ -3,7 +3,14 @@
     var SelectedMovie = (Movies)Model;
     var CatName = ViewBag.CatName;
     var allMoviesCat = ViewBag.allMoviesCat ; 
+ var myMovies =allMoviesCat ;  
+ @if(allMoviesCat.Count>4)
+{
+     myMovies = allMoviesCat.take(4) ; 
 }
+}
+
+
 
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -52,11 +59,11 @@
 
             <section class="movie-detail">
                 <div class="container">
+                       @*<iframe width="560" height="315" src="@SelectedMovie.Trailer_Path" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>*@
+
                     <a href="@SelectedMovie.Trailer_Path" target="_blank">
                     <figure class="movie-detail-banner">
-
                         <img src=@SelectedMovie.Thumbnail_Path class="MoviePoster" alt="Movie poster" style="width:300px;height:450px;">
-
                         <button class="play-btn">
                             <ion-icon name="play-circle-outline"></ion-icon>
                             <span class="playTrailer">Play trailer</span>
@@ -151,21 +158,23 @@
                     <h2 class="h2 section-title">Based on your preferences</h2>
 
                     <ul class="movies-list">
-                            @for(var i=0;i<4;i++)
-                            @*Movies movie in allMoviesCat*@
+
+                            @foreach(Movies movie in myMovies)
+                            @* var i=0;i<4;i++*@
                             {
+
                                 <li>
                                   <div class="movie-card">
-                                <a href="https://localhost:7063/MovieShow/Details?id=@allMoviesCat[i].id">
+                                <a href="https://localhost:7063/MovieShow/Details?id=@movie.id">
                                     @*/Movies/@movie.Movie_Path*@
                                     <figure class="card-banner">
-                                        <img src="@allMoviesCat[i].Thumbnail_Path" alt="Movie poster">
+                                        <img src="@movie.Thumbnail_Path" alt="Movie poster">
                                     </figure>
                                 </a>
 
                                 <div class="title-wrapper">
-                                    <a href="https://localhost:7063/MovieShow/Details?id=@allMoviesCat[i].id">
-                                        <h3 class="card-title">@allMoviesCat[i].Name</h3>
+                                    <a href="https://localhost:7063/MovieShow/Details?id=@movie.id">
+                                        <h3 class="card-title">@movie.Name</h3>
                                     </a>
 
                                     @*<time datetime="2022">2022</time>*@
@@ -177,13 +186,13 @@
                                     <div class="duration">
                                         <ion-icon name="time-outline"></ion-icon>
 
-                                        <time datetime="PT47M">@allMoviesCat[i].Duration</time>
+                                        <time datetime="PT47M">@movie.Duration</time>
                                     </div>
 
                                     <div class="rating">
                                         <ion-icon name="star"></ion-icon>
 
-                                        <data>@allMoviesCat[i].Rating</data>
+                                        <data>@movie.Rating</data>
                                     </div>
                                 </div>
 
