@@ -16,15 +16,17 @@ namespace Movie_Hunter_FinalProject.Areas.User.Controllers
     public class UserMoviesWatchController : Controller
     {
         public IUserMovieRepo UserMoveRepo { get; }
+        public IUserSeriesRepo userSeriesRepo { get; }
         private readonly UserManager<SystemUser> _userManager;
         private readonly SignInManager<SystemUser> _signInManager;
 
 
 
-        public UserMoviesWatchController(IUserMovieRepo URepo, UserManager<SystemUser> userManager,
+        public UserMoviesWatchController(IUserMovieRepo URepo, IUserSeriesRepo userSeries, UserManager<SystemUser> userManager,
             SignInManager<SystemUser> signInManager)
         {
             UserMoveRepo = URepo;
+            userSeriesRepo = userSeries;
             _userManager = userManager;
             _signInManager = signInManager;
 
@@ -34,7 +36,9 @@ namespace Movie_Hunter_FinalProject.Areas.User.Controllers
         public async Task<IActionResult> Index()
         {
             var userId = _userManager.GetUserId(User);
-            var movies = UserMoveRepo.GetAll().Where(m => m.user_id == userId && m.Watched == true);
+            var movies = UserMoveRepo.GetAll().Where(m => m.user_id == userId && m.Watched == true).ToList();
+            var series = userSeriesRepo.GetAll().Where(s => s.user_id == userId && s.Watched == true).ToList();
+            ViewBag.series = series;
             return View(movies);
         }
 
