@@ -24,7 +24,6 @@
   <ItemGroup>
     <Folder Include="Areas\AdminDashBoard\Data\" />
     <Folder Include="Areas\AdminDashBoard\Models\" />
-    <Folder Include="Areas\MovieSeries\Controllers\" />
     <Folder Include="Areas\MovieSeries\Data\" />
     <Folder Include="Areas\MovieSeries\Models\" />
     <Folder Include="Areas\Payment\Data\" />
