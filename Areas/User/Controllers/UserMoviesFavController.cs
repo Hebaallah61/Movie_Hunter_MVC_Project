@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Movie_Hunter_FinalProject.Areas.Identity.Data;
 using Movie_Hunter_FinalProject.Models;
+using Movie_Hunter_FinalProject.RepoClasses;
 using Movie_Hunter_FinalProject.RepoInterface;
 
 namespace Movie_Hunter_FinalProject.Areas.User.Controllers
@@ -16,15 +17,17 @@ namespace Movie_Hunter_FinalProject.Areas.User.Controllers
     public class UserMoviesFavController : Controller
     {
         public IUserMovieRepo UserMoveRepo { get; }
+        public IUserSeriesRepo userSeriesRepo { get; }
         private readonly UserManager<SystemUser> _userManager;
         private readonly SignInManager<SystemUser> _signInManager;
 
     
 
-        public UserMoviesFavController(IUserMovieRepo URepo, UserManager<SystemUser> userManager,
+        public UserMoviesFavController(IUserMovieRepo URepo, IUserSeriesRepo userSeries , UserManager<SystemUser> userManager,
             SignInManager<SystemUser> signInManager)
         {
             UserMoveRepo = URepo;
+            userSeriesRepo= userSeries;
             _userManager = userManager;
             _signInManager = signInManager;
 
@@ -35,7 +38,9 @@ namespace Movie_Hunter_FinalProject.Areas.User.Controllers
         {
             
             var userId =  _userManager.GetUserId(User);
-            var movies=UserMoveRepo.GetAll().Where(m=>m.user_id==userId&& m.AddToFavorite==true);
+            var movies=UserMoveRepo.GetAll().Where(m=>m.user_id==userId&& m.AddToFavorite==true).ToList();
+            var series = userSeriesRepo.GetAll().Where(s => s.user_id == userId && s.AddToFavorite == true).ToList();
+            ViewBag.series=series;
             return View(movies);
         }
 

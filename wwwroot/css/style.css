@@ -303,7 +303,9 @@ h1#logo {
     width: 152px;
     height: 214px;
     background: url('images/image-hover.png');
+    /*background-image: url('images/image-hover.png');*/
     display: block;
+    opacity: 0.85;
     z-index: 5;
     cursor: pointer;
     display: none;
