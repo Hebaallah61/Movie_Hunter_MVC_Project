@@ -14,7 +14,7 @@ namespace Movie_Hunter_FinalProject.Models
         [Required(ErrorMessage ="Please enter the path of your show Image")]
         public string Thumbnail_Path { get; set; }
 
-        [Range(0,5,ErrorMessage ="Rating should be between 0,5")]
+        [Range(0,10,ErrorMessage ="Rating should be between 0,10")]
         public int Rating { get; set; }
 
         [Required(ErrorMessage ="Plesae enter desscription for your show")]
