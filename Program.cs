@@ -23,7 +23,8 @@ namespace Movie_Hunter_FinalProject
             builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
 
             //builder.Services.AddDefaultIdentity<SystemUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationContext>();
-            builder.Services.AddIdentity<SystemUser,IdentityRole>().AddEntityFrameworkStores<ApplicationContext>();
+            //builder.Services.AddDefaultIdentity<SystemUser>().AddEntityFrameworkStores<ApplicationContext>();
+            builder.Services.AddIdentity<SystemUser,IdentityRole>().AddEntityFrameworkStores<ApplicationContext>().AddDefaultUI().AddDefaultTokenProviders();
             builder.Services.Configure<StripSetting>(builder.Configuration.GetSection("Stripe"));
 
             StripeConfiguration.SetApiKey(builder.Configuration.GetSection("Stripe")["SecretKey"]);

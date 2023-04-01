@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Movie_Hunter_FinalProject.Models;
@@ -7,6 +8,7 @@ using Movie_Hunter_FinalProject.RepoInterface;
 namespace Movie_Hunter_FinalProject.Areas.AdminDashBoard.Controllers
 {
     [Area("AdminDashBoard")]
+    [Authorize(Roles = "Admin")]
     public class MoviesController : Controller
     {
         // GET: MoviesController

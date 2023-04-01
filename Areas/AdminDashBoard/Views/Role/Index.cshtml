@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<IdentityRole>
+@{
+    ViewData["Title"] = "Roles";
+    
+}
+
+<a asp-controller="Role" asp-action="CreateRole" class="btn btn-primary">Create New Role</a>
+<br />
+<br />
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+
+                <td><a class="btn btn-info" asp-controller="Role" asp-action="EditRole" asp-route-id="@item.Id">Edit</a></td>
+                <td><a class="btn btn-danger" asp-controller="Role" asp-action="DeleteRole" asp-route-id="@item.Id">Delete</a></td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section DataTable {
+    <script src="~/js/datatables.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#example').DataTable({
+
+                "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
+            });
+        });
+    </script>
+}
+
