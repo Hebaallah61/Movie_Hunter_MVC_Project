@@ -126,8 +126,23 @@ var myMovies =allMoviesCat ;
                                 <button id="FavMovie">
                                 <a asp-area="MovieSeries" asp-controller="MovieShow" asp-action="GetFavourite" asp-route-Fav="@MyUser.AddToFavorite" asp-route-movieID="@MyUser.MovieId">Favourite</a>
                                 </button>
+                                 <input type="text" value="@SelectedMovie.id" name="movieID" hidden/>
+                                @{if(MyUser.Watched==false)
+                                  {
+                                        <span class="star-icon" id="FavStar">☆</span>
+                                    }
+
+                                    else
+                                    {
+                                        <span class="star-icon full" id="FavStar">☆</span>
+                                    }
+                                }
+                                <button id="FavMovie">
+                                <a asp-area="MovieSeries" asp-controller="MovieShow" asp-action="GetWatched" asp-route-Fav="@MyUser.Watched" asp-route-movieID="@MyUser.MovieId">Watched</a>
+                                </button>
 
                             </div>
+                            
 
                             <form method="post" asp-area="MovieSeries" asp-controller="MovieShow" asp-action="GetRating" >
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
