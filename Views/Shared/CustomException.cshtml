@@ -3,7 +3,10 @@
     ViewData["Title"] = "CustomException";
 }
 
-<h1>CustomException</h1>
-
-<h1>Want to add more movies to favourate list? Upgrade your plan Now </h1>
-<a asp-action="Payments" asp-area="" asp-controller="Payment">Upgrade Plan</a>
+<h1 style="color:red">Oops!</h1>
+<br />
+<h1 style="color:azure">If you want to add more movies to favourate list upgrade your plan now! </h1>
+<br />
+<button type="button" class="btn btn-light">
+    <a style="text-decoration:none; color:black; font-weight:bold" asp-action="Payments" asp-area="" asp-controller="Payment">Upgrade Plan</a>
+</button>

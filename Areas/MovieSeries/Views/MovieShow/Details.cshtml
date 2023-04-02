@@ -84,9 +84,9 @@ var myMovies =allMoviesCat ;
       - #HEADER
     -->
 
-    <header class="header" data-header>
+    @*<header class="header" data-header>
         <div class="container"></div>
-    </header>
+    </header>*@
 
     <main>
         <article>
@@ -96,6 +96,12 @@ var myMovies =allMoviesCat ;
             -->
 
             <section class="movie-detail">
+                <div class=" mt-0 mb-3 ms-4 ml-4 mr-2 me-2 d-flex justify-content-end">
+            <button type="button" class="btn btn-light">
+                
+    <a style="text-decoration:none; color:black; font-weight:bold" asp-area="MovieSeries" asp-controller="MovieShow" asp-action="Index">Back To Home</a>
+</button>
+</div>
                 <div class="container">
                        @*<iframe width="560" height="315" src="@SelectedMovie.Trailer_Path" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>*@
 
