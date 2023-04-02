@@ -24,7 +24,6 @@ namespace Movie_Hunter_FinalProject.Areas.MovieSeries.Controllers
         {
             SeriesRepo = SR;
             EpisodeRepo = ER;
-
             userSeriesRepo = USR;
             userEpisodeRepo = UER;
             lookValueRepo = LVR;
