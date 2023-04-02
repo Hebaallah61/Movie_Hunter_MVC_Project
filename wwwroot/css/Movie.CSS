@@ -1852,7 +1852,7 @@ body.active {
     position: relative;
   }
 
-  .Rate-icon.full:before {
+    .star-icon.full:before {
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
     color: #FDE16D;
     content: '\2605';
@@ -1861,7 +1861,7 @@ body.active {
     left: 0;
   }
 
-  .Rate-icon.half:before {
+    .star-icon.half:before {
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
     color: #FDE16D;
     content: '\2605';
