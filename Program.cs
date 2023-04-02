@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Build.Framework;
@@ -9,6 +10,7 @@ using Movie_Hunter_FinalProject.RepoInterface;
 using Stripe;
 using Stripe_Payment.Areas.Payment.Models;
 using System;
+using System.Security.AccessControl;
 
 namespace Movie_Hunter_FinalProject
 {
@@ -52,7 +54,7 @@ namespace Movie_Hunter_FinalProject
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             var app = builder.Build();
-
+            
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

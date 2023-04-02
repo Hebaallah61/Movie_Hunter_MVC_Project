@@ -6,6 +6,7 @@ using Movie_Hunter_FinalProject.Areas.Identity.Data;
 using Movie_Hunter_FinalProject.Models;
 using Movie_Hunter_FinalProject.RepoClasses;
 using Movie_Hunter_FinalProject.RepoInterface;
+using System.Diagnostics;
 
 namespace Movie_Hunter_FinalProject.Areas.MovieSeries.Controllers
 {
@@ -80,14 +81,24 @@ namespace Movie_Hunter_FinalProject.Areas.MovieSeries.Controllers
             userMoviesRepo.Update(id, UpdatingUser);
             return RedirectToAction("Details", new {id=movieID});
         }
-
+        [TypeFilter(typeof(FaveMaxException))]
         public ActionResult GetFavourite(bool Fav, int movieID)
         {
             var userId = _userManager.GetUserId(User);
             var id = userMoviesRepo.GetByMovieId(movieID).Where(usrID => usrID.user_id == userId).FirstOrDefault().id;
             var UpdatingUser = (UserMovies)userMoviesRepo.GetByMovieId(movieID).Where(usrID => usrID.user_id == userId).FirstOrDefault();
-            UpdatingUser.AddToFavorite = Fav;
-            userMoviesRepo.Update(id, UpdatingUser);
+                    
+            int count = userMoviesRepo.GetAll().Where(usrID => usrID.user_id == userId).Where(fav=>fav.AddToFavorite == true).Count();
+            int plan_id = UpdatingUser?.systemUser.Plan_Id ?? 0;
+            var plan = lookValueRepo.GetById(plan_id);
+            if(plan.Value != "Basic" && plan.Value != "Premium" && plan.Value != "Pro") { throw new Exception(); }
+            if (count >= 2 && Fav == true && plan.Value == "Basic") { throw new Exception(); }
+            if (count >= 6 && Fav == true && plan.Value == "Premium") { throw new Exception(); }
+            else
+            {
+                UpdatingUser.AddToFavorite = Fav;
+                userMoviesRepo.Update(id, UpdatingUser);
+            }
             return RedirectToAction("Details", new { id = movieID });
 
         }
