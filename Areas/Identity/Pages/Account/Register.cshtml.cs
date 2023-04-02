@@ -145,16 +145,16 @@ namespace Movie_Hunter_FinalProject.Areas.Identity.Pages.Account
                     var registeredUser = await _userManager.FindByEmailAsync(Input.Email);
 					var Roles = _roleManager.Roles;
 
-					if (Roles.Any(r => r.Name == "NormalUser"))
+					if (Roles.Any(r => r.Name == "Normaluser"))
 					{
-						await _userManager.AddToRoleAsync(registeredUser, "NormalUser");
+						await _userManager.AddToRoleAsync(registeredUser, "Normaluser");
 					}
 					else
 					{
-						var roleResult = await _roleManager.CreateAsync(new IdentityRole() { Id = "39cd698b-dd8e-441d-a01b-b1c29c25e827", Name = "NormalUser" });
+						var roleResult = await _roleManager.CreateAsync(new IdentityRole() { Id = "39cd698b-dd8e-441d-a01b-b1c29c25e827", Name = "Normaluser" });
 						if (roleResult.Succeeded)
 						{
-							await _userManager.AddToRoleAsync(registeredUser, "NormalUser");
+							await _userManager.AddToRoleAsync(registeredUser, "Normaluser");
 						}
 					}
 

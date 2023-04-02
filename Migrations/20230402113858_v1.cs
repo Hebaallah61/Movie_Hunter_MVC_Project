@@ -86,9 +86,9 @@ namespace Movie_Hunter_FinalProject.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     First_Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Last_Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PaymentMethod_Id = table.Column<int>(type: "int", nullable: false),
-                    Category_Id = table.Column<int>(type: "int", nullable: false),
-                    Plan_Id = table.Column<int>(type: "int", nullable: false),
+                    PaymentMethod_Id = table.Column<int>(type: "int", nullable: true),
+                    Category_Id = table.Column<int>(type: "int", nullable: true),
+                    Plan_Id = table.Column<int>(type: "int", nullable: true),
                     Age = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -192,8 +192,8 @@ namespace Movie_Hunter_FinalProject.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -237,8 +237,8 @@ namespace Movie_Hunter_FinalProject.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -258,10 +258,10 @@ namespace Movie_Hunter_FinalProject.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Rating = table.Column<int>(type: "int", nullable: false),
-                    AddToFavorite = table.Column<bool>(type: "bit", nullable: false),
-                    Review = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Watched = table.Column<bool>(type: "bit", nullable: false),
+                    Rating = table.Column<int>(type: "int", nullable: true),
+                    AddToFavorite = table.Column<bool>(type: "bit", nullable: true),
+                    Review = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Watched = table.Column<bool>(type: "bit", nullable: true),
                     MovieId = table.Column<int>(type: "int", nullable: false),
                     user_id = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -309,17 +309,18 @@ namespace Movie_Hunter_FinalProject.Migrations
                 name: "userSeries",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Rating = table.Column<int>(type: "int", nullable: true),
+                    AddToFavorite = table.Column<bool>(type: "bit", nullable: true),
+                    Review = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Watched = table.Column<bool>(type: "bit", nullable: true),
                     SeriesId = table.Column<int>(type: "int", nullable: false),
-                    Rating = table.Column<int>(type: "int", nullable: false),
-                    AddToFavorite = table.Column<bool>(type: "bit", nullable: false),
-                    Review = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Watched = table.Column<bool>(type: "bit", nullable: false),
                     user_id = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_userSeries", x => new { x.id, x.SeriesId });
+                    table.PrimaryKey("PK_userSeries", x => x.id);
                     table.ForeignKey(
                         name: "FK_userSeries_AspNetUsers_user_id",
                         column: x => x.user_id,
@@ -340,10 +341,10 @@ namespace Movie_Hunter_FinalProject.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Rating = table.Column<int>(type: "int", nullable: false),
-                    AddToFavorite = table.Column<bool>(type: "bit", nullable: false),
-                    Review = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Watched = table.Column<bool>(type: "bit", nullable: false),
+                    Rating = table.Column<int>(type: "int", nullable: true),
+                    AddToFavorite = table.Column<bool>(type: "bit", nullable: true),
+                    Review = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Watched = table.Column<bool>(type: "bit", nullable: true),
                     EpisodeId = table.Column<int>(type: "int", nullable: false),
                     user_id = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
