@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Movie_Hunter_FinalProject.Areas.Identity.Data;
@@ -33,6 +34,7 @@ namespace Movie_Hunter_FinalProject.Areas.MovieSeries.Controllers
 
         // GET: MovieShowController/Details/5
         //[Route("MovieSeries/MovieShow/{id}")]
+        [Authorize(Roles ="Normaluser")]
         public ActionResult Details(int id)
         {
 
