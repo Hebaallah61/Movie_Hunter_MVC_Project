@@ -18,7 +18,7 @@ namespace Movie_Hunter_FinalProject.Models
         public string? Review { get; set; }
 
 
-        public bool? Watched { get; set; }
+        public bool? Watched { get; set; } = false;
 
        
         public int MovieId { get; set; }
