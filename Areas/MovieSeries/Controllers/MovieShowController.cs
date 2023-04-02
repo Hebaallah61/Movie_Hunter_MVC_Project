@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Movie_Hunter_FinalProject.Areas.Identity.Data;
@@ -34,6 +35,7 @@ namespace Movie_Hunter_FinalProject.Areas.MovieSeries.Controllers
 
         // GET: MovieShowController/Details/5
         //[Route("MovieSeries/MovieShow/{id}")]
+        [Authorize(Roles ="Normaluser")]
         public ActionResult Details(int id)
         {
 
@@ -100,6 +102,22 @@ namespace Movie_Hunter_FinalProject.Areas.MovieSeries.Controllers
             return RedirectToAction("Details", new { id = movieID });
 
         }
+     
+   
+        //---------------------------------------------------Heba
+        public ActionResult GetWatched(bool Wat, int movieID)
+        {
+            var userId = _userManager.GetUserId(User);
+            var id = userMoviesRepo.GetByMovieId(movieID).Where(usrID => usrID.user_id == userId).FirstOrDefault().id;
+            var UpdatingUser = (UserMovies)userMoviesRepo.GetByMovieId(movieID).Where(usrID => usrID.user_id == userId).FirstOrDefault();
+            UpdatingUser.Watched = Wat;
+            userMoviesRepo.Update(id, UpdatingUser);
+            return RedirectToAction("Details", new { id = movieID });
+
+        }
+        //---------------------------------
+
+
         // POST: MovieShowController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]

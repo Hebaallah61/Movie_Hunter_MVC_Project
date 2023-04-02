@@ -472,10 +472,10 @@ namespace Movie_Hunter_FinalProject.Migrations
             modelBuilder.Entity("Movie_Hunter_FinalProject.Models.UserSeries", b =>
                 {
                     b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("SeriesId")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
                     b.Property<bool?>("AddToFavorite")
                         .HasColumnType("bit");
@@ -486,6 +486,9 @@ namespace Movie_Hunter_FinalProject.Migrations
                     b.Property<string>("Review")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SeriesId")
+                        .HasColumnType("int");
+
                     b.Property<bool?>("Watched")
                         .HasColumnType("bit");
 
@@ -493,7 +496,7 @@ namespace Movie_Hunter_FinalProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("id", "SeriesId");
+                    b.HasKey("id");
 
                     b.HasIndex("SeriesId");
 

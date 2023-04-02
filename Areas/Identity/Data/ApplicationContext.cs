@@ -36,7 +36,7 @@ public class ApplicationContext : IdentityDbContext<SystemUser>
     {
 
         builder.Entity<UserSeries>()
-     .HasKey(us => new { us.id, us.SeriesId });
+     .HasKey(us => new { us.id/*, us.SeriesId */});
 
         builder.Entity<UserSeries>()
             .HasOne(us => us.systemUser)
