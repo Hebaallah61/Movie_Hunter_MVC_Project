@@ -15,20 +15,24 @@ namespace Movie_Hunter_FinalProject.Areas.MovieSeries.Controllers
     {
         IGenericRepo<Movies> MovieRepo { get; }
         IUserMovieRepo userMoviesRepo { get; }
+        IGenericRepo<Series> seriesRepo { get; }
         ILookValueRepo lookValueRepo { get; }
+
 
         private readonly UserManager<SystemUser> _userManager;
 
-        public MovieShowController(IGenericRepo<Movies> MR, IUserMovieRepo UMR, ILookValueRepo LVR, UserManager<SystemUser> userManager)
+        public MovieShowController(IGenericRepo<Series> SeriesRepo,IGenericRepo<Movies> MR, IUserMovieRepo UMR, ILookValueRepo LVR, UserManager<SystemUser> userManager)
         {
             MovieRepo = MR;
             userMoviesRepo = UMR;
             lookValueRepo = LVR;
             _userManager = userManager;
+            seriesRepo = SeriesRepo;
         }
         // GET: MovieShowController
         public ActionResult Index()
         {
+            ViewBag.Series = seriesRepo.GetAll();
             var movies = MovieRepo.GetAll(); 
             return View(movies);
         }
