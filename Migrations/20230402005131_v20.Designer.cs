@@ -12,8 +12,8 @@ using Movie_Hunter_FinalProject.Areas.Identity.Data;
 namespace Movie_Hunter_FinalProject.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20230401033530_V3")]
-    partial class V3
+    [Migration("20230402005131_v20")]
+    partial class v20
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

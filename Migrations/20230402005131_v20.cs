@@ -5,7 +5,7 @@
 namespace Movie_Hunter_FinalProject.Migrations
 {
     /// <inheritdoc />
-    public partial class v8 : Migration
+    public partial class v20 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Movie_Hunter_FinalProject.Areas.Identity.Data;
@@ -40,6 +41,7 @@ namespace Movie_Hunter_FinalProject.Areas.MovieSeries.Controllers
 
         // GET: SeriesShow/Details/5
         //[Route("MovieSeries/SeriesShow/{id}")]
+        [Authorize(Roles ="Normaluser")]
         public ActionResult Details(int id)
         {
             var series = SeriesRepo.GetById(id);
@@ -123,6 +125,19 @@ namespace Movie_Hunter_FinalProject.Areas.MovieSeries.Controllers
             return RedirectToAction("Details", new { id = seriesID });
 
         }
+
+        //---------------------------------------------------Heba
+        public ActionResult GetWatched(bool Wat, int seriesID)
+        {
+            var userId = _userManager.GetUserId(User);
+            var id = userSeriesRepo.GetBySeriesId(seriesID).Where(usrID => usrID.user_id == userId).FirstOrDefault().id;
+            var UpdatingUser = (UserSeries)userSeriesRepo.GetBySeriesId(seriesID).Where(usrID => usrID.user_id == userId).FirstOrDefault();
+            UpdatingUser.Watched = Wat;
+            userSeriesRepo.Update(id, UpdatingUser);
+            return RedirectToAction("Details", new { id = seriesID });
+
+        }
+        //---------------------------------
 
         // POST: SeriesShow/Create
         [HttpPost]

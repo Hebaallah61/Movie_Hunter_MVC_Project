@@ -21,7 +21,7 @@ var myMovies =allMoviesCat ;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Guy 2021</title>
+    <title>@SelectedMovie.Name</title>
 
     <!--
       - favicon
@@ -55,6 +55,25 @@ var myMovies =allMoviesCat ;
             document.getElementById("FavStar").classList.add('full');
             else
             document.getElementById("FavStar").classList.remove('full');
+        })
+        
+         document.getElementById("WatchMovie").addEventListener("click", () => {
+             
+        @{
+            if(MyUser.Watched == false || MyUser.Watched ==null)
+            {
+                MyUser.Watched = true;
+            }
+            else
+            {
+                MyUser.Watched = false;
+            }
+        }
+            if(@MyUser.Watched = true)
+            document.getElementById("WatchStar").classList.add('full');
+            else
+            document.getElementById("WatchStar").classList.remove('full');
+        
         })
     </script>
 
@@ -113,8 +132,9 @@ var myMovies =allMoviesCat ;
                                 <a data-bs-toggle="modal" data-bs-target="#exampleModal"
                                     style="color: rgb(255, 255, 255); cursor: pointer;">Rate</a>
                                 <input type="text" value="@SelectedMovie.id" name="movieID" hidden/>
-                                @{if(MyUser.AddToFavorite==false)
-                                  {
+
+                                @{  if(MyUser.AddToFavorite==true)
+                                    {
                                         <span class="star-icon" id="FavStar">☆</span>
                                     }
 
@@ -123,11 +143,29 @@ var myMovies =allMoviesCat ;
                                         <span class="star-icon full" id="FavStar">☆</span>
                                     }
                                 }
+                                
                                 <button id="FavMovie">
                                 <a asp-area="MovieSeries" asp-controller="MovieShow" asp-action="GetFavourite" asp-route-Fav="@MyUser.AddToFavorite" asp-route-movieID="@MyUser.MovieId">Favourite</a>
                                 </button>
 
+
+                                 @{if(MyUser.Watched==true)
+                                  {
+                                        <span class="star-icon" id="WatchStar">☆</span>
+                                    }
+
+                                    else
+                                    {
+                                        <span class="star-icon full" id="WatchStar">☆</span>
+                                    }
+                                 }
+                                
+                                <button id="WatchMovie">
+                                <a asp-area="MovieSeries" asp-controller="MovieShow" asp-action="GetWatched" asp-route-Wat="@MyUser.Watched" asp-route-movieID="@MyUser.MovieId">Watched</a>
+                                </button> 
+
                             </div>
+                            
 
                             <form method="post" asp-area="MovieSeries" asp-controller="MovieShow" asp-action="GetRating" >
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"

@@ -1923,7 +1923,9 @@ body.active {
       display:none; 
       
   }
-
+    .mySeason {
+        color: var(--citrine);
+    }
 
 }
 

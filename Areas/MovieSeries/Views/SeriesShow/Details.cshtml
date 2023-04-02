@@ -16,7 +16,7 @@ var myEpisodes=(List<Episodes>) ViewBag.Episodes;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Guy 2021</title>
+    <title>@SelectedSeries.Name</title>
 
     <!--
       - favicon
@@ -90,11 +90,16 @@ var myEpisodes=(List<Episodes>) ViewBag.Episodes;
                     <div class="movie-detail-content">
 
                         <p class="detail-subtitle">New Episodes</p> 
+                    
 
-                        <h1 class="h1 detail-title">
-                            @*Free*@ <strong>@SelectedSeries.Name</strong>
+                               
+
+                          
+                        <h1 class="h1 detail-title" >
+                             <strong>@SelectedSeries.Name</strong>
                         </h1>
 
+                                  <h4 class="mySeason">Season @SelectedSeries.NumberOfSeasons</h4>
                         <div class="meta-wrapper">
 
                             <div class="badge-wrapper">
@@ -108,7 +113,7 @@ var myEpisodes=(List<Episodes>) ViewBag.Episodes;
                                 <a data-bs-toggle="modal" data-bs-target="#exampleModal"
                                     style="color: rgb(255, 255, 255); cursor: pointer;">Rate</a>
                                 <input type="text" value="@SelectedSeries.id" name="movieID" hidden/>
-                                @{if(MyUser.AddToFavorite==false)
+                                @{if(MyUser.AddToFavorite==true)
                                   {
                                         <span class="star-icon" id="FavStar">☆</span>
                                     }
@@ -120,6 +125,21 @@ var myEpisodes=(List<Episodes>) ViewBag.Episodes;
                                 }
                                 <button id="FavMovie">
                                 <a asp-area="MovieSeries" asp-controller="SeriesShow" asp-action="GetFavourite" asp-route-Fav="@MyUser.AddToFavorite" asp-route-seriesID="@MyUser.SeriesId">Favourite</a>
+                                </button>
+
+                                 //--------------------------------------------------Heba
+                               @{if(MyUser.Watched==true)
+                                  {
+                                        <span class="star-icon" id="FavStar">☆</span>
+                                    }
+
+                                    else
+                                    {
+                                        <span class="star-icon full" id="FavStar">☆</span>
+                                    }
+                                }
+                                <button id="FavMovie">
+                                <a asp-area="MovieSeries" asp-controller="SeriesShow" asp-action="GetFavourite" asp-route-Wat="@MyUser.Watched" asp-route-seriesID="@MyUser.SeriesId">Watched</a>
                                 </button>
 
                             </div>
@@ -178,21 +198,7 @@ var myEpisodes=(List<Episodes>) ViewBag.Episodes;
                             </div>
                             </form>
 
-                            <div class="date-time">
-
-                                @* <div>
-                                    <ion-icon name="calendar-outline"></ion-icon>
-
-                                    <time datetime="2021">2021</time>
-                                </div>*@
-
-                                <div>
-                                  <ion-icon name="time-outline"></ion-icon>
-
-                                   <time datetime="PT115M">@SelectedSeries.NumberOfSeasons</time>
-                               </div>
-
-                            </div>
+                        
 
                         </div>
 
@@ -268,9 +274,9 @@ var myEpisodes=(List<Episodes>) ViewBag.Episodes;
                                     </div>
 
                                     <div class="rating">
-                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="tv-outline</ion-icon>"></ion-icon>
 
-                                        <data>@episode.season</data>
+                                        <data>Season @episode.season</data>
                                     </div>
                                 </div>
 
