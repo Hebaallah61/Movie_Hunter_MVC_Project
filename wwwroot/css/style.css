@@ -39,8 +39,8 @@ textarea {
     display: block;
     height: 0;
     font-size: 0;
-    line-height: 0;
-    text-indent: -4000px;
+    /*line-height: 0;
+    text-indent: -4000px;*/
     clear: both;
 }
 
@@ -95,17 +95,21 @@ h1#logo {
     position: absolute;
     top: 37px;
     left: 0;
+    float: left;
+    color: azure;
+    font-weight: bold;
+    font-family: 'Brush Script MT', cursive;
 }
 
-    h1#logo a {
+    /*h1#logo a {
         float: left;
         width: 239px;
-        height: 49px;
-        background: url('images/logo.gif') no-repeat 0 0;
-        font-size: 0;
+        height: 49px;*/
+        /*background: url('images/logo.gif') no-repeat 0 0;*/
+        /*font-size: 0;
         line-height: 0;
         text-indent: -4000px;
-    }
+    }*/
 
 .social {
     float: right;
@@ -177,6 +181,7 @@ h1#logo {
                 font-weight: bold;
                 color: #fff;
                 text-decoration: none;
+                font-family: 'Brush Script MT', cursive;
             }
 
                 #navigation ul li a.active, #navigation ul li a:hover {

@@ -37,7 +37,7 @@ var myEpisodes=(List<Episodes>) ViewBag.Episodes;
   <script>
         document.getElementById("FavMovie").addEventListener("click", () => {
         @{
-            if(MyUser.AddToFavorite == false || MyUser.AddToFavorite ==null)
+            if(MyUser.AddToFavorite == false)
             {
                 MyUser.AddToFavorite = true;
             }
@@ -119,7 +119,7 @@ var myEpisodes=(List<Episodes>) ViewBag.Episodes;
                                     }
                                 }
                                 <button id="FavMovie">
-                                <a asp-area="MovieSeries" asp-controller="SeriesShow" asp-action="GetFavourite" asp-route-Fav="@MyUser.AddToFavorite" asp-route-movieID="@MyUser.SeriesId">Favourite</a>
+                                <a asp-area="MovieSeries" asp-controller="SeriesShow" asp-action="GetFavourite" asp-route-Fav="@MyUser.AddToFavorite" asp-route-seriesID="@MyUser.SeriesId">Favourite</a>
                                 </button>
 
                             </div>

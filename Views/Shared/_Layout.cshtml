@@ -4,42 +4,72 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Movie_Hunter_FinalProject</title>
-    <link href="~/css/movie.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Movie_Hunter_FinalProject.styles.css" asp-append-version="true" />
-    <link href="~/css/ie6.css" rel="stylesheet" />
-    <link href="~/css/site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/Movie.CSS" />
     <link href="~/css/style.css" rel="stylesheet" />
-    <script src="~/js/jquery-1.4.2.min.js"></script>
-    <script src="~/js/jquery-func.js"></script>
-    <script src="~/js/site.js"></script>
-    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-    <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-    <script type="text/javascript" src="js/jquery-func.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Movie_Hunter_FinalProject.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+          integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+          crossorigin="anonymous" />
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+          integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+          crossorigin="anonymous" />
+          <style>
+        .navbar-nav a{
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Brush Script MT', cursive;
+        }
+
+        .NameOfWebsiite{
+        color: azure;
+        font-weight: bold;
+        font-family: 'Brush Script MT', cursive;
+        }
+          </style>
     
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  @*border-bottom*@ box-shadow mb-3" style="background-color:#232323;box-shadow: 0px 0px 15px 3px rgba(255, 99, 71, 0.9);">
-            <div class="container-fluid">
-                <a class="navbar-brand text-white" asp-area="MovieSeries" asp-controller="MovieShow" asp-action="Index">MOVIE HUNTER</a>
+            <div class="container-fluid mt-0 mb-0 pt-0 pb-0">
+                <a class="navbar-brand text-white active mt-0 mb-0 pt-0 pb-0 NameOfWebsiite" asp-area="MovieSeries" asp-controller="MovieShow" asp-action="Index">MOVIE HUNTER</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                       @* <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="MovieSeries" asp-controller="MovieShow" asp-action="Index">HOME</a>
-                        </li>*@
-                        @*<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">PRIVACY</a>
-                        </li>*@
-                        @*<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="MovieSeries" asp-controller="MovieShow" asp-action="Details">Movieeess</a>
-                        </li>*@
-                    </ul>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between mt-0 mb-0 pt-0 pb-0">
+                   <ul class="navbar-nav flex-grow-1">
+                        @* <li class="nav-item">
+                            <a class="nav-link text-dark mt-0 mb-0 pt-0 pb-0" asp-area="MovieSeries" asp-controller="MovieShow" asp-action="Index">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark mt-0 mb-0 pt-0 pb-0" asp-area="" asp-controller="Home" asp-action="Privacy">PRIVACY</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark mt-0 mb-0 pt-0 pb-0" asp-area="MovieSeries" asp-controller="MovieShow" asp-action="Details">Movieeess</a>
+                    </li>*@
+                </ul>
+                </div>
+                <div id="navigation" class="container-fluid mt-0 mb-0 pt-0 pb-0 float-end">
+                    <ul class="container-fluid mt-0 mb-0 pt-0 pb-0 float-end d-flex justify-content-end">
+                        <li><a class="active mt-0 mb-0 pt-0 pb-0" href="#">HOME</a></li>
+                        <li><a class=" mt-0 mb-0 pt-0 pb-0" href="#">SERIES</a></li>
+                    <li><a class=" mt-0 mb-0 pt-0 pb-0" asp-area="User" asp-controller="UserMoviesWatch" asp-action="Index">WATCH LIST</a></li>
+                        <li><a class=" mt-0 mb-0 pt-0 pb-0" asp-area="User" asp-controller="UserMoviesFav" asp-action="Index">FAVOURITES</a></li>
+                        <li><a class=" mt-0 mb-0 pt-0 pb-0" href="~/HTML/News.html">NEWS</a></li>
+
+                </ul>
                 </div>
                 <partial name="_LoginPartial">
             </div>
@@ -51,14 +81,10 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-         <a>&copy; 2023 - Movie_Hunter </a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    
+    <script src="~/js/Movie.js"></script>
+    <script src="~/js/jquery-3.3.1.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

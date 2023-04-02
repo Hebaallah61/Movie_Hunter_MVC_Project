@@ -1843,13 +1843,16 @@ body.active {
     content: "";
   }
 
+    .card-title span{
+        
+    }
   .star-icon {
     color: #ddd;
     font-size: 2em;
     position: relative;
   }
 
-  .star-icon.full:before {
+  .Rate-icon.full:before {
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
     color: #FDE16D;
     content: '\2605';
@@ -1858,7 +1861,7 @@ body.active {
     left: 0;
   }
 
-  .star-icon.half:before {
+  .Rate-icon.half:before {
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
     color: #FDE16D;
     content: '\2605';
