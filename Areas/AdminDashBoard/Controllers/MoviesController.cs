@@ -26,6 +26,7 @@ namespace Movie_Hunter_FinalProject.Areas.AdminDashBoard.Controllers
         }
 
         // GET: MoviesController/Details/5
+        [Route("Details/{id:int}")]
         public ActionResult Details(int id)
         {
             return View(repo.GetById(id));

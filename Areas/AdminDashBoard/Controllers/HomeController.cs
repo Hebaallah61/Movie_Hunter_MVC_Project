@@ -9,6 +9,7 @@ namespace Movie_Hunter_FinalProject.Areas.AdminDashBoard.Controllers
 {
     [Area("AdminDashBoard")]
     //[Authorize(Roles = "Admin")]
+    [Route("Admin")]
     public class HomeController : Controller
     {
         private readonly UserManager<SystemUser> _userManager;
@@ -25,7 +26,7 @@ namespace Movie_Hunter_FinalProject.Areas.AdminDashBoard.Controllers
             this._movieManager = _movieManager;
             this._seriesManager = _seriesManager;
             this._episodesManager = _episodesManager;
-        }   
+        }
         public IActionResult Index()
         {
 
