@@ -4,6 +4,9 @@ var SelectedEpisode = (Episodes)Model;
 UserEpisodes MyUser = (UserEpisodes)ViewBag.User;
 var myEpisodes = ViewBag.Episodes; 
 var mySeries = ViewBag.mySeries ; 
+var y = mySeries.Name;
+var z = SelectedEpisode.Title ; 
+var x = $"{y} Episode {z}"; 
 }
 
 <!DOCTYPE html
@@ -15,8 +18,9 @@ var mySeries = ViewBag.mySeries ;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Guy 2021</title>
-
+   
+    <title>@x</title>
+   
     <!--
       - favicon
     -->
