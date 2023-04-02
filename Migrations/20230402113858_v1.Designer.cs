@@ -12,8 +12,8 @@ using Movie_Hunter_FinalProject.Areas.Identity.Data;
 namespace Movie_Hunter_FinalProject.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20230330114059_nullableFK")]
-    partial class nullableFK
+    [Migration("20230402113858_v1")]
+    partial class v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -105,12 +105,10 @@ namespace Movie_Hunter_FinalProject.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -147,12 +145,10 @@ namespace Movie_Hunter_FinalProject.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -412,20 +408,19 @@ namespace Movie_Hunter_FinalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<bool>("AddToFavorite")
+                    b.Property<bool?>("AddToFavorite")
                         .HasColumnType("bit");
 
                     b.Property<int>("EpisodeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Rating")
+                    b.Property<int?>("Rating")
                         .HasColumnType("int");
 
                     b.Property<string>("Review")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Watched")
+                    b.Property<bool?>("Watched")
                         .HasColumnType("bit");
 
                     b.Property<string>("user_id")
@@ -449,20 +444,19 @@ namespace Movie_Hunter_FinalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<bool>("AddToFavorite")
+                    b.Property<bool?>("AddToFavorite")
                         .HasColumnType("bit");
 
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Rating")
+                    b.Property<int?>("Rating")
                         .HasColumnType("int");
 
                     b.Property<string>("Review")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Watched")
+                    b.Property<bool?>("Watched")
                         .HasColumnType("bit");
 
                     b.Property<string>("user_id")
@@ -481,29 +475,31 @@ namespace Movie_Hunter_FinalProject.Migrations
             modelBuilder.Entity("Movie_Hunter_FinalProject.Models.UserSeries", b =>
                 {
                     b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<bool?>("AddToFavorite")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Review")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SeriesId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("AddToFavorite")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Review")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Watched")
+                    b.Property<bool?>("Watched")
                         .HasColumnType("bit");
 
                     b.Property<string>("user_id")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("id", "SeriesId");
+                    b.HasKey("id");
 
                     b.HasIndex("SeriesId");
 
