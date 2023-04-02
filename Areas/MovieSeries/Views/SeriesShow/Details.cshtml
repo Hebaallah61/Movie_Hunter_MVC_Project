@@ -113,7 +113,7 @@ var myEpisodes=(List<Episodes>) ViewBag.Episodes;
                                 <a data-bs-toggle="modal" data-bs-target="#exampleModal"
                                     style="color: rgb(255, 255, 255); cursor: pointer;">Rate</a>
                                 <input type="text" value="@SelectedSeries.id" name="movieID" hidden/>
-                                @{if(MyUser.AddToFavorite==false)
+                                @{if(MyUser.AddToFavorite==true)
                                   {
                                         <span class="star-icon" id="FavStar">☆</span>
                                     }
@@ -124,7 +124,22 @@ var myEpisodes=(List<Episodes>) ViewBag.Episodes;
                                     }
                                 }
                                 <button id="FavMovie">
-                                <a asp-area="MovieSeries" asp-controller="SeriesShow" asp-action="GetFavourite" asp-route-Fav="@MyUser.AddToFavorite" asp-route-movieID="@MyUser.SeriesId">Favourite</a>
+                                <a asp-area="MovieSeries" asp-controller="SeriesShow" asp-action="GetFavourite" asp-route-Fav="@MyUser.AddToFavorite" asp-route-seriesID="@MyUser.SeriesId">Favourite</a>
+                                </button>
+
+                                 //--------------------------------------------------Heba
+                               @{if(MyUser.Watched==true)
+                                  {
+                                        <span class="star-icon" id="FavStar">☆</span>
+                                    }
+
+                                    else
+                                    {
+                                        <span class="star-icon full" id="FavStar">☆</span>
+                                    }
+                                }
+                                <button id="FavMovie">
+                                <a asp-area="MovieSeries" asp-controller="SeriesShow" asp-action="GetFavourite" asp-route-Wat="@MyUser.Watched" asp-route-seriesID="@MyUser.SeriesId">Watched</a>
                                 </button>
 
                             </div>
