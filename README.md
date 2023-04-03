@@ -17,14 +17,14 @@
     4.	Admin dashboard
     5.	Movie Website
 --------------    
-## Part Details : 
+## Part Details:
     1-	Project Structure:
       a.	Set up for program.cs services and middle wares to work with the project
       b.	Add the configuration for appsettings.json file for connection string ,facebook , google , stripe 
-      c.	Project is  partitioned into Areas :
-          * 	AdminDashBoard
-          *	 Identity
-          *	 Payment
+      c.	Project is  partitioned into Areas:
+          + 	AdminDashBoard
+          +	 Identity
+          +	 Payment
           *	 User: interaction of user with movies and series
           *	 Movies and Series area.        
 -------------
