@@ -34,7 +34,7 @@
 
  2.	Database : 
    1. Created Database schema , Models and Context 
-      * Created Reposatory Pattern in C# Interfaces and classes 
+   2. Created Reposatory Pattern in C# Interfaces and classes 
 ------------
 
  3.	Identity System :
