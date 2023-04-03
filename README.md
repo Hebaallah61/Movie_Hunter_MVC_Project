@@ -1,52 +1,75 @@
-Movie Hunter Documentation 😀
-Movie Hunter is a project of Model-View-Controller (MVC) architecture that aims to provide a movie streaming website with an admin dashboard. The project was developed by a team of six members, as follows:
 
-Our Team :relaxed:
-Hesham
-Mohammed
-Ahmed
-Asmaa
-Heba
-Maha
-Project Parts:
-The project consists of five parts, which are as follows:
+# Movie Hunter Documentation 😀
+-Project of MVC in ITI 
 
-Project Structure
-Database
-Identity System
-Admin dashboard
-Movie Website
-Part Details:
-1. Project Structure:
-The project is partitioned into areas and has a structured setup of program.cs services and middlewares to work with the project. Additionally, the appsettings.json file is used for configuration purposes, including connection strings, Facebook and Google API keys, and Stripe payment gateway.
+## Our Team :relaxed:
+  * [Hesham](https://github.com/HeshamHendawi)
+  * [Mohammed](https://github.com/hamadasmsm)
+  * [Ahmed](https://github.com/AhmedTaha475)
+  * [Asmaa](https://github.com/asmaaabdeen)
+  * [Heba]( https://github.com/Hebaallah61)
+  * [Maha](https://github.com/Maha-Yehia)
+  ------------------
 
-The project is partitioned into Areas:
+## Project Parts:
+1.	Project Structure  
+2.	Data base 
+3.	Identity System 
+4.	Admin dashboard
+5.	Movie Website
+--------------    
+## Part Details:
+ 1-	Project Structure:
+      a.	Set up for program.cs services and middle wares to work with the project
+      b.	Add the configuration for appsettings.json file for connection string ,facebook , google , stripe 
+      c.	Project is  partitioned into Areas:
+          *	AdminDashBoard
+          *	 Identity
+          *	 Payment
+          *	 User: interaction of user with movies and series
+          *	 Movies and Series area.        
+-------------
+ 2-	Database : 
+     Created Database schema , Models and Context 
+      a.	Created Reposatory Pattern in C# Interfaces and classes 
+------------
+ 3-	Identity System :
+      a.	Scaffolded identity system created
+      b.	Register System with normal user 
+      c.	External logins with google and facebook 
+      d.	Created Roles (“Admin,Normal users”)
+      e.	Admin Account Applied Without Register :
+          * ID:admin@moviehunter.com	
+          * Password:Admin@movie123  
+      f.	Normaly any normal or external user is assigned to Normaluser role 
+      g.	Ability to Edit user profile and delete the account
+-------------
+4- Admin Dashboard :  
+      Only  accessed to Admin Role 
+      a.	Created dashboard to CRUD movies , series and episodes 
+      b.	Assign user to Role
+      c.	Remove user from Role
+      d.	CRUD on  Role
+      e.	AdminDashboard Template Was Used
+      f.	Custom Data annotation were used
+      g.	Using Routing and Routing Constraints
+-----------
+5- Movie Website Features: 
+     (Only Authenticated user can watch movies and user full system Features)
+      a.	User Can choose among 3 plans (Basic,Premium,Pro) and Use Stripe API to mimic Payment 
+      b.	Show all movies and all series and every episode available of that series 
+      c.	User can add  specific amount of movies based on his Plan 
+         * Basic : 2 movies
+         * Premium : 6 movies
+         * Pro : Unlimited Movies
+         * No Plan : No Favorite movies
 
-AdminDashBoard
-Identity
-Payment
-User: interaction of the user with movies and series
-Movies and Series area.
-2. Database:
-The team created the database schema, models, and context. They also implemented the Repository Pattern using C# interfaces and classes.
-
-3. Identity System:
-The team scaffolded the identity system and implemented a register system with normal user credentials. They also integrated external logins with Google and Facebook, created roles (admin and normal user), and applied the admin account without registration. The normal or external user is assigned to the Normaluser role, and they have the ability to edit their profile and delete their account.
-
-4. Admin Dashboard:
-The admin dashboard is accessible only by users with admin roles. The team created a dashboard for CRUD (Create, Read, Update, Delete) operations on movies, series, and episodes. They also implemented user role management (assigning, removing, and CRUD operations) and used the AdminDashboard Template. Custom data annotations and routing constraints were used.
-
-5. Movie Website Features:
-The movie website provides features that are accessible to authenticated users, as follows:
-
-Users can choose among three plans (Basic, Premium, Pro) and use the Stripe API to mimic payment.
-All movies, series, and episodes are displayed, and users can add a specific amount of movies based on their plan (Basic: 2 movies, Premium: 6 movies, Pro: Unlimited Movies).
-Users can add movies and series to their watchlist and view favorite movies and series. Additionally, recommended movies based on the user's favorite category are displayed.
-Users can watch movies and series episodes and download them if authenticated.
-The website includes a News Page.
-Custom error pages are implemented to handle 404 errors and unauthorized errors.
-6. Web Site Deployment
-The website was deployed on IIS.
-
-That concludes the documentation for Movie Hunter.
+   If user tries to add more than the given amount for his plan he will be redirected to custom handler Exception page
+      d.	Show Favorite Movies and series for Each user and also recommened Movies based on his Favorite Category
+      e.	User can add movies and series to his watch list
+      f.	Watch Movies and Series Episodes and the ability to Download them if Authenticated
+      g.	News Page 
+      h.	Handling 404 Errors and unauthorized Errors with custom pages
+------------
+6- Web site Deployed on IIS
 
