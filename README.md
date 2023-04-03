@@ -32,51 +32,52 @@
 
 -------------
 
- 2-	Database : 
-     Created Database schema , Models and Context 
-      a.	Created Reposatory Pattern in C# Interfaces and classes 
+ 2.	Database : 
+   1. Created Database schema , Models and Context 
+       	* Created Reposatory Pattern in C# Interfaces and classes 
 ------------
 
- 3-	Identity System :
-      a.	Scaffolded identity system created
-      b.	Register System with normal user 
-      c.	External logins with google and facebook 
-      d.	Created Roles (“Admin,Normal users”)
-      e.	Admin Account Applied Without Register :
+ 3.	Identity System :
+      1.	Scaffolded identity system created
+      2.	Register System with normal user 
+      3.	External logins with google and facebook 
+      4.	Created Roles (“Admin,Normal users”)
+      5.	Admin Account Applied Without Register :
           * ID:admin@moviehunter.com	
           * Password:Admin@movie123  
-      f.	Normaly any normal or external user is assigned to Normaluser role 
-      g.	Ability to Edit user profile and delete the account
+      6.	Normaly any normal or external user is assigned to Normaluser role 
+      7.	Ability to Edit user profile and delete the account
 -------------
 
-4- Admin Dashboard :  
+ 4. Admin Dashboard :  
       Only  accessed to Admin Role 
-      a.	Created dashboard to CRUD movies , series and episodes 
-      b.	Assign user to Role
-      c.	Remove user from Role
-      d.	CRUD on  Role
-      e.	AdminDashboard Template Was Used
-      f.	Custom Data annotation were used
-      g.	Using Routing and Routing Constraints
+      1.	Created dashboard to CRUD movies , series and episodes 
+      2.	Assign user to Role
+      3.	Remove user from Role
+      4.	CRUD on  Role
+      5.	AdminDashboard Template Was Used
+      6.	Custom Data annotation were used
+      7.	Using Routing and Routing Constraints
 -----------
 
-5- Movie Website Features: 
+ 5. Movie Website Features: 
      (Only Authenticated user can watch movies and user full system Features)
-      a.	User Can choose among 3 plans (Basic,Premium,Pro) and Use Stripe API to mimic Payment 
-      b.	Show all movies and all series and every episode available of that series 
-      c.	User can add  specific amount of movies based on his Plan 
+      1.	User Can choose among 3 plans (Basic,Premium,Pro) and Use Stripe API to mimic Payment 
+      2.	Show all movies and all series and every episode available of that series 
+      3.	User can add  specific amount of movies based on his Plan 
          * Basic : 2 movies
          * Premium : 6 movies
          * Pro : Unlimited Movies
          * No Plan : No Favorite movies
 
    If user tries to add more than the given amount for his plan he will be redirected to custom handler Exception page
-      d.	Show Favorite Movies and series for Each user and also recommened Movies based on his Favorite Category
-      e.	User can add movies and series to his watch list
-      f.	Watch Movies and Series Episodes and the ability to Download them if Authenticated
-      g.	News Page 
-      h.	Handling 404 Errors and unauthorized Errors with custom pages
+      4.	Show Favorite Movies and series for Each user and also recommened Movies based on his Favorite Category
+      5.	User can add movies and series to his watch list
+      6.	Watch Movies and Series Episodes and the ability to Download them if Authenticated
+      7.	News Page 
+      8.	Handling 404 Errors and unauthorized Errors with custom pages
+      
 ------------
 
-6. Web site Deployed on IIS
+ 6. Web site Deployed on IIS
 
