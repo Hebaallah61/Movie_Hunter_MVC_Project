@@ -20,15 +20,15 @@
 --------------  
 
 ## Part Details:
-1. Project Structure:
-   1. Set up for program.cs services and middle wares to work with the project
-   2. Add the configuration for appsettings.json file for connection string ,facebook , google , stripe
-   3. Project is  partitioned into Areas:
-      1. AdminDashBoard
-      2. Identity
-      3. Payment
-      4. User: interaction of user with movies and series
-      5. Movies and Series area.  
+###1. Project Structure:
+    1. Set up for program.cs services and middle wares to work with the project
+    2. Add the configuration for appsettings.json file for connection string ,facebook , google , stripe
+    3. Project is  partitioned into Areas:
+       1. AdminDashBoard
+       2. Identity
+       3. Payment
+       4. User: interaction of user with movies and series
+       5. Movies and Series area.  
 
 -------------
 
