@@ -11,12 +11,12 @@
   ------------------
 
 Project Parts:
-    1-	Project Structure  
-    2-	Data base 
-    3-	Identity System 
-    4-	Admin dashboard
-    5-	Movie Website
-    
+    1.	Project Structure  
+    2.	Data base 
+    3.	Identity System 
+    4.	Admin dashboard
+    5.	Movie Website
+--------------    
 Part Details : 
     1-	Project Structure:
       a.	Set up for program.cs services and middle wares to work with the project
