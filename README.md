@@ -22,11 +22,11 @@
       a.	Set up for program.cs services and middle wares to work with the project
       b.	Add the configuration for appsettings.json file for connection string ,facebook , google , stripe 
       c.	Project is  partitioned into Areas :
-          *	AdminDashBoard
-          *	Identity
-          *	Payment
-          *	User: interaction of user with movies and series
-          *	Movies and Series area.        
+          * 	AdminDashBoard
+          *	 Identity
+          *	 Payment
+          *	 User: interaction of user with movies and series
+          *	 Movies and Series area.        
 -------------
     2-	Database : 
      Created Database schema , Models and Context 
