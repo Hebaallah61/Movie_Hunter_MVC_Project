@@ -20,7 +20,7 @@
 --------------  
 
 ## Part Details:
-###1. Project Structure:
+1. Project Structure:
     1. Set up for program.cs services and middle wares to work with the project
     2. Add the configuration for appsettings.json file for connection string ,facebook , google , stripe
     3. Project is  partitioned into Areas:
@@ -80,4 +80,5 @@
 ------------
 
  6. Web site Deployed on IIS
+----------
 
