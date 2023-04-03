@@ -34,7 +34,7 @@
 
  2.	Database : 
    1. Created Database schema , Models and Context 
-       	* Created Reposatory Pattern in C# Interfaces and classes 
+      * Created Reposatory Pattern in C# Interfaces and classes 
 ------------
 
  3.	Identity System :
@@ -42,9 +42,9 @@
       2.	Register System with normal user 
       3.	External logins with google and facebook 
       4.	Created Roles (“Admin,Normal users”)
-      5.	Admin Account Applied Without Register :
-          * ID:admin@moviehunter.com	
-          * Password:Admin@movie123  
+      5.	Admin Account Applied Without Register:
+          1. ID:admin@moviehunter.com	
+          2. Password:Admin@movie123  
       6.	Normaly any normal or external user is assigned to Normaluser role 
       7.	Ability to Edit user profile and delete the account
 -------------
@@ -65,12 +65,12 @@
       1.	User Can choose among 3 plans (Basic,Premium,Pro) and Use Stripe API to mimic Payment 
       2.	Show all movies and all series and every episode available of that series 
       3.	User can add  specific amount of movies based on his Plan 
-         * Basic : 2 movies
-         * Premium : 6 movies
-         * Pro : Unlimited Movies
-         * No Plan : No Favorite movies
+         1. Basic : 2 movies
+         2. Premium : 6 movies
+         3. Pro : Unlimited Movies
+         4. No Plan : No Favorite movies
 
-   If user tries to add more than the given amount for his plan he will be redirected to custom handler Exception page
+    ### (If user tries to add more than the given amount for his plan he will be redirected to custom handler Exception page)
       4.	Show Favorite Movies and series for Each user and also recommened Movies based on his Favorite Category
       5.	User can add movies and series to his watch list
       6.	Watch Movies and Series Episodes and the ability to Download them if Authenticated
