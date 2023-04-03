@@ -17,7 +17,7 @@
     4.	Admin dashboard
     5.	Movie Website
 --------------    
-Part Details : 
+## Part Details : 
     1-	Project Structure:
       a.	Set up for program.cs services and middle wares to work with the project
       b.	Add the configuration for appsettings.json file for connection string ,facebook , google , stripe 
