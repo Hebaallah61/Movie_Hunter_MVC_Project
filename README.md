@@ -1,13 +1,13 @@
-#Movie Hunter Documentation 😀
+# Movie Hunter Documentation 😀
 -Project of MVC in ITI 
 
-##Our Team :relaxed:
-  *[Hesham](https://github.com/HeshamHendawi)
-  *[Mohammed](https://github.com/hamadasmsm)
-  *[Ahmed](https://github.com/AhmedTaha475)
-  *[Asmaa](https://github.com/asmaaabdeen)
-  *[Heba]( https://github.com/Hebaallah61)
-  *[Maha](https://github.com/Maha-Yehia)
+## Our Team :relaxed:
+  * [Hesham](https://github.com/HeshamHendawi)
+  * [Mohammed](https://github.com/hamadasmsm)
+  * [Ahmed](https://github.com/AhmedTaha475)
+  * [Asmaa](https://github.com/asmaaabdeen)
+  * [Heba]( https://github.com/Hebaallah61)
+  * [Maha](https://github.com/Maha-Yehia)
   ------------------
 
 Project Parts:
