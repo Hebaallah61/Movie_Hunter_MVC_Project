@@ -26,16 +26,12 @@ Part Details :
           *	Identity
           *	Payment
           *	User: interaction of user with movies and series
-          *	Movies and Series area
-
-
+          *	Movies and Series area.        
+-------------
     2-	Database : 
      Created Database schema , Models and Context 
       a.	Created Reposatory Pattern in C# Interfaces and classes 
-
-
-
-
+------------
     3-	Identity System :
       a.	Scaffolded identity system created
       b.	Register System with normal user 
@@ -46,7 +42,7 @@ Part Details :
           *Password:Admin@movie123  
       f.	Normaly any normal or external user is assigned to Normaluser role 
       g.	Ability to Edit user profile and delete the account
-
+-------------
     4-	Admin Dashboard :  
       Only  accessed to Admin Role 
       a.	Created dashboard to CRUD movies , series and episodes 
@@ -56,9 +52,7 @@ Part Details :
       e.	AdminDashboard Template Was Used
       f.	Custom Data annotation were used
       g.	Using Routing and Routing Constraints
-
- 
-
+-----------
     5-	Movie Website Features: 
      (Only Authenticated user can watch movies and user full system Features)
       a.	User Can choose among 3 plans (Basic,Premium,Pro) and Use Stripe API to mimic Payment 
@@ -75,5 +69,5 @@ Part Details :
       f.	Watch Movies and Series Episodes and the ability to Download them if Authenticated
       g.	News Page 
       h.	Handling 404 Errors and unauthorized Errors with custom pages
-
+------------
     6-	Web site Deployed on IIS
